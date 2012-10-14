@@ -1,0 +1,61 @@
+
+
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Movie Reminder</title>
+    <meta name="description" content="Get excited about upcoming movies by subscribing to your favorite actors and directors"/>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <link href="{{ STATIC_URL }}css/lib/bootstrap-2.1.0.css" type="text/css" rel="stylesheet" media="screen, projection" />
+    <link href="{{ STATIC_URL }}css/lib/jquery-ui-1.9.0.custom.min.css" type="text/css" rel="stylesheet" media="screen, projection" />
+    <link href="{{ STATIC_URL }}css/mp/frontpage.css" type="text/css" rel="stylesheet" media="screen, projection" />
+</head>
+<body>
+<div class="container">
+
+    <div class="hero-unit">
+        <h1>Get excited about upcoming movies</h1>
+        <p>Subscribe to your favorite actors and director to be notified about their upcoming movies.</p>
+
+
+    </div>
+
+
+</div>
+
+<div class="container" id="people-input">
+    <div style="text-align: center;">
+
+        <form>
+            <label>Type in your favorite actor or director's name:</label>
+            <input id="name" type="text" placeholder="ex: Johnny Depp, Quentin Tarantino" style="width:325px">
+            <a id="go" class="btn" style="margin-top: -8px; width: 40px;">OK</a>
+        </form>
+
+
+    </div>
+</div>
+
+<div class="container" id="people" style="display:none">
+    <div class="row">
+        <div class="span6" id="timeline">
+
+        </div>
+        <div class="span6">
+            <a class="btn btn-large btn-primary" type="button" id="subscribe">Subscribe to update on upcoming <span id="people-name"></span>'s movie releases</a>
+        </div>
+    </div>
+</div>
+
+<script src="{{ STATIC_URL }}js/lib/jquery-1.8.2.min.js"></script>
+<script src="{{ STATIC_URL }}js/lib/jquery-ui-1.9.0.custom.min.js"></script>
+<script src="{{ STATIC_URL }}js/lib/bootstrap.js"></script>
+<script src="{{ STATIC_URL }}js/lib/date.js"></script>
+<script src="{{ STATIC_URL }}js/k/kdate.js"></script>
+<script src="{{ STATIC_URL }}js/pages/frontpage.js"></script>
+
+</body>
+</html>
