@@ -102,7 +102,7 @@ ROOT_URLCONF = 'moviepeople.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'moviepeople.wsgi.application'
 
-TEMPLATE_DIRS = ('C:/python/moviepeople/templates',)
+TEMPLATE_DIRS = ('templates')
 
 INSTALLED_APPS = (
     'django.contrib.auth',
