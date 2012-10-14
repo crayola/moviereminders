@@ -7,8 +7,7 @@ class User(models.Model):
     last_updated = models.DateTimeField( auto_now = True,default=datetime.datetime.now())
 
 class People(models.Model):
-    first_name = models.CharField(max_length=200)
-    last_name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
     date_created = models.DateTimeField( auto_now_add = True,default=datetime.datetime.now())
     last_updated = models.DateTimeField( auto_now = True,default=datetime.datetime.now())
 

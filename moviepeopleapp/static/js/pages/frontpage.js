@@ -18,7 +18,7 @@ mp.pages.frontpage = new function(){
                     success:function(json){
                         response( $.map( json.peoples, function( people ) {
                             return {
-                                label: people.first_name+' '+people.last_name,
+                                label: people.first_name+''+people.last_name,
                                 value: people.name,
                                 people:people
                             }

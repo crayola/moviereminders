@@ -5,13 +5,14 @@ from django.utils import simplejson
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils.datetime_safe import date
-from moviepeopleapp.models import People, MoviePeople, Trailer, Release
+from moviepeopleapp.models import People, MoviePeople, Trailer, Release, Movie
+from urllib2 import urlopen
+
 
 log = logging.getLogger(__name__)
 
 def frontpage(request):
     return render(request,'frontpage.html',{'test':'test'})
-
 
 def autocomplete(request):
     log.info('test')
@@ -20,13 +21,13 @@ def autocomplete(request):
     json = simplejson.loads(json_string)
     keywords = json['name'].split(' ')
     ret_json = {'peoples':[]}
-    peoples = People.objects.filter(Q(first_name__icontains=json['name'])|Q(last_name__icontains=json['name']))
+    peoples = People.objects.filter(Q(name__icontains=json['name']))
     log.info('peoples:'+str(peoples.count()))
     for people in peoples:
         people_map = {
             'id' : people.id,
-            'first_name' : people.first_name,
-            'last_name' : people.last_name
+            'first_name' : people.name,
+            'last_name' : "" # hacky -- couldn't figure out a better way for now
         }
         ret_json['peoples'].append(people_map)
     return HttpResponse(simplejson.dumps(ret_json), mimetype="application/json")
@@ -55,10 +56,8 @@ def people_movies(request,id):
         }
         movie_map['release'] = release_map
         ret_json['movies'].append(movie_map)
-
     return HttpResponse(simplejson.dumps(ret_json), mimetype="application/json")
 
 def people_subscribe(request,id):
     people = People.objects.get(pk=id)
-
     return HttpResponse(simplejson.dumps({}), mimetype="application/json")
