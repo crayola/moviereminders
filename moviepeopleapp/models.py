@@ -13,6 +13,8 @@ class People(models.Model):
 
 class Movie(models.Model):
     name = models.CharField(max_length=200)
+    poster = models.CharField(max_length=200)
+    backdrop = models.CharField(max_length=200)
     date_created = models.DateTimeField( auto_now_add = True,default=datetime.datetime.now())
     last_updated = models.DateTimeField( auto_now = True,default=datetime.datetime.now())
 
@@ -40,17 +42,17 @@ class Follow(models.Model):
     user = models.ForeignKey(User)
     people = models.ForeignKey(People)
 
-class Poster(models.Model):
-    movie = models.ForeignKey(Movie)
-    url = models.CharField(max_length=200)
-    date_created = models.DateTimeField( auto_now_add = True,default=datetime.datetime.now())
-    last_updated = models.DateTimeField( auto_now = True,default=datetime.datetime.now())
-
-class Backdrop(models.Model):
-    movie = models.ForeignKey(Movie)
-    url = models.CharField(max_length=200)
-    date_created = models.DateTimeField( auto_now_add = True,default=datetime.datetime.now())
-    last_updated = models.DateTimeField( auto_now = True,default=datetime.datetime.now())
+#class Poster(models.Model):
+#    movie = models.ForeignKey(Movie)
+#    url = models.CharField(max_length=200)
+#    date_created = models.DateTimeField( auto_now_add = True,default=datetime.datetime.now())
+#    last_updated = models.DateTimeField( auto_now = True,default=datetime.datetime.now())
+#
+#class Backdrop(models.Model):
+#    movie = models.ForeignKey(Movie)
+#    url = models.CharField(max_length=200)
+#    date_created = models.DateTimeField( auto_now_add = True,default=datetime.datetime.now())
+#    last_updated = models.DateTimeField( auto_now = True,default=datetime.datetime.now())
 
 
 
