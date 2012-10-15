@@ -102,7 +102,7 @@ ROOT_URLCONF = 'moviepeople.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'moviepeople.wsgi.application'
 
-TEMPLATE_DIRS = ('C:/python/moviepeople/templates',)
+TEMPLATE_DIRS = ('templates')
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -113,7 +113,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
      #seacrh
-     'haystack'
+     'haystack',
 
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
@@ -121,6 +121,10 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'moviepeopleapp',
     )
+
+HAYSTACK_SITECONF = 'moviepeopleapp.search_sites'
+HAYSTACK_SEARCH_ENGINE = 'whoosh'
+HAYSTACK_WHOOSH_PATH = 'c:/work/whoosh_index'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

@@ -3,16 +3,14 @@
         "model": "moviepeopleapp.People",
         "pk": 1,
         "fields": {
-            "first_name": "Johnny",
-            "last_name": "Depp"
+            "name": "Johnny Depp"
         }
     },
     {
         "model": "moviepeopleapp.People",
         "pk": 2,
         "fields": {
-            "first_name": "Quentin",
-            "last_name": "Tarantino"
+            "name": "Quentin Tarantino"
         }
     },
     {
