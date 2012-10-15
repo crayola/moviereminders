@@ -2,3 +2,10 @@
 /moviepeople/local_settings.py
 *.pyc
 *.pyc
+/moviepeople/*.pyc
+/moviepeople/*.pyc
+*.pyc
+*.pyc
+*.pyc
+*.pyc
+*.pyc
