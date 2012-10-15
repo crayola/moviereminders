@@ -1,4 +1,4 @@
 /moviepeople/local_settings.py
 *.swp
 *.pyc
-*.pyc
+/APIparser/miri.py
