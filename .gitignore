@@ -1,5 +1,4 @@
-/moviepeople/local_settings.pyc
 /moviepeople/local_settings.py
-/moviepeople/*.pyc
-/moviepeopleapp/*.pyc
 *.swp
+*.pyc
+*.pyc

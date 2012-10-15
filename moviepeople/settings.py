@@ -13,8 +13,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'movie_people',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
+        'USER': '###',                      # Not used with sqlite3.
+        'PASSWORD': '###',                  # Not used with sqlite3.
         'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -56,7 +56,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = 'c:/work/python/'
+STATIC_ROOT = ''
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -112,12 +112,19 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+     #seacrh
+     'haystack',
+
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'moviepeopleapp',
     )
+
+HAYSTACK_SITECONF = 'moviepeopleapp.search_sites'
+HAYSTACK_SEARCH_ENGINE = 'whoosh'
+HAYSTACK_WHOOSH_PATH = '###'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -166,10 +173,3 @@ LOGGING = {
     }
 
 }
-
-
-# load local settings file
-try:
-    from local_settings import *
-except ImportError:
-    pass

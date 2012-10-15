@@ -76,19 +76,17 @@ def parseMovie(tmdbid):
         return 0
     movie_cast=checkmovie(tmdbid, "casts")
     movie_release=checkmovie(tmdbid, "releases")
-    movie_images=checkmovie(tmdbid, "images")
-
     f=open("/home/ubuntu/dumptmdb", "a")
     simplejson.dump({"main": movie_main, "casts": movie_cast, "releases": movie_release}, f)
     f.close()
-
     title=movie_main['title']
-    dbmovie=Movie(name=title)
+    (poster, backdrop) = (movie_main['poster_path'], movie_main['backdrop_path'])
+    if not(poster): poster=''
+    if not(backdrop): backdrop=''
+    dbmovie=Movie(name=title, poster=poster, backdrop=backdrop)
     dbmovie.save()
-
     date=[x['release_date'] for x in movie_release['countries'] if x['iso_3166_1']=='US']
     if date: Release(movie=dbmovie, date=date[0]).save()
-
     people=[x['name'] for x in movie_cast['cast']]
     director=[x['name'] for x in movie_cast['crew'] if x['job']=='Director']
     for role in people:
@@ -108,16 +106,13 @@ def parseMovie(tmdbid):
             dbpeople=People(name=role)
         dbpeople.save()
         MoviePeople(people=dbpeople, movie=dbmovie, role="director").save()
-
-    for poster in [x['file_path'] for x in movie_images['posters']]:
-        Poster(url=poster, movie=dbmovie).save()
-
-    for poster in [x['file_path'] for x in movie_images['backdrops']]:
-        Backdrop(url=poster, movie=dbmovie).save()
-    # need to do director, but one API call per movie required :-/
+    #for poster in [x['file_path'] for x in movie_images['posters']]:
+    #    Poster(url=poster, movie=dbmovie).save()
+    #for poster in [x['file_path'] for x in movie_images['backdrops']]:
+    #    Backdrop(url=poster, movie=dbmovie).save()
     return [title,date,people]
 
-#[parseMovie(movie) for movie in queryMovies('titanic').get('movies') if movie.]
+#[parseMovie(x) for x in range(12, 100)]
 
 #def parseMoviesSearch(query):
 #    tmp=[parseMovie(movie) for movie in queryMovies(query).get('movies') if
