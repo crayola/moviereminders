@@ -8,6 +8,7 @@ mp.pages.frontpage = new function(){
 
     this.init = function(){
         $('#name').autocomplete({
+            minLength:2,
             source:function(request, response){
                 var name = request.term;
                 $.ajax({
@@ -56,23 +57,71 @@ mp.pages.frontpage = new function(){
         });
 
         $('#subscribe').click(function(){
-            $.ajax({
-                type:'GET',
-                url:'/api/people/'+currentPeople.id+'/subscribe',
-                data:'JSON={}',
-                dataType:'json',
-                success:function(json){
+            if(mp.currentUser){
+                $.ajax({
+                    type:'GET',
+                    url:'/api/people/'+currentPeople.id+'/subscribe',
+                    data:'JSON={}',
+                    dataType:'json',
+                    success:function(json){
+                        var title = 'you are following '+currentPeople.name+'';
+                        if(json.already_follows){
+                            title = 'you were already following '+currentPeople.name+''
+                        }
+                        $('#subscribe').tooltip({
+                            title:title,
+                            trigger:'manual'
+                        }).tooltip('show');
+                        setTimeout(function(){ $('#subscribe').tooltip('hide');},2000);
+                    },
+                    error:function(){
 
-                },
-                error:function(){
+                    }
+                });
+            }
+            else{
+                $('#email-modal').modal('show');
+            }
+        });
 
-                }
-            });
+        $('#email-ok').click(function(){
+            var email = $('#email').val();
+            if(email.indexOf('@') === -1){
+                $('#email').tooltip({
+                    title:'Please enter your email',
+                    trigger:'manual'
+                }).tooltip('show');
+            }
+            else{
+
+                $.ajax({
+                    type:'GET',
+                    url:'/api/signup',
+                    data:'JSON={"email":"'+email+'"}',
+                    dataType:'json',
+                    success:function(json){
+                        if(json.user_already_exists){
+                            //TODO
+                        }
+                        else{
+                            //logged in
+                            $('#email-modal').modal('hide');
+                            mp.currentUser = {
+                                email:email
+                            }
+                            $('#subscribe').click();
+                        }
+                    },
+                    error:function(){
+
+                    }
+                });
+            }
         });
     }
 
     function onMovies(movies){
-        $('#people-name').html(currentPeople.first_name+' '+currentPeople.last_name);
+        $('.people-name').html(currentPeople.name);
         //get all items
         var items = [];
         $.each(movies,function(i,movie){

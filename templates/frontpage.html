@@ -45,8 +45,28 @@
 
         </div>
         <div class="span6">
-            <a class="btn btn-large btn-primary" type="button" id="subscribe">Subscribe to update on upcoming <span id="people-name"></span>'s movie releases</a>
+            <a class="btn btn-large btn-primary" type="button" id="subscribe">Subscribe to update on upcoming <span class="people-name"></span>'s movie releases</a>
         </div>
+    </div>
+</div>
+
+<div id="email-modal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Receive updates for <span class="people-name"></span>'s work by email</h3>
+    </div>
+    <div class="modal-body">
+        <p>We will send you updates about <span class="people-name"></span>'s releases and trailers by email.</p>
+        <p>You can expect around one or 2 emails a month, depending on the number of people you subscribed to.</p>
+
+        <p style="text-align: center;padding-top: 24px; padding-bottom: 12px;">
+            <label></label>
+            <input id="email" type="email" placeholder="Your email" style="width:325px">
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a data-dismiss="modal" class="btn">Cancel</a>
+        <a id="email-ok" class="btn btn-primary">OK</a>
     </div>
 </div>
 
@@ -57,5 +77,10 @@
 <script src="{{ STATIC_URL }}js/k/kdate.js"></script>
 <script src="{{ STATIC_URL }}js/pages/frontpage.js"></script>
 
+{% if user %}
+<script>
+    mp.currentUser = {email: '{{ user.email }}' };
+</script>
+{% endif %}
 </body>
 </html>
