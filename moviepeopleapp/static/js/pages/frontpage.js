@@ -51,6 +51,8 @@ mp.pages.frontpage = new function(){
                         onMovies(json.movies);
                     },
                     error:function(){
+                        $('#email-modal').modal('show');
+                        $('#hidden-modal').modal('show');
                     }
                 });
             }
@@ -71,11 +73,14 @@ mp.pages.frontpage = new function(){
                         $('#subscribe').tooltip({
                             title:title,
                             trigger:'manual'
-                        }).tooltip('show');
+                        }).attr('data-original-title', title)
+                          .tooltip('fixTitle')
+                          .tooltip('show');
                         setTimeout(function(){ $('#subscribe').tooltip('hide');},2000);
                     },
                     error:function(){
-
+                        $('#email-modal').modal('show');
+                        $('#hidden-modal').modal('show');
                     }
                 });
             }
@@ -100,8 +105,10 @@ mp.pages.frontpage = new function(){
                     data:'JSON={"email":"'+email+'"}',
                     dataType:'json',
                     success:function(json){
-                        if(json.user_already_exists){
+                        if(json.already_exists){
                             //TODO
+                            $('#email-modal').modal('show');
+                            $('#hidden-modal').modal('show');
                         }
                         else{
                             //logged in
@@ -113,7 +120,8 @@ mp.pages.frontpage = new function(){
                         }
                     },
                     error:function(){
-
+                        $('#email-modal').modal('show');
+                        $('#hidden-modal').modal('show');
                     }
                 });
             }

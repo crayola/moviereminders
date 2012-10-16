@@ -28,7 +28,7 @@ def autocomplete(request):
     term = json['term']
 
     #get results
-    autocomplete = SearchQuerySet().autocomplete(name_autocomplete='De')
+    autocomplete = SearchQuerySet().autocomplete(name_autocomplete=term)
     log.info("term:"+term+" results:"+str(autocomplete.count()))
 
     #create response
@@ -73,6 +73,9 @@ def signup(request):
     json = simplejson.loads(request.GET.get('JSON'))
     email = json['email']
     log.info("signup:"+email)
+    users = User.objects.filter(username=email)
+    if(users.count()>0):
+        return HttpResponse(simplejson.dumps({"already_exists":True}), mimetype="application/json")
     user = User.objects.create_user(email, email, '*')
     user.save()
     user = authenticate(username=email,password='*')
@@ -84,8 +87,8 @@ def signup(request):
 def people_subscribe(request,id):
     user = request.user
     people = People.objects.get(pk=id)
-    follow = Follow.objects.get(user=user,people=people)
-    if(follow):
+    follows = Follow.objects.filter(user=user,people=people)
+    if(follows.count()>0):
         return HttpResponse(simplejson.dumps({"already_follows":True}), mimetype="application/json")
     follow = Follow.objects.create(user=user,people=people)
     log.info("user:"+user.email+" follows:"+people.name)

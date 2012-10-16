@@ -70,6 +70,24 @@
     </div>
 </div>
 
+<div id="hidden-modal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Hey, you've reached an hidden place</h3>
+    </div>
+    <div class="modal-body">
+        <p>Why hello,<br/>
+            you were not really supposed to get there.</p>
+        <p>You see the site is a couple of days young, and we are still hard at work implementing everything.<br/>
+        If you are trying to log in an account you created earlier, I'm affraid it's not possible right now. I'll send you a mail ASAP.</p>
+        <p>Arnaud</p>
+
+    </div>
+    <div class="modal-footer">
+        <a data-dismiss="modal" class="btn">Okay</a>
+    </div>
+</div>
+
 <script src="{{ STATIC_URL }}js/lib/jquery-1.8.2.min.js"></script>
 <script src="{{ STATIC_URL }}js/lib/jquery-ui-1.9.0.custom.min.js"></script>
 <script src="{{ STATIC_URL }}js/lib/bootstrap.js"></script>
@@ -77,10 +95,11 @@
 <script src="{{ STATIC_URL }}js/k/kdate.js"></script>
 <script src="{{ STATIC_URL }}js/pages/frontpage.js"></script>
 
-{% if user %}
+{% if user.is_authenticated  %}
 <script>
     mp.currentUser = {email: '{{ user.email }}' };
 </script>
 {% endif %}
+
 </body>
 </html>
