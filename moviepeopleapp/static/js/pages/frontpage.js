@@ -13,12 +13,12 @@ mp.pages.frontpage = new function(){
                 $.ajax({
                     type:'GET',
                     url:'/api/people/autocomplete',
-                    data:'JSON={"name":"'+name+'"}',
+                    data:'JSON={"term":"'+name+'"}',
                     dataType:'json',
                     success:function(json){
                         response( $.map( json.peoples, function( people ) {
                             return {
-                                label: people.first_name+''+people.last_name,
+                                label: people.name,
                                 value: people.name,
                                 people:people
                             }
