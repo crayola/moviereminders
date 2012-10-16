@@ -112,9 +112,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-     #seacrh
-     'haystack',
 
+    'haystack', #seacrh
+    'longerusername', #yeah, 30 char is not really enough
+    'south',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -173,3 +174,12 @@ LOGGING = {
     }
 
 }
+
+
+MAX_USERNAME_LENGTH = 1023 #longerusername
+
+#import local settings
+try:
+    from local_settings import *
+except ImportError:
+    pass

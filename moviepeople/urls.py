@@ -10,7 +10,8 @@ urlpatterns = patterns('',
 
     url(r'^api/people/autocomplete$', 'moviepeopleapp.views.autocomplete'),
     url(r'^api/people/(\d+)/movies$', 'moviepeopleapp.views.people_movies'),
-    url(r'^api/people/(\d+)/subscribe$', 'moviepeopleapp.views.people_subscribe')
+    url(r'^api/people/(\d+)/subscribe$', 'moviepeopleapp.views.people_subscribe'),
+    url(r'^api/signup$', 'moviepeopleapp.views.signup'),
     # url(r'^moviepeople/', include('moviepeople.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

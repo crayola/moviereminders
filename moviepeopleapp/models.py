@@ -1,10 +1,6 @@
 import datetime
+import django.contrib.auth.models
 from django.db import models
-
-class User(models.Model):
-    email = models.CharField(max_length=200)
-    date_created = models.DateTimeField( auto_now_add = True,default=datetime.datetime.now())
-    last_updated = models.DateTimeField( auto_now = True,default=datetime.datetime.now())
 
 class People(models.Model):
     name = models.CharField(max_length=200)
@@ -39,8 +35,10 @@ class Trailer(models.Model):
     last_updated = models.DateTimeField( auto_now = True,default=datetime.datetime.now())
 
 class Follow(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(django.contrib.auth.models.User)
     people = models.ForeignKey(People)
+    class Meta:
+        unique_together = ('user', 'people')
 
 #class Poster(models.Model):
 #    movie = models.ForeignKey(Movie)
