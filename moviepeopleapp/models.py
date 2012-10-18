@@ -105,7 +105,7 @@ class MovieCountry(models.Model):
 
 class MovieCompany(models.Model): 
     movie =  models.ForeignKey(Movie)
-    company = models.CharField(max_length=100)
+    company = models.CharField(max_length=200)
     company_tmdb_id = models.PositiveIntegerField(null=True)
     date_created = models.DateTimeField( auto_now_add = True,default=datetime.datetime.now())
     last_updated = models.DateTimeField( auto_now = True,default=datetime.datetime.now())

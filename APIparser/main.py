@@ -151,10 +151,10 @@ def makeDBmovie(movie_main):
         dbmoviegenre.genre_tmdb_id=genre['id']
         dbmoviegenre.save()
     for company in production_companies:
-        try: dbmoviecompany=MovieCompany.objects.get(movie=dbmovie, company=company['name'])
+        try: dbmoviecompany=MovieCompany.objects.get(movie=dbmovie, company=company['name'][:200])
         except: dbmoviecompany=MovieCompany()
         dbmoviecompany.movie=dbmovie
-        dbmoviecompany.company=company['name']
+        dbmoviecompany.company=company['name'][:200]
         dbmoviecompany.company_tmdb_id=company['id']
         dbmoviecompany.save()
     for language in languages:
@@ -204,13 +204,13 @@ def makeDBactor(dbmovie, actor):
     dbpeople.tmdb_id=Nonetostr(actor['id'])
     dbpeople.profile=Nonetostr(actor['profile_path'])
     dbpeople.save()
-    try: dbmoviepeople=MoviePeople.objects.get(people=dbpeople, movie=dbmovie, role='Actor', character=Nonetostr(actor['character'])[:99])
+    try: dbmoviepeople=MoviePeople.objects.get(people=dbpeople, movie=dbmovie, role='Actor', character=Nonetostr(actor['character'])[:100])
     except: dbmoviepeople=MoviePeople()
     dbmoviepeople.movie=dbmovie
     dbmoviepeople.people=dbpeople
     dbmoviepeople.role='Actor'
     dbmoviepeople.department='Acting'
-    dbmoviepeople.character=Nonetostr(actor['character'])[:99]
+    dbmoviepeople.character=Nonetostr(actor['character'])[:100]
     dbmoviepeople.cast_id=actor['cast_id']
     dbmoviepeople.order=actor['order']
     dbmoviepeople.save()
