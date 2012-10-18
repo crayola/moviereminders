@@ -80,6 +80,13 @@ class MovieGenre(models.Model):
     class Meta:
         unique_together = ('movie', 'genre')
 
+
+class CreateAccountToken(models.Model):
+    code = models.CharField(max_length=32)
+    email = models.CharField(max_length=1023)
+    date_created = models.DateTimeField( auto_now_add = True,default=datetime.datetime.now())
+    last_updated = models.DateTimeField( auto_now = True,default=datetime.datetime.now())
+
 class MovieLanguage(models.Model):
     movie =  models.ForeignKey(Movie)
     language = models.CharField(max_length=10)

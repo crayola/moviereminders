@@ -11,11 +11,9 @@ mp.pages.frontpage = new function(){
             minLength:2,
             source:function(request, response){
                 var name = request.term;
-                $.ajax({
-                    type:'GET',
+                $k.api.GET({
                     url:'/api/people/autocomplete',
-                    data:'JSON={"term":"'+name+'"}',
-                    dataType:'json',
+                   json:{term:name},
                     success:function(json){
                         response( $.map( json.peoples, function( people ) {
                             return {
@@ -41,11 +39,8 @@ mp.pages.frontpage = new function(){
         $('#go').click(function(){
             if(currentPeople){
                 //call server to get stories
-                $.ajax({
-                    type:'GET',
+                $k.api.GET({
                     url:'/api/people/'+currentPeople.id+'/movies',
-                    data:'JSON={}',
-                    dataType:'json',
                     success:function(json){
                         //handle dates
                         onMovies(json.movies);
@@ -60,11 +55,8 @@ mp.pages.frontpage = new function(){
 
         $('#subscribe').click(function(){
             if(mp.currentUser){
-                $.ajax({
-                    type:'GET',
+                $k.api.GET({
                     url:'/api/people/'+currentPeople.id+'/subscribe',
-                    data:'JSON={}',
-                    dataType:'json',
                     success:function(json){
                         var title = 'you are following '+currentPeople.name+'';
                         if(json.already_follows){
@@ -99,11 +91,9 @@ mp.pages.frontpage = new function(){
             }
             else{
 
-                $.ajax({
-                    type:'GET',
+               $k.api.GET({
                     url:'/api/signup',
-                    data:'JSON={"email":"'+email+'"}',
-                    dataType:'json',
+                    json:{email:email},
                     success:function(json){
                         if(json.already_exists){
                             //TODO
