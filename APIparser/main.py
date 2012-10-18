@@ -131,17 +131,17 @@ def makeDBmovie(movie_main):
     dbmovie.name=Nonetostr(movie_main['title'])
     dbmovie.poster=Nonetostr(movie_main['poster_path'])
     dbmovie.backdrop=Nonetostr(movie_main['backdrop_path'])
-    dbmovie.tmdb_id=Nonetostr(movie_main['id'])
+    dbmovie.tmdb_id=movie_main['id']
     dbmovie.imdb_id=Nonetostr(movie_main['imdb_id'])
-    dbmovie.revenue=Nonetostr(movie_main['revenue'])
+    dbmovie.revenue=movie_main['revenue']
     dbmovie.homepage=Nonetostr(movie_main['homepage'])
-    dbmovie.popularity=Nonetostr(movie_main['popularity'])
-    dbmovie.votes=Nonetostr(movie_main['vote_count'])
-    dbmovie.vote_average=Nonetostr(movie_main['vote_average'])
-    dbmovie.runtime=Nonetostr(movie_main['runtime'])
+    dbmovie.popularity=movie_main['popularity']
+    dbmovie.votes=movie_main['vote_count']
+    dbmovie.vote_average=movie_main['vote_average']
+    dbmovie.runtime=movie_main['runtime']
     dbmovie.tagline=Nonetostr(movie_main['tagline'])
-    dbmovie.adult=Nonetostr(movie_main['adult'])
-    dbmovie.budget=Nonetostr(movie_main['budget'])
+    dbmovie.adult=movie_main['adult']
+    dbmovie.budget=movie_main['budget']
     dbmovie.save()
     for genre in genres:
         try: dbmoviegenre=MovieGenre.objects.get(movie=dbmovie, genre=genre['name'])
