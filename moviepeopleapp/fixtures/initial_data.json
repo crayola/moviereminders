@@ -3,21 +3,24 @@
         "model": "moviepeopleapp.People",
         "pk": 1,
         "fields": {
-            "name": "Johnny Depp"
+            "name": "Johnny Depp",
+	    "tmdb_id": "100000000"
         }
     },
     {
         "model": "moviepeopleapp.People",
         "pk": 2,
         "fields": {
-            "name": "Quentin Tarantino"
+            "name": "Quentin Tarantino",
+	    "tmdb_id": "100000001"
         }
     },
     {
         "model": "moviepeopleapp.Movie",
         "pk": 3,
         "fields": {
-            "name": "Sleepy Hollow"
+            "name": "Sleepy Hollow",
+	    "tmdb_id": "100000000"
         }
     },
     {
