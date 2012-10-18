@@ -15,7 +15,7 @@ class Movie(models.Model):
     backdrop = models.CharField(max_length=50)
     tmdb_id = models.PositiveIntegerField(unique = True)
     imdb_id = models.CharField(max_length=50)
-    revenue = models.PositiveIntegerField(null = True)
+    revenue = models.FloatField(null = True)
     homepage = models.CharField(max_length=200)
     popularity = models.FloatField(null = True)
     votes = models.PositiveIntegerField(null = True)
@@ -24,7 +24,7 @@ class Movie(models.Model):
     date_created = models.DateTimeField(auto_now_add = True,default=datetime.datetime.now())
     last_updated = models.DateTimeField(auto_now = True,default=datetime.datetime.now())
     adult = models.NullBooleanField()
-    budget = models.PositiveIntegerField(null = True)
+    budget = models.FloatField(null = True)
 
 class MovieOverview(models.Model): # I make this a new table as I fear the size of this new, big, presumably infrequently-used field will affect performance of the smaller, more frequently used fields.
     movie =  models.OneToOneField(Movie)
