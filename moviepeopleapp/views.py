@@ -1,6 +1,9 @@
 import logging
+import os
+import random
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
+from django.core.mail import send_mail, EmailMultiAlternatives
 from django.db.models import Q
 
 from django.utils import simplejson
@@ -8,7 +11,9 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils.datetime_safe import date
 from haystack.query import SearchQuerySet
-from moviepeopleapp.models import People, MoviePeople, Trailer, Release, Movie, Follow
+from moviepeople import settings
+import moviepeople.settings
+from moviepeopleapp.models import People, MoviePeople, Trailer, Release, Movie, Follow, CreateAccountToken
 from urllib2 import urlopen
 
 
@@ -20,6 +25,11 @@ def frontpage(request):
     else:
         log.info("frontpage, user:"+str(request.user.email))
     return render(request,'frontpage.html',{'test':'test'})
+
+def createAccount(request, token_code):
+    token = CreateAccountToken.objects.get(code=token_code)
+    log.info("create_account page opened by:"+token.email)
+    return render(request,'create_account.html',{})
 
 def autocomplete(request):
     #get term
@@ -81,6 +91,22 @@ def signup(request):
     user = authenticate(username=email,password='*')
     login(request, user)
     log.info("user:"+user.email+" logged in")
+
+    #create auth token & send confirmation email
+    token_code = ''.join(random.choice('abcdefghijklmnopqrstuvwxyz') for x in range(32))
+    log.info("token_code:"+token_code)
+    token = CreateAccountToken.objects.create(code=token_code,email=email)
+    token.save()
+    link = settings.SERVER_URL+'login/'+token_code
+    subject = 'Welcome to Whispers - get excited about upcoming movies!'
+    html_content = '<p>Hi, thanks for joining whispers,</p>'
+    html_content += '<p>Set up a password for accessing your account whenever you like by following this link:<br/>'
+    html_content += '<p><a href="'+link+'">'+link+'</a></p>'
+    html_content += '<p></p><p>Thanks,<br/>Whispers team</p>'
+    msg = EmailMultiAlternatives(subject, html_content, 'Whispers <whispers.updates@gmail.com>', [email])
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
+
     return HttpResponse(simplejson.dumps({}), mimetype="application/json")
 
 
@@ -93,3 +119,4 @@ def people_subscribe(request,id):
     follow = Follow.objects.create(user=user,people=people)
     log.info("user:"+user.email+" follows:"+people.name)
     return HttpResponse(simplejson.dumps({}), mimetype="application/json")
+

@@ -20,6 +20,8 @@ DATABASES = {
     }
 }
 
+SERVER_URL = 'http://127.0.0.1:8000/'
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -174,6 +176,12 @@ LOGGING = {
     }
 
 }
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'whispers.updates@gmail.com'
+EMAIL_HOST_PASSWORD = '9o9Cez32r348eokrZtpa'
 
 
 MAX_USERNAME_LENGTH = 1023 #longerusername
