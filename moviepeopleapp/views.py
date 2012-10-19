@@ -70,7 +70,7 @@ def people_movies(request,id):
                 'url':trailer.url
             }
             movie_map['trailers'].append(trailer_map)
-        release = Release.objects.get(movie=movie, country="US")
+        release = Release.objects.filter(movie=movie)[0]
         release_map = {
             "date": release.date.strftime("%Y-%m-%d")
         }
