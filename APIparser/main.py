@@ -195,7 +195,7 @@ def makeDBpeople(dbmovie, movie_cast):
     try: actors=movie_cast['cast']
     except: actors=[]
     try: crews=movie_cast['crew']
-    except: crew=[]
+    except: crews=[]
     for actor in actors: makeDBactor(dbmovie, actor)
     for crew in crews: makeDBcrew(dbmovie, crew)
     return 1
