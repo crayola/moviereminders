@@ -192,8 +192,10 @@ def makeDBreleases(dbmovie, movie_release):
     return 1
 
 def makeDBpeople(dbmovie, movie_cast):
-    actors=movie_cast['cast']
-    crews=movie_cast['crew']
+    try: actors=movie_cast['cast']
+    except: actors=[]
+    try: crews=movie_cast['crew']
+    except: crew=[]
     for actor in actors: makeDBactor(dbmovie, actor)
     for crew in crews: makeDBcrew(dbmovie, crew)
     return 1
