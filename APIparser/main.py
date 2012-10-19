@@ -179,13 +179,14 @@ def makeDBmovie(movie_main):
 
 
 def makeDBreleases(dbmovie, movie_release):
-    dates=movie_release['countries'] 
+    try: dates=movie_release['countries'] 
+    except: return 0
     if dates: 
         for date in dates:
             try: dbmovierelease=Release.objects.get(movie=dbmovie, date=date['release_date'])
             except: dbmovierelease=Release()
             dbmovierelease.movie=dbmovie
-            dbmovierelease.date=date['release_date']
+            dbmovierelease.date=date['release_date'] # TODO: got an error with a date with year 20011-04-11 in tmdb. must make sure this doesn't break (insert null instead). For now (no time) I just fixed the date in the text dump :-/
             dbmovierelease.country=date['iso_3166_1']
             dbmovierelease.save()
     return 1
