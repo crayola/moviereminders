@@ -70,10 +70,15 @@ def people_movies(request,id):
                 'url':trailer.url
             }
             movie_map['trailers'].append(trailer_map)
-        release = Release.objects.filter(movie=movie)[0]
-        release_map = {
-            "date": release.date.strftime("%Y-%m-%d")
-        }
+        try: 
+            release = Release.objects.filter(movie=movie)[0]
+            release_map = {
+                "date": release.date.strftime("%Y-%m-%d")
+                }
+        except:
+            release_map = {
+                "date": "1970-01-01"
+                }
         movie_map['release'] = release_map
         ret_json['movies'].append(movie_map)
     return HttpResponse(simplejson.dumps(ret_json), mimetype="application/json")
