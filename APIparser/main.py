@@ -71,7 +71,7 @@ def parseMovie(tmdbid):
             movie_release=''
             i+=1
     print "id %s: writing to disk" % tmdbid
-    f=open("/home/ubuntu/dumptmdb%s" % (tmdbid/10000), "a")
+    f=open("/whispers/dumptmdb%s" % (tmdbid/10000), "a")
     simplejson.dump({"main": movie_main, "casts": movie_cast, "releases": movie_release}, f)
     f.write("\n")
     f.close()
