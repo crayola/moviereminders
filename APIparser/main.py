@@ -134,7 +134,7 @@ def makeDBmovie(movie_main):
     dbmovie.tmdb_id=movie_main['id']
     dbmovie.imdb_id=Nonetostr(movie_main['imdb_id'])
     dbmovie.revenue=movie_main['revenue']
-    dbmovie.homepage=Nonetostr(movie_main['homepage'])
+    dbmovie.homepage=Nonetostr(movie_main['homepage'][:200])
     dbmovie.popularity=movie_main['popularity']
     dbmovie.votes=movie_main['vote_count']
     dbmovie.vote_average=movie_main['vote_average']
