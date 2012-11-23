@@ -9,6 +9,7 @@ from django.shortcuts import render
 from django.utils.datetime_safe import date
 from moviepeopleapp.models import People, MoviePeople, Trailer, Release, Movie, MovieGenre, MovieOverview, MovieLanguage, MovieCountry, MovieCompany
 from urllib2 import urlopen, Request, URLError, HTTPError
+import requests
 
 log = logging.getLogger(__name__)
 
@@ -31,11 +32,11 @@ def checkmovie(idmovie, info):
             req = urlopen(request, timeout=3)
             read=1
         except HTTPError:
-            print "HTTP error."
+            print("HTTP error.")
             raise
         except URLError:
             read=0
-            print "Timeout -- trying again."
+            print("Timeout -- trying again.")
     parsed=0
     while parsed==0:
         try:
@@ -43,8 +44,37 @@ def checkmovie(idmovie, info):
             parsed=1
         except:
             parsed=0
-            print "JSON issue, probably socket.timeout."
+            print("JSON issue, probably socket.timeout.")
     return ret
+
+def checkmovie2(idmovie, info):
+    """Downloads info (main, releases, casts, ..) about movie idmovie from tmdb."""
+    if info=="main":
+        url="http://api.themoviedb.org/3/movie/%s?api_key=%s" % (idmovie, apikey)
+    else: url="http://api.themoviedb.org/3/movie/%s/%s?api_key=%s" % (idmovie, info, apikey)
+    request = Request(url)
+    request.add_header("Accept", "application/json")
+    read=0
+    while read==0:
+        try:
+            req = urlopen(request, timeout=3)
+            read=1
+        except HTTPError:
+            print("HTTP error.")
+            raise
+        except URLError:
+            read=0
+            print("Timeout -- trying again.")
+    parsed=0
+    while parsed==0:
+        try:
+            ret=simplejson.load(req)
+            parsed=1
+        except:
+            parsed=0
+            print("JSON issue, probably socket.timeout.")
+    return ret
+
 
 
 
@@ -52,7 +82,7 @@ def parseMovie(tmdbid):
     try:
         movie_main=checkmovie(tmdbid, "main")
     except:
-        print "id %s: no movie" % tmdbid
+        print("id %s: no movie" % tmdbid)
         return 0
     i=0
     while i < 10:
@@ -70,7 +100,7 @@ def parseMovie(tmdbid):
         except:
             movie_release=''
             i+=1
-    print "id %s: writing to disk" % tmdbid
+    print("id %s: writing to disk" % tmdbid)
     f=open("/whispers/dumptmdb%s" % (tmdbid/10000), "a")
     simplejson.dump({"main": movie_main, "casts": movie_cast, "releases": movie_release}, f)
     f.write("\n")
