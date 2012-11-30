@@ -56,19 +56,41 @@ def people_movies(request,id):
     people = People.objects.get(pk=id)
     ret_json={'movies':[]}
     moviePeoples = MoviePeople.objects.filter(people=people)
-    for moviePeople in moviePeoples:
-        movie = moviePeople.movie
+    # select which movies to show
+    def keyfun(movie):
+      try: 
+        return str(Release.objects.filter(movie=movie)[0].date)
+      except Exception:
+        return "3000"
+    movies = sorted(set([x.movie for x in moviePeoples]), 
+                    key=keyfun,
+                    reverse=True)[:3]
+    for movie in movies:
         movie_map = {
             'id':movie.id,
             'name':movie.name,
-            'trailers':[]
+            'trailers':[],
         }
+        moviepeople_actor = None
+        moviepeoples_actor = MoviePeople.objects.filter(
+          movie=movie, people=people, role='Actor')
+        if moviepeoples_actor:
+          moviepeople_actor = sorted(
+            moviepeoples_actor, key=lambda k: k.order)[0]
+          moviepeople_actor = {k:getattr(moviepeople_actor, k) for k
+                             in ['id', 'character', 'order']}
+        movie_map['moviepeople_actor'] = moviepeople_actor
+        moviepeoples_director = MoviePeople.objects.filter(
+          movie=movie, people=people, role='Director')
+        movie_map['moviepeople_director']=bool(moviepeoples_director)
         trailers = Trailer.objects.filter(movie=movie)
         for trailer in trailers:
             trailer_map = {
                 'id':trailer.id,
-                'url':trailer.url
+                'url':trailer.url,
             }
+            if trailer.date_info: 
+              trailer_map['date'] = trailer.date_info.strftime("%Y-%m-%d")
             movie_map['trailers'].append(trailer_map)
         try: 
             release = Release.objects.filter(movie=movie)[0]

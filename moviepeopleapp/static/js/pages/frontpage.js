@@ -8,7 +8,7 @@ mp.pages.frontpage = new function(){
 
     this.init = function(){
         $('#name').autocomplete({
-            minLength:2,
+            minLength:3,
             source:function(request, response){
                 var name = request.term;
                 $k.api.GET({
@@ -52,6 +52,7 @@ mp.pages.frontpage = new function(){
                 });
             }
         });
+
 
         $('#subscribe').click(function(){
             if(mp.currentUser){
@@ -118,37 +119,81 @@ mp.pages.frontpage = new function(){
         });
     }
 
+    describeRole = function(actor_role, director, movie, people) {
+      // for now very simple but in future would be nice to have more.
+      if (actor_role) {
+        roleimp='a supporting role';
+        switch (actor_role.order) {
+          case 0: 
+            roleimp='the main character';
+            break;
+          case 1: case 2: case 3: case 4:
+            roleimp='one of the main characters';
+            break;
+        }
+        if (director) {
+          isdir = ' is the director and ';
+        } 
+        else {
+          isdir = '';
+        }
+        return (people.name + isdir + ' stars as ' + actor_role.character + ', ' + roleimp + '.')
+      }
+      else if (director) {
+        return (people.name + ' is the director.')
+      }
+    }
+
     function onMovies(movies){
         $('.people-name').html(currentPeople.name);
         //get all items
         var items = [];
         $.each(movies,function(i,movie){
-            $.each(movie.trailers,function(j,trailer){
-                trailer.date = new KDate(trailer.date);
-                trailer.type='trailer';
-                trailer.movie = movie;
-                items.push(trailer);
-            });
+            //$.each(movie.trailers,function(j,trailer){
+            //    //trailer.date = new KDate().fromJsDate(Date.parse(trailer.date));
+            //    trailer.date = new KDate()
+            //    trailer.type='trailer';
+            //    trailer.movie = movie;
+            //    items.push(trailer);
+            //});
             if(movie.release){
                 var release = movie.release;
-                release.date = new KDate(release.date);
+                release.date = new KDate().fromJsDate(Date.parse(release.date));
+                //release.date = new KDate()
                 release.type='release';
                 release.movie = movie;
+                console.log(movie.trailers)
+                if (movie.trailers.length>0) {
+                  release.trailer = movie.trailers[0];
+                  if (!release.trailer.date) {
+                    release.trailer.date = "1970-01-01"
+                  }
+                  release.trailer.date = new KDate().fromJsDate(Date.parse(release.trailer.date));
+                }
+                //release.trailer.date = new KDate().fromJsDate(Date.parse(release.trailer.date));
+                release.moviepeople_actor = movie.moviepeople_actor
+                release.moviepeople_director = movie.moviepeople_director
                 items.push(release);
             }
         });
         //sort
-        items.sort(function(a,b){return a.date.getTime() - b.date.getTime();});
+        items.sort(function(a,b){return b.date.getTime() - a.date.getTime();});
 
         //display
         $('#timeline').html('');
         $.each(items,function(i,item){
             $div = $('<div class="timeline-item"><div class="date">'+item.date.prettyDate()+'</div></div>');
             if(item.type === 'release'){
-                $div.append(item.movie.name+' Relased!');
+                $div.append(
+                  item.movie.name+' release! <br>' + describeRole(item.moviepeople_actor, item.moviepeople_director, item.movie, currentPeople)
+                  );
+                if (item.trailer && item.trailer.date) {
+                  $div.append('<br> <br> <div class="date">'+item.trailer.date.prettyDate()+'</div>' + 'Watch the trailer! <br> <iframe height="200" src="http://www.youtube.com/embed/'+item.trailer.url+'" frameborder="0"></iframe>');
+                }
             }
             else if(item.type === 'trailer'){
-                $div.append('Watch the trailer: <a href="'+item.url+'">'+item.url+'</a>');
+//$div.append('Watch the trailer: <a href="'+item.url+'">'+item.url+'</a>');
+              $div.append('Watch the trailer for ' + item.movie.name + '! <br> <iframe height="200" src="http://www.youtube.com/embed/'+item.url+'" frameborder="0"></iframe>')
             }
             $('#timeline').append($div);
         });
@@ -166,3 +211,11 @@ mp.pages.frontpage = new function(){
 };
 
 $(document).ready(mp.pages.frontpage.init);
+
+$('#go').hide()
+
+$('#name').keypress(function(ev) {
+  if (ev.which == 13) {
+    $('#go').click();
+    return false
+  }});

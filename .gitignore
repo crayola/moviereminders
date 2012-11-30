@@ -1,4 +1,10 @@
 /moviepeople/local_settings.py
+/moviepeople/Session.vim
+/###/*
 *.swp
 *.pyc
+*.json
 /APIparser/miri.py
+/moviepeopleapp/dbflatdump/*
+/.idea/*
+/moviepeopleapp/fixtures/initial_data.json

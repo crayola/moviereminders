@@ -7,106 +7,220 @@ from django.utils import simplejson
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils.datetime_safe import date
-from moviepeopleapp.models import People, MoviePeople, Trailer, Release, Movie, MovieGenre, MovieOverview, MovieLanguage, MovieCountry, MovieCompany
+from moviepeopleapp.models import (People, MoviePeople, Trailer, 
+                                   Release, Movie, MovieGenre, 
+                                   MovieOverview, MovieLanguage, 
+                                   MovieCountry, MovieCompany)
 from urllib2 import urlopen, Request, URLError, HTTPError
 import requests
+import grequests
+import datetime
 
 log = logging.getLogger(__name__)
 
-def frontpage(request):
-    return render(request,'frontpage.html',{'test':'test'})
-
-
 apikey="3dffd9e01086f6801f45d2161cd2710d"
 
-def checkmovie(idmovie, info):
-    """Downloads info (main, releases, casts, ..) about movie idmovie from tmdb."""
-    if info=="main":
-        url="http://api.themoviedb.org/3/movie/%s?api_key=%s" % (idmovie, apikey)
-    else: url="http://api.themoviedb.org/3/movie/%s/%s?api_key=%s" % (idmovie, info, apikey)
-    request = Request(url)
-    request.add_header("Accept", "application/json")
-    read=0
-    while read==0:
-        try:
-            req = urlopen(request, timeout=3)
-            read=1
-        except HTTPError:
-            print("HTTP error.")
-            raise
-        except URLError:
-            read=0
-            print("Timeout -- trying again.")
-    parsed=0
-    while parsed==0:
-        try:
-            ret=simplejson.load(req)
-            parsed=1
-        except:
-            parsed=0
-            print("JSON issue, probably socket.timeout.")
-    return ret
+#def checkmovie(idmovie, info):
+#    """Downloads info (main, releases, casts, ..) about movie idmovie from tmdb."""
+#    if info=="main":
+#        url="http://api.themoviedb.org/3/movie/%s?api_key=%s" % (idmovie, apikey)
+#    else: url="http://api.themoviedb.org/3/movie/%s/%s?api_key=%s" % (idmovie, info, apikey)
+#    request = Request(url)
+#    request.add_header("Accept", "application/json")
+#    read=0
+#    while read==0:
+#        try:
+#            req = urlopen(request, timeout=3)
+#            read=1
+#        except HTTPError:
+#            print("HTTP error.")
+#            raise
+#        except URLError:
+#            read=0
+#            print("Timeout -- trying again.")
+#    parsed=0
+#    while parsed==0:
+#        try:
+#            ret=simplejson.load(req)
+#            parsed=1
+#        except:
+#            parsed=0
+#            print("JSON issue, probably socket.timeout.")
+#    return ret
+#
 
-def checkmovie2(idmovie, info):
-    """Downloads info (main, releases, casts, ..) about movie idmovie from tmdb."""
-    if info=="main":
-        url="http://api.themoviedb.org/3/movie/%s?api_key=%s" % (idmovie, apikey)
-    else: url="http://api.themoviedb.org/3/movie/%s/%s?api_key=%s" % (idmovie, info, apikey)
-    request = Request(url)
-    request.add_header("Accept", "application/json")
-    read=0
-    while read==0:
-        try:
-            req = urlopen(request, timeout=3)
-            read=1
-        except HTTPError:
-            print("HTTP error.")
-            raise
-        except URLError:
-            read=0
-            print("Timeout -- trying again.")
-    parsed=0
-    while parsed==0:
-        try:
-            ret=simplejson.load(req)
-            parsed=1
-        except:
-            parsed=0
-            print("JSON issue, probably socket.timeout.")
-    return ret
+def pullMovie(idmovie):
+  """Downloads info (main, releases, casts, ..) about movie idmovie from tmdb."""
+  url="http://api.themoviedb.org/3/movie/%s" % idmovie
+  rs = requests.get(url, 
+                    params={
+                      'api_key': apikey,
+                      'append_to_response': 'trailers,releases,casts,changes',
+                    })
+  if rs.ok:
+    return rs.json
+  else: 
+    return None
+
+def listChangedMovies(date):
+  """Downloads info (main, releases, casts, ..) about movie idmovie from tmdb."""
+  page = 0
+  total_pages = 1
+  enddate= (datetime.datetime.strptime(date, "%Y-%m-%d") + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+  url="http://api.themoviedb.org/3/movie/changes"
+  ret = []
+  while (page != total_pages):
+    page += 1
+    rs = requests.get(url, 
+                      params={
+                        'page': page,
+                        'api_key': apikey,
+                        'start_date': date,
+                        'end_date': enddate,
+                      })
+    if rs.ok:
+      tmp = rs.json
+      total_pages = tmp['total_pages']
+      ret.extend([x['id'] for x in tmp['results']])
+  return ret
+
+
+def movieChanges(idmovie, date):
+  enddate= (datetime.datetime.strptime(date, "%Y-%m-%d") + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+  url="http://api.themoviedb.org/3/movie/%s/changes" % idmovie
+  rs = requests.get(url, 
+                    params={
+                      'api_key': apikey,
+                      'start_date': date,
+                      'end_date': enddate,
+                    })
+  return rs.json['changes']
+
+def movieUpdate(idmovie, date):
+  enddate= (datetime.datetime.strptime(date, "%Y-%m-%d") + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+  url="http://api.themoviedb.org/3/movie/%s/changes" % idmovie
+  dbmovie=parseMovie(idmovie)
+  if not dbmovie:
+    return None
+  rs = requests.get(url, 
+                    params={
+                      'api_key': apikey,
+                      'start_date': date,
+                      'end_date': enddate,
+                    })
+  if rs.ok:
+    changes = rs.json['changes']
+    fields = [x['key'] for x in rs.json['changes']]
+  else: 
+    return None # TODO: handle more properly
+  if 'trailers' in fields:
+    changedtrailers = [y 
+                       for k in 
+                       [x['items'] for x in changes if x['key']=='trailers']
+                       for y in k
+                       if y['action']=='added'
+                       and y['iso_639_1']=='en'] # TODO: not update if same trailer both deleted and added
+    for trailer in changedtrailers:
+      try:
+        tmp=trailer['value']['sources'][0]
+      except:
+        continue
+      tmp.update({'name':trailer['value']['name']})
+      makeDBtrailers(dbmovie, 
+                     [tmp], date)
+  if 'releases' in fields:
+    changedreleases = [y 
+                       for k in 
+                       [x['items'] for x in changes if x['key']=='releases']
+                       for y in k
+                       if y['action']=='added' or y['action']=='updated'
+                       ] # TODO: not update if same trailer both deleted and added
+    tmp = [release['value'] for release in changedreleases]
+    makeDBreleases(dbmovie, tmp, date)
+  changedcast, changedcrew = [], []
+  if 'cast' in fields:
+    changedcast = [y 
+                   for k in 
+                   [x['items'] for x in changes if x['key']=='cast']
+                   for y in k
+                   if y['action']=='added' or y['action']=='updated'
+                  ] # TODO: not update if same trailer both deleted and added
+    changedcast = [cast['value'] for cast in changedcast]
+    for x in changedcast: 
+      x['role']='Actor'
+  if 'crew' in fields:
+    changedcrew = [y 
+                   for k in 
+                   [x['items'] for x in changes if x['key']=='crew']
+                   for y in k
+                   if y['action']=='added' or y['action']=='updated'
+                  ] # TODO: not update if same trailer both deleted and added
+    changedcrew = [crew['value'] for crew in changedcrew]
+    for x in changedcrew: 
+      x['character']=''
+      x['role']=x['job']
+    updateDBpeople(dbmovie, changedcast+changedcrew, date)
+  if 'general' in fields:
+    created = [y for k in 
+               [x['items'] for x in changes if x['key']=='general']
+               for y in k if y['action']=='created']
+    if created and dbmovie:
+      dbmovie.date_info=date
+      dbmovie.save()
+  return dbmovie
 
 
 
 
-def parseMovie(tmdbid):
-    try:
-        movie_main=checkmovie(tmdbid, "main")
-    except:
-        print("id %s: no movie" % tmdbid)
-        return 0
-    i=0
-    while i < 10:
-        try:
-            movie_cast=checkmovie(tmdbid, "casts")
-            i=10
-        except:
-            movie_cast=''
-            i+=1
-    i=0
-    while i < 10:
-        try:
-            movie_release=checkmovie(tmdbid, "releases")
-            i=10
-        except:
-            movie_release=''
-            i+=1
-    print("id %s: writing to disk" % tmdbid)
-    f=open("/whispers/dumptmdb%s" % (tmdbid/10000), "a")
-    simplejson.dump({"main": movie_main, "casts": movie_cast, "releases": movie_release}, f)
-    f.write("\n")
-    f.close()
-    return 1
+#tmp1 = listChangedMovies('2012-10-06')
+#print(tmp1)
+#
+#trailers = []
+#for i in tmp1:
+#  tmp = movieChanges(i, '2012-10-06')
+#  if 'cast' in [x['key'] for x in tmp]:
+#    trailers.append(i)
+#
+#for i in trailers:
+#  parseMovie(i)
+#  print(i)
+#
 
+def processChanges(date):
+  for i in listChangedMovies(date):
+    print(i, movieUpdate(i, date))
+
+
+#
+#def parseMovie(tmdbid):
+#    try:
+#        movie_main=checkmovie(tmdbid, "main")
+#    except:
+#        print("id %s: no movie" % tmdbid)
+#        return 0
+#    i=0
+#    while i < 10:
+#        try:
+#            movie_cast=checkmovie(tmdbid, "casts")
+#            i=10
+#        except:
+#            movie_cast=''
+#            i+=1
+#    i=0
+#    while i < 10:
+#        try:
+#            movie_release=checkmovie(tmdbid, "releases")
+#            i=10
+#        except:
+#            movie_release=''
+#            i+=1
+#    print("id %s: writing to disk" % tmdbid)
+#    f=open("/whispers/moviepeople/dumptmdb%s" % (tmdbid/10000), "a")
+#    simplejson.dump({"main": movie_main, "casts": movie_cast, "releases": movie_release}, f)
+#    f.write("\n")
+#    f.close()
+#    return 1
+#
     #title=movie_main['title']
     #(poster, backdrop) = (movie_main['poster_path'], movie_main['backdrop_path'])
     #if not(poster): poster=''
@@ -138,16 +252,30 @@ def parseMovie(tmdbid):
 
 
 
+def parseMovie(idmovie):
+  movie = pullMovie(idmovie)
+  if movie:
+    movie_main=movie
+    movie_cast=movie["casts"]
+    movie_release=movie["releases"]
+    movie_trailer=movie["trailers"]
+    dbmovie = writeMovie(movie_main, movie_cast, movie_release, movie_trailer)
+    return dbmovie
+  else: 
+    return None
+
+
 def parseDump(dumpfile):
     for movie in [simplejson.loads(line) for line in open(dumpfile)]:
         movie_main=movie["main"]
         movie_cast=movie["casts"]
         movie_release=movie["releases"]
-        writeMovie(movie_main, movie_cast, movie_release)
+        movie_trailer=movie["trailers"]
+        writeMovie(movie_main, movie_cast, movie_release, movie_trailer)
     return 1;
 
 def Nonetostr(a):
-    if a==[] or a==None : a=''
+    if a==[] or a is None : a=''
     return(a)
 
 
@@ -155,7 +283,7 @@ def makeDBmovie(movie_main):
     genres=movie_main['genres']
     languages=[x['iso_639_1'] for x in Nonetostr(movie_main['spoken_languages'])]
     production_companies=movie_main['production_companies']
-    countries=[x['iso_3166_1'] for x in Nonetostr(movie_main['production_countries'])]
+    countries=[x['iso_3166_1'][:2] for x in Nonetostr(movie_main['production_countries'])]
     try: dbmovie=Movie.objects.get(tmdb_id=Nonetostr(movie_main['id']))
     except: dbmovie=Movie()
     dbmovie.name=Nonetostr(movie_main['title'])
@@ -208,18 +336,42 @@ def makeDBmovie(movie_main):
     return dbmovie
 
 
-def makeDBreleases(dbmovie, movie_release):
-    try: dates=movie_release['countries'] 
-    except: return 0
-    if dates: 
-        for date in dates:
-            try: dbmovierelease=Release.objects.get(movie=dbmovie, date=date['release_date'])
-            except: dbmovierelease=Release()
-            dbmovierelease.movie=dbmovie
-            dbmovierelease.date=date['release_date'] # TODO: got an error with a date with year 20011-04-11 in tmdb. must make sure this doesn't break (insert null instead). For now (no time) I just fixed the date in the text dump :-/
-            dbmovierelease.country=date['iso_3166_1']
-            dbmovierelease.save()
+def makeDBreleases(dbmovie, movie_release, date_info=None):
+    if movie_release: 
+      for date in movie_release:
+        try: dbmovierelease=Release.objects.get(movie=dbmovie, date=date['release_date'])
+        except: dbmovierelease=Release()
+        dbmovierelease.movie=dbmovie
+        dbmovierelease.date=date['release_date'] # TODO: got an error with a date with year 20011-04-11 in tmdb. must make sure this doesn't break (insert null instead). For now (no time) I just fixed the date in the text dump :-/
+        dbmovierelease.country=date['iso_3166_1'][:2]
+        if date_info: dbmovierelease.date_info = date_info
+        dbmovierelease.save()
     return 1
+
+def makeDBtrailers(dbmovie, movie_trailer, date=None):
+  for trailer in movie_trailer:
+    try:
+      dbmovietrailer=Trailer.objects.get(movie=dbmovie, url=trailer['source'])
+    except (Trailer.DoesNotExist, KeyError):
+      dbmovietrailer=Trailer()
+    dbmovietrailer.movie=dbmovie
+    dbmovietrailer.url=trailer.get('source')
+    dbmovietrailer.size=trailer.get('size')
+    dbmovietrailer.format='youtube'
+    dbmovietrailer.name=trailer.get('name')
+    if date: dbmovietrailer.date_info = date
+    dbmovietrailer.save()
+  return 1
+
+def updateDBpeople(dbmovie, peoples, date):
+  for people in peoples:
+    #print(people)
+    try: dbmoviepeople=MoviePeople.objects.get(movie=dbmovie, people=People.objects.get(tmdb_id=people['person_id']), role=people['role'], character=Nonetostr(people.get('character'))[:100])
+    except: return None
+    dbmoviepeople.date_info = date
+    dbmoviepeople.save()
+  return dbmovie
+
 
 def makeDBpeople(dbmovie, movie_cast):
     try: actors=movie_cast['cast']
@@ -250,27 +402,45 @@ def makeDBactor(dbmovie, actor):
     return (dbpeople, dbmoviepeople)
 
 def makeDBcrew(dbmovie, crew):
-    try: dbpeople=People.objects.get(tmdb_id=Nonetostr(crew['id']))
+    try: 
+      dbpeople=People.objects.get(tmdb_id=Nonetostr(crew['id']))
     except: dbpeople=People()
     dbpeople.name=Nonetostr(crew['name'])
     dbpeople.tmdb_id=Nonetostr(crew['id'])
     dbpeople.profile=Nonetostr(crew['profile_path'])
     dbpeople.save()
-    try: dbmoviepeople=MoviePeople.objects.get(people=dbpeople, movie=dbmovie, role=crew['job'])
-    except: dbmoviepeople=MoviePeople()
+    try: 
+      dbmoviepeople = MoviePeople.objects.get(people=dbpeople, 
+                                              movie=dbmovie, 
+                                              role=crew['job'])
+    except: 
+      dbmoviepeople=MoviePeople()
     dbmoviepeople.movie=dbmovie
     dbmoviepeople.people=dbpeople
     dbmoviepeople.role=Nonetostr(crew['job'])
     dbmoviepeople.department=Nonetostr(crew['department'])
     dbmoviepeople.save()
     return (dbpeople, dbmoviepeople)
-    
 
 
-def writeMovie(movie_main, movie_cast, movie_release):
+
+def writeMovie(movie_main, movie_cast, movie_release, movie_trailer):
     dbmovie=makeDBmovie(movie_main)
-    dbreleases=makeDBreleases(dbmovie, movie_release)
+    try:
+      dbreleases=makeDBreleases(dbmovie, movie_release['countries'])
+    except Exception:
+      pass
+    makeDBtrailers(dbmovie, movie_trailer.get('youtube'))
     makeDBpeople(dbmovie, movie_cast)
-    return [dbmovie.name]
+    return dbmovie
 
 
+
+def buildImportance():
+  for i in People.objects.all():
+    i.importance=sum([6-(min(6, (x.order or 10))) for x in MoviePeople.objects.filter(people=i, role='Actor')])
+    i.save()
+  return 1
+
+
+#[parseMovie(x) for x in range(1000, 5000)]

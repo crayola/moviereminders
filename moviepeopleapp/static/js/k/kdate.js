@@ -258,7 +258,7 @@ function KDate(timezone) {
                     return "th";
             }
         };
-        return format.replace(/(\\)?(dd?d?d?|MM?M?M?|yy?y?y?|hh?|HH?|mm?|ss?|tt?|K?|S)/g, 
+        return format.replace(/(\\)?(dd?d?d?|MM?M?M?|yy?y?y?|hh?|HH?|mm?|ss?|tt?|K|SS?S?)/g, 
             function (m) {
                 if (m.charAt(0) === "\\") {
                     return m.replace("\\", "");
@@ -317,6 +317,12 @@ function KDate(timezone) {
             });
     }
 
+    this.prettyDateMP = function(extended) {
+        //var diff = Math.floor((this.getTime() - KDate.today(_timezone).getTime()) / (24*60*60*1000));
+        var text = "" + this.toString("dddd, MMMM dS yyyy") + "";
+        return text;  
+    };
+
     this.prettyDate = function(extended) {
         var diff = Math.floor((this.getTime() - KDate.today(_timezone).getTime()) / (24*60*60*1000));
         var text = "";
@@ -343,12 +349,12 @@ function KDate(timezone) {
                 if(extended) text += " (" + this.toString("dS MMMM") + ")"; 
                 break;
             default:
-                text = "" + this.toString("dddd, MMMM dS") + "";
+                text = "" + this.toString("dddd, MMMM dS yyyy") + "";
                 break;
         }
         return text;  
     }
-    
+
     
     //private functions
     function _getOffsetFromTimeZone(timezone) {

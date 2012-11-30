@@ -10,4 +10,8 @@ class PeopleIndex(indexes.SearchIndex):
     def get_model(self):
         return People
 
+    def index_queryset(self):
+        return People.objects.filter(importance__gte=10)
+
+
 site.register(People, PeopleIndex)

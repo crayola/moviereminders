@@ -1,106 +1,99 @@
-
-
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
-<head>
+
+  <head>
     <title>Movie Reminder</title>
     <meta name="description" content="Get excited about upcoming movies by subscribing to your favorite actors and directors"/>
-
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
     <link href="{{ STATIC_URL }}css/lib/bootstrap-2.1.0.css" type="text/css" rel="stylesheet" media="screen, projection" />
     <link href="{{ STATIC_URL }}css/lib/jquery-ui-1.9.0.custom.min.css" type="text/css" rel="stylesheet" media="screen, projection" />
     <link href="{{ STATIC_URL }}css/mp/frontpage.css" type="text/css" rel="stylesheet" media="screen, projection" />
-</head>
-<body>
-<div class="container">
-
-    <div class="hero-unit">
-        <h1>Get excited about upcoming movies</h1>
-        <p>Subscribe to your favorite actors and director to be notified about their upcoming movies.</p>
+  </head>
 
 
+  <body>
+
+    <div class="container">
+      <div class="hero-unit">
+        <h1>Whispers</h1>
+        <p>Name your favorite stars and be the first to know about their upcoming movies.</p>
+      </div>
     </div>
 
-
-</div>
-
-<div class="container" id="people-input">
-    <div style="text-align: center;">
-
+    <div class="container" id="people-input">
+      <div style="text-align: center;">
         <form>
-            <label>Type in your favorite actor or director's name:</label>
-            <input id="name" type="text" placeholder="ex: Johnny Depp, Quentin Tarantino" style="width:325px">
-            <a id="go" class="btn" style="margin-top: -8px; width: 40px;">OK</a>
+          <label>Type in your favorite actor or director's name:</label>
+          <input id="name" type="text" placeholder="ex: Johnny Depp, Quentin Tarantino" style="width:325px">
+          <a id="go" class="btn" style="margin-top: -8px; width: 40px;">OK</a>
         </form>
-
-
+      </div>
     </div>
-</div>
 
-<div class="container" id="people" style="display:none">
-    <div class="row">
+    <div class="container" id="people" style="display:none">
+      <div class="row">
         <div class="span6" id="timeline">
-
         </div>
         <div class="span6">
-            <a class="btn btn-large btn-primary" type="button" id="subscribe">Subscribe to update on upcoming <span class="people-name"></span>'s movie releases</a>
+          <a class="btn btn-large btn-primary" type="button" id="subscribe">Subscribe to update on upcoming <span class="people-name"></span>'s movie releases</a>
         </div>
+      </div>
     </div>
-</div>
 
-<div id="email-modal" class="modal hide fade">
-    <div class="modal-header">
+    <div id="email-modal" class="modal hide fade">
+      <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h3>Receive updates for <span class="people-name"></span>'s work by email</h3>
-    </div>
-    <div class="modal-body">
+      </div>
+      <div class="modal-body">
         <p>We will send you updates about <span class="people-name"></span>'s releases and trailers by email.</p>
         <p>You can expect around one or 2 emails a month, depending on the number of people you subscribed to.</p>
-
         <p style="text-align: center;padding-top: 24px; padding-bottom: 12px;">
-            <label></label>
-            <input id="email" type="email" placeholder="Your email" style="width:325px">
+        <label></label>
+        <input id="email" type="email" placeholder="Your email" style="width:325px">
         </p>
-    </div>
-    <div class="modal-footer">
+      </div>
+      <div class="modal-footer">
         <a data-dismiss="modal" class="btn">Cancel</a>
         <a id="email-ok" class="btn btn-primary">OK</a>
+      </div>
     </div>
-</div>
 
-<div id="hidden-modal" class="modal hide fade">
-    <div class="modal-header">
+
+    <div id="hidden-modal" class="modal hide fade">
+
+      <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h3>Hey, you've reached an hidden place</h3>
-    </div>
-    <div class="modal-body">
+      </div>
+      <div class="modal-body">
         <p>Why hello,<br/>
-            you were not really supposed to get there.</p>
+        you were not really supposed to get there.</p>
         <p>You see the site is a couple of days young, and we are still hard at work implementing everything.<br/>
         If you are trying to log in an account you created earlier, I'm affraid it's not possible right now. I'll send you a mail ASAP.</p>
         <p>Arnaud</p>
+      </div>
 
-    </div>
-    <div class="modal-footer">
+      <div class="modal-footer">
         <a data-dismiss="modal" class="btn">Okay</a>
+      </div>
+
     </div>
-</div>
 
-<script src="{{ STATIC_URL }}js/lib/jquery-1.8.2.min.js"></script>
-<script src="{{ STATIC_URL }}js/lib/jquery-ui-1.9.0.custom.min.js"></script>
-<script src="{{ STATIC_URL }}js/lib/bootstrap.js"></script>
-<script src="{{ STATIC_URL }}js/lib/date.js"></script>
-<script src="{{ STATIC_URL }}js/k/kdate.js"></script>
-<script src="{{ STATIC_URL }}js/k/k.api.js"></script>
-<script src="{{ STATIC_URL }}js/pages/frontpage.js"></script>
+    <script src="{{ STATIC_URL }}js/lib/jquery-1.8.2.min.js"></script>
+    <script src="{{ STATIC_URL }}js/lib/jquery-ui-1.9.0.custom.min.js"></script>
+    <script src="{{ STATIC_URL }}js/lib/bootstrap.js"></script>
+    <script src="{{ STATIC_URL }}js/lib/date.js"></script>
+    <script src="{{ STATIC_URL }}js/k/kdate.js"></script>
+    <script src="{{ STATIC_URL }}js/k/k.api.js"></script>
+    <script src="{{ STATIC_URL }}js/pages/frontpage.js"></script>
 
-{% if user.is_authenticated  %}
-<script>
-    mp.currentUser = {email: '{{ user.email }}' };
-</script>
-{% endif %}
+    {% if user.is_authenticated  %}
+    <script>
+      mp.currentUser = {email: '{{ user.email }}' };
+    </script>
+    {% endif %}
 
-</body>
+  </body>
 </html>

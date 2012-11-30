@@ -4,17 +4,10 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-def boofun(request):
-  from django.http import HttpResponse
-  return HttpResponse('boo')
-
 urlpatterns = patterns('',
     #web
     url(r'^$', 'moviepeopleapp.views.frontpage', name='home'),
     url(r'^login/([a-z]+)$', 'moviepeopleapp.views.createAccount'),
-
-    #test
-    url(r'^test/$', 'moviepeople.urls.boofun'),
 
     #admin
     url(r'^admin/', include(admin.site.urls)),
