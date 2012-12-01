@@ -122,7 +122,7 @@ def movieUpdate(idmovie, date):
                        and y['iso_639_1']=='en'] # TODO: not update if same trailer both deleted and added
     for trailer in changedtrailers:
       try:
-        tmp=trailer['value']['sources'][0]
+        tmp=[x['sources'] for x in trailer['value'] if x['site']=='YouTube'][0]
       except:
         continue
       tmp.update({'name':trailer['value']['name']})
@@ -189,6 +189,9 @@ def movieUpdate(idmovie, date):
 def processChanges(date):
   for i in listChangedMovies(date):
     print(i, movieUpdate(i, date))
+
+#[APIparser.processChanges('2012-10-%s' % x) for x in range(27, 32)]
+#[APIparser.processChanges('2012-11-%s' % x) for x in ['01', '02', '03', '04', '05', '06', '07', '08', '09'] + range(10, 32)]
 
 
 #
