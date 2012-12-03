@@ -6,6 +6,41 @@ mp.pages.frontpage = new function(){
 
     var currentPeople;
 
+
+        showMovies = function(currentPeople) {
+            if(currentPeople){
+                //call server to get stories
+                $k.api.GET({
+url:'/api/people/'+currentPeople.id+'/movies',
+success:function(json){
+//handle dates
+onMovies(json.movies);
+},
+error:function(){
+$('#email-modal').modal('show');
+$('#hidden-modal').modal('show');
+}
+});
+}
+}
+$('#go').click(function(){
+        if(currentPeople){
+        //call server to get stories
+        $k.api.GET({
+url:'/api/people/'+currentPeople.id+'/movies',
+success:function(json){
+//handle dates
+onMovies(json.movies);
+},
+error:function(){
+$('#email-modal').modal('show');
+$('#hidden-modal').modal('show');
+}
+});
+        }
+        });
+
+
     this.init = function(){
         $('#name').autocomplete({
             minLength:3,
@@ -31,25 +66,10 @@ mp.pages.frontpage = new function(){
             select: function( event, ui ) {
 
                 if(ui.item) {
-                    currentPeople = ui.item.people
+                    currentPeople = ui.item.people;
+                    showMovies(currentPeople);
                 }
-            }
-        });
 
-        $('#go').click(function(){
-            if(currentPeople){
-                //call server to get stories
-                $k.api.GET({
-                    url:'/api/people/'+currentPeople.id+'/movies',
-                    success:function(json){
-                        //handle dates
-                        onMovies(json.movies);
-                    },
-                    error:function(){
-                        $('#email-modal').modal('show');
-                        $('#hidden-modal').modal('show');
-                    }
-                });
             }
         });
 
@@ -219,3 +239,4 @@ $('#name').keypress(function(ev) {
     $('#go').click();
     return false
   }});
+
