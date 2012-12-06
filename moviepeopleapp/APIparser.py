@@ -259,9 +259,18 @@ def parseMovie(idmovie):
   movie = pullMovie(idmovie)
   if movie:
     movie_main=movie
-    movie_cast=movie["casts"]
-    movie_release=movie["releases"]
-    movie_trailer=movie["trailers"]
+    if "casts" in movie:
+      movie_cast = movie.get("casts")
+    else:
+      movie_cast = None
+    if "releases" in movie:
+      movie_release=movie.get("releases")
+    else:
+      movie_release = None
+    if "trailers" in movie:
+      movie_trailer=movie.get("trailers")
+    else:
+      movie_trailer = None
     dbmovie = writeMovie(movie_main, movie_cast, movie_release, movie_trailer)
     return dbmovie
   else: 
@@ -388,7 +397,7 @@ def makeDBpeople(dbmovie, movie_cast):
 def makeDBactor(dbmovie, actor):
     try: dbpeople=People.objects.get(tmdb_id=Nonetostr(actor['id']))
     except: dbpeople=People()
-    dbpeople.name=Nonetostr(actor['name'])
+    dbpeople.name=Nonetostr(actor['name'])[:200]
     dbpeople.tmdb_id=Nonetostr(actor['id'])
     dbpeople.profile=Nonetostr(actor['profile_path'])
     dbpeople.save()
@@ -433,8 +442,8 @@ def writeMovie(movie_main, movie_cast, movie_release, movie_trailer):
       dbreleases=makeDBreleases(dbmovie, movie_release['countries'])
     except Exception:
       pass
-    makeDBtrailers(dbmovie, movie_trailer.get('youtube'))
-    makeDBpeople(dbmovie, movie_cast)
+    if movie_trailer: makeDBtrailers(dbmovie, movie_trailer.get('youtube'))
+    if movie_cast: makeDBpeople(dbmovie, movie_cast)
     return dbmovie
 
 
