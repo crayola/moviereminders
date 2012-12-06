@@ -13,4 +13,20 @@
 .timeline-item > .date{
     font-size: 10px;
     color: #AAA;
-}}
+}
+
+.people-pic{
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    /* 
+    padding:12px 6px; 
+    -webkit-border-radius: 2px!important;
+    -moz-border-radius: 2px!important;
+    border-radius: 2px!important;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    */
+    box-shadow: 1px 3px 10px black;
+}

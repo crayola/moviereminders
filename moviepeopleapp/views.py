@@ -47,7 +47,8 @@ def autocomplete(request):
         people = result.object
         people_map = {
             'id' : people.id,
-            'name' : people.name
+            'name' : people.name,
+            'profile' : people.profile
         }
         ret_json['peoples'].append(people_map)
     return HttpResponse(simplejson.dumps(ret_json), mimetype="application/json")
@@ -64,7 +65,7 @@ def people_movies(request,id):
         return "3000"
     movies = sorted(set([x.movie for x in moviePeoples]), 
                     key=keyfun,
-                    reverse=True)[:3]
+                    reverse=True)[:5]
     for movie in movies:
         movie_map = {
             'id':movie.id,

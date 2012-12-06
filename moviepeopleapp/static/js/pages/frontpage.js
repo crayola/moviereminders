@@ -7,71 +7,72 @@ mp.pages.frontpage = new function(){
     var currentPeople;
 
 
-        showMovies = function(currentPeople) {
-            if(currentPeople){
-                //call server to get stories
-                $k.api.GET({
-url:'/api/people/'+currentPeople.id+'/movies',
-success:function(json){
-//handle dates
-onMovies(json.movies);
-},
-error:function(){
-$('#email-modal').modal('show');
-$('#hidden-modal').modal('show');
-}
-});
-}
-}
-$('#go').click(function(){
-        if(currentPeople){
+    showMovies = function(currentPeople) {
+      if(currentPeople){
         //call server to get stories
         $k.api.GET({
-url:'/api/people/'+currentPeople.id+'/movies',
-success:function(json){
-//handle dates
-onMovies(json.movies);
-},
-error:function(){
-$('#email-modal').modal('show');
-$('#hidden-modal').modal('show');
-}
-});
+          url:'/api/people/'+currentPeople.id+'/movies',
+          success:function(json){
+            //handle dates
+            onMovies(json.movies);
+          },
+          error:function(){
+            $('#email-modal').modal('show');
+            $('#hidden-modal').modal('show');
+          }
+        });
+      }
+    }
+
+    $('#go').click(function(){
+      if(currentPeople){
+        //call server to get stories
+        $k.api.GET({
+          url:'/api/people/'+currentPeople.id+'/movies',
+        success:function(json){
+          //handle dates
+          onMovies(json.movies);
+        },
+        error:function(){
+          $('#email-modal').modal('show');
+          $('#hidden-modal').modal('show');
         }
         });
+      }
+    });
 
 
     this.init = function(){
-        $('#name').autocomplete({
-            minLength:3,
-            source:function(request, response){
-                var name = request.term;
-                $k.api.GET({
-                    url:'/api/people/autocomplete',
-                   json:{term:name},
-                    success:function(json){
-                        response( $.map( json.peoples, function( people ) {
-                            return {
-                                label: people.name,
-                                value: people.name,
-                                people:people
-                            }
-                        }));
-                    },
-                    error:function(){
-                        response();
-                    }
-                });
-            },
-            select: function( event, ui ) {
-
-                if(ui.item) {
-                    currentPeople = ui.item.people;
-                    showMovies(currentPeople);
+      $('#name').autocomplete({
+        minLength:3,
+        source:function(request, response){
+          var name = request.term;
+          $k.api.GET({
+            url:'/api/people/autocomplete',
+            json:{term:name},
+            success:function(json){
+              response( $.map( json.peoples, function( people ) {
+                return {
+                  label: people.name,
+              value: people.name,
+              people: people
                 }
-
+              }));
+            },
+            error:function(){
+              response();
             }
-        });
+          });
+        },
+        select: function( event, ui ) {
+
+          if(ui.item) {
+            currentPeople = ui.item.people;
+            showMovies(currentPeople);
+          }
+
+        }
+      });
 
 
         $('#subscribe').click(function(){
@@ -164,7 +165,7 @@ $('#hidden-modal').modal('show');
       }
     }
 
-    function onMovies(movies){
+    function onMovies(movies) {
         $('.people-name').html(currentPeople.name);
         //get all items
         var items = [];
@@ -182,7 +183,6 @@ $('#hidden-modal').modal('show');
                 //release.date = new KDate()
                 release.type='release';
                 release.movie = movie;
-                console.log(movie.trailers)
                 if (movie.trailers.length>0) {
                   release.trailer = movie.trailers[0];
                   if (!release.trailer.date) {
@@ -208,7 +208,8 @@ $('#hidden-modal').modal('show');
                   item.movie.name+' release! <br>' + describeRole(item.moviepeople_actor, item.moviepeople_director, item.movie, currentPeople)
                   );
                 if (item.trailer && item.trailer.date) {
-                  $div.append('<br> <br> <div class="date">'+item.trailer.date.prettyDate()+'</div>' + 'Watch the trailer! <br> <iframe height="200" src="http://www.youtube.com/embed/'+item.trailer.url+'" frameborder="0"></iframe>');
+                  //$div.append('<br> <br> <div class="date">'+item.trailer.date.prettyDate()+'</div>' + 'Watch the trailer! <br> <iframe height="200" src="http://www.youtube.com/embed/'+item.trailer.url+'" frameborder="0"></iframe>');
+                  $div.append('<br> <br> Watch the trailer! <br> <iframe height="200" src="http://www.youtube.com/embed/'+item.trailer.url+'" frameborder="0"></iframe>');
                 }
             }
             else if(item.type === 'trailer'){
@@ -222,11 +223,21 @@ $('#hidden-modal').modal('show');
         }
         setTimeout(function(){
             var top = $('#people-input').offset().top;
-            $('html, body').animate({scrollTop:top},100);
+            //$('html, body').animate({scrollTop:top},1000);
         },100);
 
-
+        $('#people-pic').html('<img src="http://cf2.imgobject.com/t/p/original' + currentPeople.profile + '">')
         $('#people').fadeIn(100);
+
+
+//        var el=$('#follow-scroll');
+//        var elpos=el.offset().top;
+//        $(window).scroll(function () {
+//          var y=$(this).scrollTop();
+//          if(y<elpos){el.stop().animate({'top':0},500);}
+//          else{el.stop().animate({'top':y-elpos},500);}
+//        });
+
     }
 };
 
