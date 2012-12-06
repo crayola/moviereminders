@@ -67,9 +67,10 @@ def people_movies(request,id):
                     key=keyfun,
                     reverse=True)
     for movie in movies:
-        if len(ret_json['movies']) >= 5: break
+        #if len(ret_json['movies']) >= 5: break
         movie_map = {
             'id':movie.id,
+            'poster':movie.poster,
             'name':movie.name,
             'trailers':[],
         }

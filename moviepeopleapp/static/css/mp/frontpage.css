@@ -1,5 +1,27 @@
+.hero-unit {
+  padding: 40px;
+  margin-bottom: 30px;
+  background-color: #eeeeee;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+.hero-unit h1 {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.hero-unit p {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+
 .timeline-item{
-    padding:12px 6px;
+    padding:6px 6px;
     border: 1px solid #DDD;
     -webkit-border-radius: 2px!important;
     -moz-border-radius: 2px!important;
@@ -11,13 +33,15 @@
 }
 
 .timeline-item > .date{
-    font-size: 10px;
-    color: #AAA;
+    font-size: 14px;
+    /*margin-top: -5px;*/
+    color: #555;
 }
 
 #right-pane.fixed{
     top: 100px;
     position: fixed;
+    width: 380px;
 }
 
 
@@ -26,6 +50,20 @@
     margin-left: auto;
     margin-right: auto;
     width: 300px;
+    /* 
+    padding:12px 6px; 
+    -webkit-border-radius: 2px!important;
+    -moz-border-radius: 2px!important;
+    border-radius: 2px!important;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    */
+    box-shadow: 1px 3px 10px black;
+}
+
+
+.poster{
+    width: 185px;
     /* 
     padding:12px 6px; 
     -webkit-border-radius: 2px!important;

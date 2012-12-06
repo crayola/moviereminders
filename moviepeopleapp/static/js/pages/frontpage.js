@@ -202,20 +202,28 @@ mp.pages.frontpage = new function(){
         //display
         $('#timeline').html('');
         $.each(items,function(i,item){
-            $div = $('<div class="timeline-item"><div class="date">'+item.date.prettyDate()+'</div></div>');
+            $div = $('<div class="timeline-item">')
+            $div.append('<div style="text-align:center;" class="date">'+item.date.prettyDate()+'<hr style="margin:5px"></div>');
+            $row = $('<div class="row">');
             if(item.type === 'release'){
-                $div.append(
-                  item.movie.name+' release! <br>' + describeRole(item.moviepeople_actor, item.moviepeople_director, item.movie, currentPeople)
-                  );
+                if (item.movie.poster) {
+                  $row.append('<div class="span2"><img src="http://cf2.imgobject.com/t/p/w185' + item.movie.poster + '" class="poster"></div>');
+                }
+                var trailertext = ''
                 if (item.trailer && item.trailer.date) {
                   //$div.append('<br> <br> <div class="date">'+item.trailer.date.prettyDate()+'</div>' + 'Watch the trailer! <br> <iframe height="200" src="http://www.youtube.com/embed/'+item.trailer.url+'" frameborder="0"></iframe>');
-                  $div.append('<br> <br> Watch the trailer! <br> <iframe height="200" src="http://www.youtube.com/embed/'+item.trailer.url+'" frameborder="0"></iframe>');
+                  //trailertext = '<br> <br> <a href=> Watch the trailer! <br> <iframe height="200" src="http://www.youtube.com/embed/'+item.trailer.url+'" frameborder="0"></iframe>';
+                  trailertext = '<br> <br> <a href="http://www.youtu.be/'+item.trailer.url+'"> Watch the trailer on YouTube!';
                 }
+                $row.append(
+                  '<div class="span" style="width:360px;"><h3>' + item.movie.name+' </h3><div>' + describeRole(item.moviepeople_actor, item.moviepeople_director, item.movie, currentPeople) + trailertext + '</div>'
+                  );
             }
-            else if(item.type === 'trailer'){
+            $div.append($row)
+            //else if(item.type === 'trailer'){
 //$div.append('Watch the trailer: <a href="'+item.url+'">'+item.url+'</a>');
-              $div.append('Watch the trailer for ' + item.movie.name + '! <br> <iframe height="200" src="http://www.youtube.com/embed/'+item.url+'" frameborder="0"></iframe>')
-            }
+            //  $div.append('Watch the trailer for ' + item.movie.name + '! <br> <iframe height="200" src="http://www.youtube.com/embed/'+item.url+'" frameborder="0"></iframe>')
+            //}
             $('#timeline').append($div);
         });
         if($('#people').outerHeight()<$(window).height()){
@@ -233,7 +241,6 @@ mp.pages.frontpage = new function(){
         var elpos=el.offset().top - 100;
         $(window).scroll(function () {
           var y=$(this).scrollTop();
-          console.log('boo')
           if (y>elpos) {
             el.addClass('fixed')
           } else {
