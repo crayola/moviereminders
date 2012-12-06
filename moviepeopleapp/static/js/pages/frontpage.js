@@ -213,7 +213,7 @@ mp.pages.frontpage = new function(){
                 if (item.trailer && item.trailer.date) {
                   //$div.append('<br> <br> <div class="date">'+item.trailer.date.prettyDate()+'</div>' + 'Watch the trailer! <br> <iframe height="200" src="http://www.youtube.com/embed/'+item.trailer.url+'" frameborder="0"></iframe>');
                   //trailertext = '<br> <br> <a href=> Watch the trailer! <br> <iframe height="200" src="http://www.youtube.com/embed/'+item.trailer.url+'" frameborder="0"></iframe>';
-                  trailertext = '<br> <br> <a href="http://www.youtu.be/'+item.trailer.url+'"> Watch the trailer on YouTube!';
+                  trailertext = '<br> <br> <a target="_blank" href="http://www.youtu.be/'+item.trailer.url+'"> Watch the trailer on YouTube!';
                 }
                 $row.append(
                   '<div class="span" style="width:360px;"><h3>' + item.movie.name+' </h3><div>' + describeRole(item.moviepeople_actor, item.moviepeople_director, item.movie, currentPeople) + trailertext + '</div>'
@@ -234,7 +234,7 @@ mp.pages.frontpage = new function(){
             //$('html, body').animate({scrollTop:top},1000);
         },100);
 
-        $('#people-pic').html('<img src="http://cf2.imgobject.com/t/p/original' + currentPeople.profile + '">')
+        $('#people-pic').html('<img src="http://cf2.imgobject.com/t/p/w500' + currentPeople.profile + '">')
         $('#people').fadeIn(100);
 
         var el=$('#right-pane');

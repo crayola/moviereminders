@@ -42,6 +42,7 @@ def autocomplete(request):
     log.info("term:"+term+" results:"+str(autocomplete.count()))
 
     #create response
+    autocomplete = sorted(autocomplete, key=lambda k: -k.object.importance)
     ret_json = {'peoples':[]}
     for result in autocomplete:
         people = result.object
@@ -56,7 +57,7 @@ def autocomplete(request):
 def people_movies(request,id):
     people = People.objects.get(pk=id)
     ret_json={'movies':[]}
-    moviePeoples = MoviePeople.objects.filter(people=people)
+    moviePeoples = MoviePeople.objects.filter(people=people, role__in=['Actor', 'Director'])
     # select which movies to show
     def keyfun(movie):
       try: 
@@ -96,9 +97,13 @@ def people_movies(request,id):
               trailer_map['date'] = trailer.date_info.strftime("%Y-%m-%d")
             movie_map['trailers'].append(trailer_map)
         try: 
-            release = Release.objects.filter(movie=movie)[0]
+            try:
+              release = Release.objects.filter(movie=movie, country="US")[0].date
+            except Exception:
+              release = Release.objects.filter(movie=movie) #[0]
+              release = min([x.date for x in release])
             release_map = {
-                "date": release.date.strftime("%Y-%m-%d")
+                "date": release.strftime("%Y-%m-%d")
                 }
         except Exception:
             release_map = {
@@ -134,9 +139,9 @@ def signup(request):
     html_content += '<p>Set up a password for accessing your account whenever you like by following this link:<br/>'
     html_content += '<p><a href="'+link+'">'+link+'</a></p>'
     html_content += '<p></p><p>Thanks,<br/>Whispers team</p>'
-    msg = EmailMultiAlternatives(subject, html_content, 'Whispers <whispers.updates@gmail.com>', [email])
+    msg = EmailMultiAlternatives(subject, html_content, 'Whispers <whispers.updates@whispers.io>', [email])
     msg.attach_alternative(html_content, "text/html")
-    msg.send()
+    log.info(msg.send())
 
     return HttpResponse(simplejson.dumps({}), mimetype="application/json")
 
