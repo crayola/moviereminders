@@ -229,14 +229,14 @@ mp.pages.frontpage = new function(){
         $('#people-pic').html('<img src="http://cf2.imgobject.com/t/p/original' + currentPeople.profile + '">')
         $('#people').fadeIn(100);
 
+        var el=$('#right-pane');
+        var elpos=el.offset().top - 100;
+        $(window).scroll(function () {
+          var y=$(this).scrollTop();
+          console.log('boo')
+          el.stop().css({'margin-top':Math.max(0, y-elpos)});
+        });
 
-//        var el=$('#follow-scroll');
-//        var elpos=el.offset().top;
-//        $(window).scroll(function () {
-//          var y=$(this).scrollTop();
-//          if(y<elpos){el.stop().animate({'top':0},500);}
-//          else{el.stop().animate({'top':y-elpos},500);}
-//        });
 
     }
 };
