@@ -15,6 +15,12 @@
     color: #AAA;
 }
 
+#right-pane.fixed{
+    top: 100px;
+    position: fixed;
+}
+
+
 .people-pic{
     margin-top: 80px;
     margin-left: auto;

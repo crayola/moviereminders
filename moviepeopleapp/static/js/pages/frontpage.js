@@ -234,7 +234,13 @@ mp.pages.frontpage = new function(){
         $(window).scroll(function () {
           var y=$(this).scrollTop();
           console.log('boo')
-          el.stop().css({'margin-top':Math.max(0, y-elpos)});
+          if (y>elpos) {
+            el.addClass('fixed')
+          } else {
+            el.removeClass('fixed')
+          }
+
+          //el.stop().css({'margin-top':Math.max(0, y-elpos)});
         });
 
 

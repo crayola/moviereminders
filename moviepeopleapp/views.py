@@ -65,8 +65,9 @@ def people_movies(request,id):
         return "3000"
     movies = sorted(set([x.movie for x in moviePeoples]), 
                     key=keyfun,
-                    reverse=True)[:5]
+                    reverse=True)
     for movie in movies:
+        if len(ret_json['movies']) >= 5: break
         movie_map = {
             'id':movie.id,
             'name':movie.name,
