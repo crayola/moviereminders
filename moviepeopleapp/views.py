@@ -64,9 +64,9 @@ def manualsearch(request):
     try:
       people = People.objects.filter(name__icontains=term)
       people = sorted(people, key=lambda k: -k.importance)[0]
-      log.info("term:"+term+" results:"+people.name)
+      log.info("term: "+term+" results:"+people.name)
     except Exception:
-      log.info("term not found")
+      log.info("term: "+ term + " not found")
       return None
 
     #create response
