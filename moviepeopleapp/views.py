@@ -42,7 +42,7 @@ def autocomplete(request):
     log.info("term:"+term+" results:"+str(autocomplete.count()))
 
     #create response
-    autocomplete = sorted(autocomplete, key=lambda k: -k.object.importance)
+    autocomplete = sorted(autocomplete, key=lambda k: -(k.object.importance or 0))
     ret_json = {'peoples':[]}
     for result in autocomplete:
         people = result.object
@@ -63,7 +63,7 @@ def manualsearch(request):
     #get results
     try:
       people = People.objects.filter(name__icontains=term)
-      people = sorted(people, key=lambda k: -k.importance)[0]
+      people = sorted(people, key=lambda k: -(k.importance or 0)[0]
       log.info("term: "+term+" results:"+people.name)
     except Exception:
       log.info("term: "+ term + " not found")
