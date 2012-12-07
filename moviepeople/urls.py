@@ -14,6 +14,7 @@ urlpatterns = patterns('',
 
     #API
     url(r'^api/people/autocomplete$', 'moviepeopleapp.views.autocomplete'),
+    url(r'^api/people/manualsearch$', 'moviepeopleapp.views.manualsearch'),
     url(r'^api/people/(\d+)/movies$', 'moviepeopleapp.views.people_movies'),
     url(r'^api/people/(\d+)/subscribe$', 'moviepeopleapp.views.people_subscribe'),
     url(r'^api/signup$', 'moviepeopleapp.views.signup'),

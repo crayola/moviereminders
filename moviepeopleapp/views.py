@@ -54,6 +54,30 @@ def autocomplete(request):
         ret_json['peoples'].append(people_map)
     return HttpResponse(simplejson.dumps(ret_json), mimetype="application/json")
 
+def manualsearch(request):
+    #get term
+    json_string = request.GET.get('JSON')
+    json = simplejson.loads(json_string)
+    term = json['term']
+
+    #get results
+    try:
+      people = People.objects.filter(name__icontains=term)
+      people = sorted(people, key=lambda k: -k.importance)[0]
+      log.info("term:"+term+" results:"+people.name)
+    except Exception:
+      log.info("term not found")
+      return None
+
+    #create response
+    ret_json = {
+            'id' : people.id,
+            'name' : people.name,
+            'profile' : people.profile
+        }
+    return HttpResponse(simplejson.dumps(ret_json), mimetype="application/json")
+
+
 def people_movies(request,id):
     people = People.objects.get(pk=id)
     ret_json={'movies':[]}

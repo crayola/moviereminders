@@ -14,7 +14,7 @@ mp.pages.frontpage = new function(){
           url:'/api/people/'+currentPeople.id+'/movies',
           success:function(json){
             //handle dates
-            onMovies(json.movies);
+            onMovies(json.movies, currentPeople);
           },
           error:function(){
             $('#email-modal').modal('show');
@@ -24,22 +24,7 @@ mp.pages.frontpage = new function(){
       }
     }
 
-    $('#go').click(function(){
-      if(currentPeople){
-        //call server to get stories
-        $k.api.GET({
-          url:'/api/people/'+currentPeople.id+'/movies',
-        success:function(json){
-          //handle dates
-          onMovies(json.movies);
-        },
-        error:function(){
-          $('#email-modal').modal('show');
-          $('#hidden-modal').modal('show');
-        }
-        });
-      }
-    });
+    $('#go').click(showMovies(currentPeople));
 
 
     this.init = function(){
@@ -65,14 +50,15 @@ mp.pages.frontpage = new function(){
           });
         },
         select: function( event, ui ) {
-
           if(ui.item) {
-            currentPeople = ui.item.people;
-            showMovies(currentPeople);
+            //currentPeople = ui.item.people;
+            //showMovies(currentPeople);
+            showMovies(ui.item.people);
           }
-
         }
       });
+
+
 
 
         $('#subscribe').click(function(){
@@ -158,14 +144,19 @@ mp.pages.frontpage = new function(){
         else {
           isdir = '';
         }
-        return (people.name + isdir + ' stars as ' + actor_role.character + ', ' + roleimp + '.')
+        if (actor_role.character != '') {
+          comma = '';
+        } else {
+          comma = ', '
+        }
+        return (people.name + isdir + ' stars as ' + actor_role.character + comma + roleimp + '.')
       }
       else if (director) {
         return (people.name + ' is the director.')
       }
     }
 
-    function onMovies(movies) {
+    function onMovies(movies, currentPeople) {
         $('.people-name').html(currentPeople.name);
         //get all items
         var items = [];
@@ -252,15 +243,35 @@ mp.pages.frontpage = new function(){
 
 
     }
+
+
+    $('#go').hide()
+
+      $('#name').keypress(function(ev) {
+        if (ev.which == 13) {
+          if (currentPeople) {
+            showMovies(currentPeople);
+          } else {
+            $k.api.GET({
+              url:'/api/people/manualsearch',
+              json:{term:$(this).val()},
+              success:function(json){
+                console.log(json);
+                showMovies(json);
+              },
+              error:function(){
+                response('boo');
+              }
+            });
+          }
+          return false
+        }
+      }
+    )
+
+
 };
 
 $(document).ready(mp.pages.frontpage.init);
 
-$('#go').hide()
-
-$('#name').keypress(function(ev) {
-  if (ev.which == 13) {
-    $('#go').click();
-    return false
-  }});
 
