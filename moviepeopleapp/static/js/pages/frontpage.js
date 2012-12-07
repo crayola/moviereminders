@@ -144,10 +144,10 @@ mp.pages.frontpage = new function(){
         else {
           isdir = '';
         }
-        if (actor_role.character != '') {
+        if (actor_role.character === '') {
           comma = '';
         } else {
-          comma = ', '
+          comma = ', ';
         }
         return (people.name + isdir + ' stars as ' + actor_role.character + comma + roleimp + '.')
       }
