@@ -363,11 +363,11 @@ def makeDBreleases(dbmovie, movie_release, date_info=None):
 def makeDBtrailers(dbmovie, movie_trailer, date=None):
   for trailer in movie_trailer:
     try:
-      dbmovietrailer=Trailer.objects.get(movie=dbmovie, url=trailer['source'])
+      dbmovietrailer=Trailer.objects.get(movie=dbmovie, url=trailer['source'][:200])
     except (Trailer.DoesNotExist, KeyError):
       dbmovietrailer=Trailer()
     dbmovietrailer.movie=dbmovie
-    dbmovietrailer.url=trailer.get('source')
+    dbmovietrailer.url=trailer.get('source')[:200]
     dbmovietrailer.size=trailer.get('size')
     dbmovietrailer.format='youtube'
     dbmovietrailer.name=trailer.get('name')
