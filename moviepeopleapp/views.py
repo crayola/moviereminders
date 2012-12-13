@@ -1,7 +1,7 @@
 import logging
 import os
 import random
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, forms
 from django.contrib.auth.models import User
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.db.models import Q

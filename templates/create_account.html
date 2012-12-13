@@ -19,8 +19,15 @@
       <div class="row">
         <div class="span12">
           <p>Hello back,</p>
-          <p>You've reached an hidden place!</p>
-          <p>OK, not really, we just did not implement any login scheme for now. But we did not forget you! We'll send you a email as soon as we finish this section</p>
+          <p>Please set your password below.</p>
+          <form action="/pass">
+            {% csrf_token %}
+            <input id="password-input" placeholder="Your password"> </input>
+            <br>
+            <input id="password-input2" placeholder="Your password (again)"> </input>
+            <br>
+            <a class="btn"> Submit </a>
+          </form>
         </div>
       </div>
     </div>

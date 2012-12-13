@@ -2,8 +2,8 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 
   <head>
-    <title>Movie Reminder</title>
-    <meta name="description" content="Get excited about upcoming movies by subscribing to your favorite actors and directors"/>
+    <title>Whispers</title>
+    <meta name="description" content="Name your favorite stars and be the first to know about their upcoming movies."/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link href="{{ STATIC_URL }}css/lib/bootstrap-2.1.0.css" type="text/css" rel="stylesheet" media="screen, projection" />
@@ -13,36 +13,120 @@
 
 
   <body>
-
     <div class="container">
       <div class="hero-unit">
+
         <h1>Whispers</h1>
         <p>Name your favorite stars and be the first to know about their upcoming movies.</p>
+
       </div>
     </div>
 
-    <div class="container" id="people-input">
-      <div style="text-align: center;">
-        <form>
-          <label>Type in your favorite actor or director's name:</label>
-          <input id="name" type="text" placeholder="ex: Johnny Depp, Quentin Tarantino" style="width:325px">
-          <a id="go" class="btn" style="margin-top: -8px; width: 40px;">OK</a>
-        </form>
+    <div class="container" id="bigcont">
+
+      <div class="container" id="people-input">
+        <div style="text-align: center;">
+          <form>
+            <label>Type in your favorite actor or director's name:</label>
+            <input id="name" type="text" placeholder="ex: Johnny Depp, Quentin Tarantino" style="width:325px">
+            <a id="go" class="btn" style="margin-top: -8px; width: 40px;">OK</a>
+          </form>
+        </div>
+      </div>
+
+      <div class="container" id="people" style="display:none">
+        <div class="row">
+          <div class="span7" id="timeline">
+          </div>
+          <div class="span5" id="right-paneWrapper">
+            <div id="right-pane" style="display:none">
+              <!-- <a class="btn btn-large btn-primary" type="button" id="subscribe">Be the first to hear about their next <span class="people-name"></span> movie!</a> -->
+              <a class="btn btn-large btn-primary" style="width:350px" type="button" id="subscribe">Subscribe to the latest <br> <span class="people-name"></span> movie updates!</a>
+              <div id="people-pic" class="people-pic"> </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+
+    <div class="container" id="faq" style="display:none">
+      <h1> FAQ </h1>
+      <h2> What is whispers? </h2>
+      <p> The best. </p>
+      <h2> Who are you? </h2>
+      <p> Arnaud and Timothée. </p>
+      <h2> Is my data safe? </h2>
+      <p> Totally. </p>
+    </div>
+
+
+    <div class="container" id="faq" style="display:none">
+      <h1> FAQ </h1>
+      <h2> What is whispers? </h2>
+      <p> The best. </p>
+      <h2> Who are you? </h2>
+      <p> Arnaud and Timothée. </p>
+      <h2> Is my data safe? </h2>
+      <p> Totally. </p>
+    </div>
+
+
+    <div class="container" id="about" style="display:none">
+      <h1> About us </h1>
+      <h2> Whispers -- when, why and how? </h2>
+      <h2> Who is behind Whispers? </h2>
+      <h3> Arnaud </h3>
+      <h3> Timothée </h3>
+      <p> </p>
+    </div>
+
+
+    <div class="container" id="faq" style="display:none">
+      <h1> FAQ </h1>
+      <h2> What is whispers? </h2>
+      <p> The best. </p>
+      <h2> Who are you? </h2>
+      <p> Arnaud and Timothée. </p>
+      <h2> Is my data safe? </h2>
+      <p> Totally. </p>
+    </div>
+
+    </div>
+
+    <div class="navbar navbar-inner navbar-fixed-bottom">
+      <div class="container">
+        <ul class="nav">
+          <li id="home-btn" class="active"><a href="#">Home</a></li>
+          <li id="signin-btn"><a href="#">Sign in</a></li>
+          <li id="register-btn"><a href="#">Register</a></li>
+          <li id="about-btn"><a href="#">About</a></li>
+          <li id="faq-btn"><a href="#">FAQ</a></li>
+        </ul>
       </div>
     </div>
 
-    <div class="container" id="people" style="display:none">
-      <div class="row">
-        <div class="span7" id="timeline">
-        </div>
-        <div class="span5" id="right-paneWrapper">
-        <div id="right-pane">
-          <!-- <a class="btn btn-large btn-primary" type="button" id="subscribe">Be the first to hear about their next <span class="people-name"></span> movie!</a> -->
-          <a class="btn btn-large btn-primary" style="width:350px" type="button" id="subscribe">Subscribe to the latest <br> <span class="people-name"></span> movie updates!</a>
-          <div id="people-pic" class="people-pic"> </div>
-        </div>
+    <div id="register-modal" class="modal hide fade">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Register to Whispers today!</h3>
+      </div>
+      <div class="modal-body">
+        <p> Please give us your email adress.</p>
+        <p style="text-align: center;padding-top: 24px; padding-bottom: 12px;">
+        <label></label>
+        <input id="email" type="email" placeholder="Your email" style="width:325px">
+        </p>
+      </div>
+      <div class="modal-footer">
+        <a data-dismiss="modal" class="btn">Cancel</a>
+        <a id="email-ok" class="btn btn-primary">OK</a>
       </div>
     </div>
+
 
     <div id="email-modal" class="modal hide fade">
       <div class="modal-header">
@@ -51,7 +135,6 @@
       </div>
       <div class="modal-body">
         <p>We will send you updates about <span class="people-name"></span>'s releases and trailers by email.</p>
-        <p>You can expect around one or 2 emails a month, depending on the number of people you subscribed to.</p>
         <p style="text-align: center;padding-top: 24px; padding-bottom: 12px;">
         <label></label>
         <input id="email" type="email" placeholder="Your email" style="width:325px">

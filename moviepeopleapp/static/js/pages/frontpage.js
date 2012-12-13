@@ -51,9 +51,9 @@ mp.pages.frontpage = new function(){
         },
         select: function( event, ui ) {
           if(ui.item) {
-            //currentPeople = ui.item.people;
-            //showMovies(currentPeople);
-            showMovies(ui.item.people);
+            currentPeople = ui.item.people;
+            showMovies(currentPeople);
+            //showMovies(ui.item.people);
           }
         }
       });
@@ -98,7 +98,6 @@ mp.pages.frontpage = new function(){
                 }).tooltip('show');
             }
             else{
-
                $k.api.GET({
                     url:'/api/signup',
                     json:{email:email},
@@ -110,11 +109,15 @@ mp.pages.frontpage = new function(){
                         }
                         else{
                             //logged in
-                            $('#email-modal').modal('hide');
+                            $('#register-modal').modal('hide');
+                            $('#email').tooltip('hide');
                             mp.currentUser = {
                                 email:email
                             }
-                            $('#subscribe').click();
+                            if (currentPeople && !register) {
+                              $('#subscribe').click();
+                            }
+                            delete register;
                         }
                     },
                     error:function(){
@@ -227,6 +230,7 @@ mp.pages.frontpage = new function(){
 
         $('#people-pic').html('<img src="http://cf2.imgobject.com/t/p/w500' + currentPeople.profile + '">')
         $('#people').fadeIn(100);
+        $('#right-pane').show()
 
         var el=$('#right-pane');
         var elpos=el.offset().top - 100;
@@ -245,29 +249,78 @@ mp.pages.frontpage = new function(){
     }
 
 
-    $('#go').hide()
+    $('#go').hide();
+
+    $('#faq').hide();
+
+    $('#name').click(function() {
+      $(this).val('')
+    })
+
+
 
       $('#name').keypress(function(ev) {
         if (ev.which == 13) {
-          if (currentPeople) {
-            showMovies(currentPeople);
-          } else {
+          console.log(currentPeople)
+        //  if (currentPeople) {
+        //    showMovies(currentPeople);
+        //  } else {
             $k.api.GET({
               url:'/api/people/manualsearch',
               json:{term:$(this).val()},
               success:function(json){
                 console.log(json);
+                currentPeople=json;
                 showMovies(json);
               },
               error:function(){
                 response('boo');
               }
-            });
-          }
+         //  });
+          })
           return false
         }
       }
-    )
+    );
+
+    $('#home-btn').click(function() {
+      $('#bigcont > div').hide();
+      $('#people-input').show();
+      $('#people').show();
+      $('.nav li').removeClass('active');
+      $(this).addClass('active');
+    });
+
+
+    $('#about-btn').click(function() {
+      $('#bigcont > div').hide();
+      $('#about').show();
+      $('.nav li').removeClass('active');
+      $(this).addClass('active');
+    });
+
+
+    $('#faq-btn').click(function() {
+      $('#bigcont > div').hide();
+      $('#faq').show();
+      $('.nav li').removeClass('active');
+      $(this).addClass('active');
+    });
+
+
+    $('#signin-btn').click(function() {
+      $('#bigcont > div').hide();
+      $('#signin').show();
+      $('.nav li').removeClass('active');
+      $(this).addClass('active');
+    });
+
+
+    $('#register-btn').click(function() {
+      $('#register').show();
+      var register = true;
+      $('#register-modal').modal('show');
+    });
 
 
 };

@@ -110,6 +110,9 @@ class Follow(models.Model):
   class Meta:
     unique_together = ('user', 'people')
 
+  def __unicode__(self):
+    return self.user.username + ',' + self.people.name
+
 
 class MovieGenre(models.Model):
   movie =  models.ForeignKey(Movie)
