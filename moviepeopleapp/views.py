@@ -65,9 +65,9 @@ def signin(request):
     if user is not None and user.is_active:
       login(request, user)
       ret_json = {'auth': True, 'username': user.username}
+      log.info("Sign in:" + user.username)
     else:
       ret_json = {'auth': False}
-  log.info("Sign in:" + user.username)
   return HttpResponse(simplejson.dumps(ret_json), mimetype="application/json")
 
 
