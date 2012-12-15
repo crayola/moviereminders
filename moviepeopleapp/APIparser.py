@@ -363,11 +363,11 @@ def makeDBreleases(dbmovie, movie_release, date_info=None):
 def makeDBtrailers(dbmovie, movie_trailer, date=None):
   for trailer in movie_trailer:
     try:
-      dbmovietrailer=Trailer.objects.get(movie=dbmovie, url=trailer['source'])
+      dbmovietrailer=Trailer.objects.get(movie=dbmovie, url=trailer['source'][:200])
     except (Trailer.DoesNotExist, KeyError):
       dbmovietrailer=Trailer()
     dbmovietrailer.movie=dbmovie
-    dbmovietrailer.url=trailer.get('source')
+    dbmovietrailer.url=trailer.get('source')[:200]
     dbmovietrailer.size=trailer.get('size')
     dbmovietrailer.format='youtube'
     dbmovietrailer.name=trailer.get('name')
@@ -447,15 +447,16 @@ def writeMovie(movie_main, movie_cast, movie_release, movie_trailer):
     return dbmovie
 
 
-
-def buildImportance():
-  for i in People.objects.all():
+def buildImportance(a, b):
+  for i in People.objects.filter(id__gte=a, id__lte=b):
+    if i.id % 100 == 0: print(i.id)
     i.importance=sum(
             [6-(min(6, (x.order or 10))) for x in MoviePeople.objects.filter(people=i, role='Actor')] + 
             [6 for x in MoviePeople.objects.filter(people=i, role='Director')]
     )
     i.save()
   return 1
+
 
 
 #[parseMovie(x) for x in range(1000, 5000)]
