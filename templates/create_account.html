@@ -18,16 +18,13 @@
     <div class="container">
       <div class="row">
         <div class="span12">
-          <p>Hello back,</p>
+          <p>Hello back, {{ user }}!</p>
           <p>Please set your password below.</p>
-          <form action="/pass">
             {% csrf_token %}
-            <input id="password-input" placeholder="Your password"> </input>
-            <br>
-            <input id="password-input2" placeholder="Your password (again)"> </input>
-            <br>
-            <a class="btn"> Submit </a>
-          </form>
+            <form action="/login/{{ token }}" method="post">{% csrf_token %}
+              {{ form.as_p }}
+              <input type="submit" value="Submit" />
+            </form>
         </div>
       </div>
     </div>

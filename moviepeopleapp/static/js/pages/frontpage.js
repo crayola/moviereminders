@@ -57,77 +57,97 @@ mp.pages.frontpage = new function(){
           }
         }
       });
+    };
 
 
 
 
-        $('#subscribe').click(function(){
-            if(mp.currentUser){
-                $k.api.GET({
-                    url:'/api/people/'+currentPeople.id+'/subscribe',
-                    success:function(json){
-                        var title = 'you are following '+currentPeople.name+'';
-                        if(json.already_follows){
-                            title = 'you were already following '+currentPeople.name+''
-                        }
-                        $('#subscribe').tooltip({
-                            title:title,
-                            trigger:'manual'
-                        }).attr('data-original-title', title)
-                          .tooltip('fixTitle')
-                          .tooltip('show');
-                        setTimeout(function(){ $('#subscribe').tooltip('hide');},2000);
-                    },
-                    error:function(){
-                        $('#email-modal').modal('show');
-                        $('#hidden-modal').modal('show');
-                    }
-                });
+    $('#subscribe').click(function(){
+      if(mp.currentUser){
+        $k.api.GET({
+          url:'/api/people/'+currentPeople.id+'/subscribe',
+          success:function(json){
+            var title = 'you are following '+currentPeople.name+'';
+            if(json.already_follows){
+              title = 'you were already following '+currentPeople.name+''
             }
-            else{
+            $('#subscribe').tooltip({
+              title:title,
+              trigger:'manual'
+            }).attr('data-original-title', title)
+            .tooltip('fixTitle')
+          .tooltip('show');
+        setTimeout(function(){ $('#subscribe').tooltip('hide');},2000);
+          },
+          error:function(){
+            $('#email-modal').modal('show');
+            $('#hidden-modal').modal('show');
+          }
+        });
+      }
+      else{
+        $('#email-modal').modal('show');
+      }
+    });
+
+      var emailok = function(existOk, forgot) {
+        var email = $('#email').val();
+        var url = '/api/signup';
+        if (forgot) {
+          url = '/api/forgot';
+        }
+        if(email.indexOf('@') === -1){
+          $('#email').tooltip({
+            title:'Please enter your email',
+            trigger:'manual'
+          }).tooltip('show');
+        }
+        else{
+          $k.api.GET({
+            url:url,
+            json:{email:email},
+            success:function(json){
+              if(json.already_exists && !(existOk)){
+                //TODO
                 $('#email-modal').modal('show');
-            }
-        });
+                $('#hidden-modal').modal('show');
+              }
+              else if (!('already_exists' in json) && existOk){
+                //TODO
+                $('#email-modal').modal('show');
+                $('#hidden-modal').modal('show');
+              }
+              else{
+                //logged in
+                $('#register-modal').modal('hide');
+                $('#forgot-modal').modal('hide');
+                $('#email-modal').modal('hide');
+                $('#email').tooltip('hide');
+                mp.currentUser = {
+                  email:email
+                }
+                $('#username').html(mp.currentUser.email)
+                if (currentPeople && !register) {
+                  $('#subscribe').click();
+                }
+                delete register;
+              }
+            },
+              error:function(){
+                $('#email-modal').modal('show');
+                $('#hidden-modal').modal('show');
+              }
+          });
+        }
+      };
 
-        $('#email-ok').click(function(){
-            var email = $('#email').val();
-            if(email.indexOf('@') === -1){
-                $('#email').tooltip({
-                    title:'Please enter your email',
-                    trigger:'manual'
-                }).tooltip('show');
-            }
-            else{
-               $k.api.GET({
-                    url:'/api/signup',
-                    json:{email:email},
-                    success:function(json){
-                        if(json.already_exists){
-                            //TODO
-                            $('#email-modal').modal('show');
-                            $('#hidden-modal').modal('show');
-                        }
-                        else{
-                            //logged in
-                            $('#register-modal').modal('hide');
-                            $('#email').tooltip('hide');
-                            mp.currentUser = {
-                                email:email
-                            }
-                            if (currentPeople && !register) {
-                              $('#subscribe').click();
-                            }
-                            delete register;
-                        }
-                    },
-                    error:function(){
-                        $('#email-modal').modal('show');
-                        $('#hidden-modal').modal('show');
-                    }
-                });
-            }
-        });
-    }
+    $('#new-email-ok').click(function(){
+      emailok(false, false);
+    });
+
+    $('#old-email-ok').click(function(){
+      emailok(true, true);
+    });
 
     describeRole = function(actor_role, director, movie, people) {
       // for now very simple but in future would be nice to have more.
@@ -159,91 +179,117 @@ mp.pages.frontpage = new function(){
       }
     }
 
-    function onMovies(movies, currentPeople) {
-        $('.people-name').html(currentPeople.name);
-        //get all items
-        var items = [];
-        $.each(movies,function(i,movie){
-            //$.each(movie.trailers,function(j,trailer){
-            //    //trailer.date = new KDate().fromJsDate(Date.parse(trailer.date));
-            //    trailer.date = new KDate()
-            //    trailer.type='trailer';
-            //    trailer.movie = movie;
-            //    items.push(trailer);
-            //});
-            if(movie.release){
-                var release = movie.release;
-                release.date = new KDate().fromJsDate(Date.parse(release.date));
-                //release.date = new KDate()
-                release.type='release';
-                release.movie = movie;
-                if (movie.trailers.length>0) {
-                  release.trailer = movie.trailers[0];
-                  if (!release.trailer.date) {
-                    release.trailer.date = "1970-01-01"
-                  }
-                  release.trailer.date = new KDate().fromJsDate(Date.parse(release.trailer.date));
-                }
-                //release.trailer.date = new KDate().fromJsDate(Date.parse(release.trailer.date));
-                release.moviepeople_actor = movie.moviepeople_actor
-                release.moviepeople_director = movie.moviepeople_director
-                items.push(release);
-            }
-        });
-        //sort
-        items.sort(function(a,b){return b.date.getTime() - a.date.getTime();});
-
-        //display
-        $('#timeline').html('');
-        $.each(items,function(i,item){
-            $div = $('<div class="timeline-item">')
-            $div.append('<div style="text-align:center;" class="date">'+item.date.prettyDate()+'<hr style="margin:5px"></div>');
-            $row = $('<div class="row">');
-            if(item.type === 'release'){
-                if (item.movie.poster) {
-                  $row.append('<div class="span2"><img src="http://cf2.imgobject.com/t/p/w185' + item.movie.poster + '" class="poster"></div>');
-                }
-                var trailertext = ''
-                if (item.trailer && item.trailer.date) {
-                  //$div.append('<br> <br> <div class="date">'+item.trailer.date.prettyDate()+'</div>' + 'Watch the trailer! <br> <iframe height="200" src="http://www.youtube.com/embed/'+item.trailer.url+'" frameborder="0"></iframe>');
-                  //trailertext = '<br> <br> <a href=> Watch the trailer! <br> <iframe height="200" src="http://www.youtube.com/embed/'+item.trailer.url+'" frameborder="0"></iframe>';
-                  trailertext = '<br> <br> <a target="_blank" href="http://www.youtu.be/'+item.trailer.url+'"> Watch the trailer on YouTube!';
-                }
-                $row.append(
-                  '<div class="span" style="width:360px;"><h3>' + item.movie.name+' </h3><div>' + describeRole(item.moviepeople_actor, item.moviepeople_director, item.movie, currentPeople) + trailertext + '</div>'
-                  );
-            }
-            $div.append($row)
-            //else if(item.type === 'trailer'){
-//$div.append('Watch the trailer: <a href="'+item.url+'">'+item.url+'</a>');
-            //  $div.append('Watch the trailer for ' + item.movie.name + '! <br> <iframe height="200" src="http://www.youtube.com/embed/'+item.url+'" frameborder="0"></iframe>')
-            //}
-            $('#timeline').append($div);
-        });
-        if($('#people').outerHeight()<$(window).height()){
-            $('#people').css('height',$(window).height());
-        }
-        setTimeout(function(){
-            var top = $('#people-input').offset().top;
-            //$('html, body').animate({scrollTop:top},1000);
-        },100);
-
-        $('#people-pic').html('<img src="http://cf2.imgobject.com/t/p/w500' + currentPeople.profile + '">')
-        $('#people').fadeIn(100);
-        $('#right-pane').show()
-
-        var el=$('#right-pane');
-        var elpos=el.offset().top - 100;
-        $(window).scroll(function () {
-          var y=$(this).scrollTop();
-          if (y>elpos) {
-            el.addClass('fixed')
-          } else {
-            el.removeClass('fixed')
+    //display
+    makeTimeline = function(items, currentPeople) {
+      var ret = '';
+      $.each(items,function(i,item){
+        ret += '<div class="timeline-item">';
+        ret += '<div style="text-align:center;" class="date">'+item.date.prettyDate()+'<hr style="margin:5px"></div>';
+        ret += '<div class="row">';
+        if(item.type === 'release'){
+          if (item.movie.poster) {
+            ret += '<div class="span2"><img src="http://cf2.imgobject.com/t/p/w185' + item.movie.poster + '" class="poster"></div>';
           }
+          var trailertext = ''
+        if (item.trailer && item.trailer.date) {
+          //$div.append('<br> <br> <div class="date">'+item.trailer.date.prettyDate()+'</div>' + 'Watch the trailer! <br> <iframe height="200" src="http://www.youtube.com/embed/'+item.trailer.url+'" frameborder="0"></iframe>');
+          //trailertext = '<br> <br> <a href=> Watch the trailer! <br> <iframe height="200" src="http://www.youtube.com/embed/'+item.trailer.url+'" frameborder="0"></iframe>';
+          trailertext = '<br> <br> <a target="_blank" href="http://www.youtu.be/'+item.trailer.url+'"> Watch the trailer on YouTube!</a>';
+        }
+      //console.log(ret);
+      if (currentPeople) {
+        ret += '<div class="span" style="width:360px;"><h3>' + item.movie.name+' </h3><div>' + describeRole(item.moviepeople_actor, item.moviepeople_director, item.movie, currentPeople) + trailertext + '</div></div></div></div>';
+      } else {
+        ret += '<div class="span" style="width:360px;"><h3>' + item.movie.name+' </h3><div>' + trailertext + '</div></div></div></div>';
+      }
+        }
+      });
+      return ret;
+    }
 
-          //el.stop().css({'margin-top':Math.max(0, y-elpos)});
-        });
+    makeItems = function(movies) {
+      var items = [];
+      $.each(movies,function(i,movie){
+        if(movie.release){
+          var release = movie.release;
+          release.date = new KDate().fromJsDate(Date.parse(release.date));
+          //release.date = new KDate()
+          release.type='release';
+          release.movie = movie;
+          if (movie.trailers.length>0) {
+            release.trailer = movie.trailers[0];
+            if (!release.trailer.date) {
+              release.trailer.date = "1970-01-01"
+            }
+            release.trailer.date = new KDate().fromJsDate(Date.parse(release.trailer.date));
+          }
+          //release.trailer.date = new KDate().fromJsDate(Date.parse(release.trailer.date));
+          release.moviepeople_actor = movie.moviepeople_actor;
+          release.moviepeople_director = movie.moviepeople_director;
+          items.push(release);
+        }
+      });
+
+      //sort
+      items.sort(function(a,b){return b.date.getTime() - a.date.getTime();});
+
+      return items;
+    }
+
+    
+
+    showyourWhispers = function() {
+      //call server to get stories
+      $k.api.GET({
+        url:'/api/yourwhispers',
+      success:function(json){
+        //console.log(json);
+        items=makeItems(json.movies);
+        //console.log(items);
+        $('#yourwhispers').html(makeTimeline(items, ''));
+        $('#yourwhispers').show();
+      },
+      error:function(){
+        $('#hidden-modal').modal('show');
+      }
+      });
+    }
+
+
+
+    function onMovies(movies, currentPeople) {
+      $('.people-name').html(currentPeople.name);
+
+      //get all items
+      items=makeItems(movies);
+      
+      //make timeline
+      $('#timeline').html(makeTimeline(items, currentPeople));
+
+      if($('#people').outerHeight()<$(window).height()){
+        $('#people').css('height',$(window).height());
+      }
+      setTimeout(function(){
+        var top = $('#people-input').offset().top;
+        //$('html, body').animate({scrollTop:top},1000);
+      },100);
+
+      $('#people-pic').html('<img src="http://cf2.imgobject.com/t/p/w500' + currentPeople.profile + '">');
+      $('#people').fadeIn(100);
+      $('#right-pane').show();
+
+      var el=$('#right-pane');
+      var elpos=el.offset().top - 100;
+      $(window).scroll(function () {
+        var y=$(this).scrollTop();
+        if (y>elpos) {
+          el.addClass('fixed');
+        } else {
+          el.removeClass('fixed');
+        }
+
+        //el.stop().css({'margin-top':Math.max(0, y-elpos)});
+      });
 
 
     }
@@ -252,6 +298,7 @@ mp.pages.frontpage = new function(){
     $('#go').hide();
 
     $('#faq').hide();
+    $('#yourwhispers-btn').hide();
 
     $('#name').click(function() {
       $(this).val('')
@@ -261,7 +308,7 @@ mp.pages.frontpage = new function(){
 
       $('#name').keypress(function(ev) {
         if (ev.which == 13) {
-          console.log(currentPeople)
+          //console.log(currentPeople)
         //  if (currentPeople) {
         //    showMovies(currentPeople);
         //  } else {
@@ -269,7 +316,7 @@ mp.pages.frontpage = new function(){
               url:'/api/people/manualsearch',
               json:{term:$(this).val()},
               success:function(json){
-                console.log(json);
+                //console.log(json);
                 currentPeople=json;
                 showMovies(json);
               },
@@ -308,11 +355,34 @@ mp.pages.frontpage = new function(){
     });
 
 
-    $('#signin-btn').click(function() {
+    $('#yourwhispers-btn').click(function() {
       $('#bigcont > div').hide();
-      $('#signin').show();
+      showyourWhispers();
+      //$('#yourwhispers').show();
       $('.nav li').removeClass('active');
       $(this).addClass('active');
+    });
+
+
+    $('#signin-btn').click(function() {
+      $('#bigcont > div').hide();
+      if (!mp.currentUser) {
+        $('#signin').show();
+        $('.nav li').removeClass('active');
+        $(this).addClass('active');
+      } else {
+        $k.api.POST({
+          url:'/logout',
+          json:{},
+          success:function(json){
+            mp.currentUser = '';
+            $('#logout').show();
+            $('.nav li').removeClass('active');
+            $('#home-btn').addClass('active');
+            logoutevents();
+          },
+        });
+      }
     });
 
 
@@ -320,6 +390,75 @@ mp.pages.frontpage = new function(){
       $('#register').show();
       var register = true;
       $('#register-modal').modal('show');
+    });
+
+    $('#signin-submit').click(function() {
+      var username = $('#id_username').val();
+      var password = $('#id_password').val();
+      $k.api.POST({
+        url:'/signin',
+        json:{username: username,
+          password: password,
+        },
+        success:function(json){
+          if (json.auth) {
+            mp.currentUser = {
+              email: json.username,
+            };
+            $('#signin').hide();
+            $('#signinerror').hide();
+            $('#signedin').show();
+            signinevents(mp.currentUser.email);
+          } else {
+            $('#signinerror').show();
+          }
+        },
+        error:function(json){
+        },
+      });
+    });
+
+    $('#forgot-password').click(function() {
+      $('#forgot-modal').modal('show');
+    });
+
+    signinevents = function(email) {
+      $('#username').text(email);
+      $('#signin-btn > a').text('Log out');
+      $('#register-btn').hide();
+      $('#yourwhispers-btn').show();
+    }
+
+    logoutevents = function() {
+      $('#username').text('');
+      $('#signin-btn > a').text('Sign in');
+      $('#register-btn').show();
+      $('#yourwhispers-btn').hide();
+    }
+
+
+    $.ajaxSetup({ 
+      beforeSend: function(xhr, settings) {
+        function getCookie(name) {
+          var cookieValue = null;
+          if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+              var cookie = jQuery.trim(cookies[i]);
+              // Does this cookie string begin with the name we want?
+              if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+              }
+            }
+          }
+          return cookieValue;
+        }
+        if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+          // Only send the token to relative URLs i.e. locally.
+          xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+        }
+      } 
     });
 
 

@@ -129,7 +129,7 @@ class MovieGenre(models.Model):
 
 class CreateAccountToken(models.Model):
   code = models.CharField(max_length=32)
-  email = models.CharField(max_length=1023)
+  email = models.CharField(max_length=1023, unique=True)
   date_created = models.DateTimeField(auto_now_add=True,
                                       default=datetime.datetime.now())
   last_updated = models.DateTimeField(auto_now=True, 
