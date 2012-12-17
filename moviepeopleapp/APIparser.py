@@ -13,7 +13,6 @@ from moviepeopleapp.models import (People, MoviePeople, Trailer,
                                    MovieCountry, MovieCompany)
 from urllib2 import urlopen, Request, URLError, HTTPError
 import requests
-import grequests
 import datetime
 
 log = logging.getLogger(__name__)
@@ -272,6 +271,7 @@ def parseMovie(idmovie):
     else:
       movie_trailer = None
     dbmovie = writeMovie(movie_main, movie_cast, movie_release, movie_trailer)
+    log.info('Parsed movie: ' + str(dbmovie))
     return dbmovie
   else: 
     return None
