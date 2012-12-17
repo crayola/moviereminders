@@ -9,30 +9,26 @@
     <link href="{{ STATIC_URL }}css/lib/bootstrap-2.1.0.css" type="text/css" rel="stylesheet" media="screen, projection" />
     <link href="{{ STATIC_URL }}css/lib/jquery-ui-1.9.0.custom.min.css" type="text/css" rel="stylesheet" media="screen, projection" />
     <link href="{{ STATIC_URL }}css/mp/frontpage.css" type="text/css" rel="stylesheet" media="screen, projection" />
+      <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
   </head>
 
 
   <body>
-    <div class="container">
-      <div class="hero-unit">
 
-        <h1>Whispers</h1>
-        <p>Name your favorite stars and be the first to know about their upcoming movies.</p>
+  <div class="head">
+      <div class="content">
+          <h1>Keep up with cinema</h1>
+          <h2>Name an artist you love and be the first to know about his upcoming movies</h2>
 
+          <input id="name" type="text" placeholder="ex: Johnny Depp, Quentin Tarantino" class="ui-autocomplete-input" autocomplete="off"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible">1 result is available, use up and down arrow keys to navigate.</span>
+
+          <img src="{{ STATIC_URL }}img/enveloppe.png" class="enveloppe"/>
       </div>
-    </div>
+  </div>
+
+
 
     <div class="container" id="bigcont">
-
-      <div class="container" id="people-input">
-        <div style="text-align: center;">
-          <form>
-            <label>Type in your favorite actor or director's name:</label>
-            <input id="name" type="text" placeholder="ex: Johnny Depp, Quentin Tarantino" style="width:325px">
-            <a id="go" class="btn" style="margin-top: -8px; width: 40px;">OK</a>
-          </form>
-        </div>
-      </div>
 
       <div class="container" id="people" style="display:none">
         <div class="row">
