@@ -183,6 +183,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'whispers.updates@gmail.com'
 EMAIL_HOST_PASSWORD = '9o9Cez32r348eokrZtpa'
 
+LOCAL = False
 
 MAX_USERNAME_LENGTH = 1023 #longerusername
 
