@@ -57,7 +57,8 @@ def pullMovie(idmovie):
                       'append_to_response': 'trailers,releases,casts,changes',
                     })
   if rs.ok:
-    return rs.json
+    json = simplejson.loads(rs.content)
+    return json
   else: 
     return None
 

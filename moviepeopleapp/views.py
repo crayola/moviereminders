@@ -93,7 +93,8 @@ def autocomplete(request):
     term = json['term']
 
     #get results
-    autocomplete = SearchQuerySet().autocomplete(name_autocomplete=term)
+    #autocomplete = SearchQuerySet().autocomplete(name_autocomplete=term)
+    autocomplete = SearchQuerySet().all()
     log.info("term:"+term+" results:"+str(autocomplete.count()))
 
     #create response
