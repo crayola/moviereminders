@@ -275,3 +275,18 @@ h1.people-name{
 .dark-link:hover > i{
     opacity: 1;
 }
+
+/* Modals */
+.modal, .modal-footer {
+    font-family: 'open sans',arial,sans-serif;
+    border-radius: 0px!important;
+}
+
+.modal-header {
+    background: #86B5D1;
+    color: white;
+}
+.modal-header h3{
+    font-size: 28px;
+    font-weight: 100;
+}
