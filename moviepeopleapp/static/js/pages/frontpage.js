@@ -246,7 +246,7 @@ mp.pages.frontpage = new function(){
 
 
 
-    showyourWhispers = function() {
+    function showyourWhispers() {
         //call server to get stories
         $k.api.GET({
             url:'/api/yourwhispers',
@@ -277,10 +277,6 @@ mp.pages.frontpage = new function(){
         if($('#people').outerHeight()<$(window).height()){
             $('#people').css('height',$(window).height());
         }
-        setTimeout(function(){
-            var top = $('#people-input').offset().top;
-            //$('html, body').animate({scrollTop:top},1000);
-        },100);
 
         $('#people-pic').html('<img src="http://cf2.imgobject.com/t/p/w500' + currentPeople.profile + '">');
         $('#people').fadeIn(100);
@@ -302,6 +298,11 @@ mp.pages.frontpage = new function(){
 
             //el.stop().css({'margin-top':Math.max(0, y-elpos)});
         });
+
+        $('body').animate({
+                scrollTop: elpos
+            },
+            200);
 
 
     }
