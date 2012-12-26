@@ -17,6 +17,7 @@ mp.pages.frontpage = new function(){
                     onMovies(json.movies, currentPeople);
                 },
                 error:function(){
+                    console.log('hi');
                     $('#email-modal').modal('show');
                     $('#hidden-modal').modal('show');
                 }
@@ -183,15 +184,19 @@ mp.pages.frontpage = new function(){
     function makeTimeline(items, currentPeople) {
         var ret = '';
         $.each(items,function(i,item){
+            console.log(item);
             ret += '<div class="movie-box">';
             ret +=  '<img src="http://cf2.imgobject.com/t/p/w185'+item.movie.poster+'"/>';
             ret +=  '<h1 class="title">'+item.movie.name+'</h1><hr/>'
             ret += '<div class="date">'+item.date.prettyDate()+'</div>';
+            console.log(ret)
             ret +=  '<span class="is">'+describeRole(item.moviepeople_actor, item.moviepeople_director, item.movie, currentPeople)+'</span>';
             ret +=  '<div style="position:absolute;right:6px;bottom:6px;">';
+            if (item.trailer && item.trailer.date) {
             ret +=   '<a href="http://www.youtu.be/'+item.trailer.url+'" class="dark-link" target="_new"><i class="icon-film"></i> Watch trailer</a>';
-            ret +=  '</div>'
-            ret += '</div>'
+	    }
+            ret +=  '</div>';
+            ret += '</div>';
 
 //            ret += '<div class="row">';
 //            if(item.type === 'release'){
