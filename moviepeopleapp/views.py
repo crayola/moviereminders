@@ -47,9 +47,9 @@ def createAccount(request, token_code):
       #token.delete() # token is single use only!
       log.info("Account created for:" + user.username)
       if new:
-        return render('accountCreated.html')
+        return render(request, 'accountCreated.html')
       else:
-        return render('accountUpdated.html')
+        return render(request, 'passwordUpdated.html')
   else:
     form = SetPasswordForm(user)
     log.info("create_account page opened by:"+token.email)
@@ -234,15 +234,14 @@ def signup(request):
     json = simplejson.loads(request.GET.get('JSON'))
     email = json['email']
     log.info("signup:"+email)
-    if new:
-      users = User.objects.filter(username=email)
-      if(users.count()>0):
-        return HttpResponse(simplejson.dumps({"already_exists":True}), mimetype="application/json")
-      user = User.objects.create_user(email, email, '*')
-      user.save()
-      user = authenticate(username=email,password='*')
-      login(request, user)
-      log.info("user:"+user.email+" logged in")
+    users = User.objects.filter(username=email)
+    if(len(users)>0):
+      return HttpResponse(simplejson.dumps({"already_exists":True}), mimetype="application/json")
+    user = User.objects.create_user(email, email, '*')
+    user.save()
+    user = authenticate(username=email,password='*')
+    login(request, user)
+    log.info("user:"+user.email+" logged in")
 
     sendToken(request, new=True)
 

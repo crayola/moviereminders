@@ -91,12 +91,13 @@ mp.pages.frontpage = new function(){
     });
 
       var emailok = function(existOk, forgot) {
-        var email = $('#email').val();
+        var email = $('#register-modal #email').val();
         var url = '/api/signup';
         if (forgot) {
           url = '/api/forgot';
         }
         if(email.indexOf('@') === -1){
+console.log(email);
           $('#email').tooltip({
             title:'Please enter your email',
             trigger:'manual'
@@ -109,7 +110,6 @@ mp.pages.frontpage = new function(){
             success:function(json){
               if(json.already_exists && !(existOk)){
                 //TODO
-                $('#email-modal').modal('show');
                 $('#hidden-modal').modal('show');
               }
               else if (!('already_exists' in json) && existOk){
@@ -147,7 +147,7 @@ mp.pages.frontpage = new function(){
 
     $('#old-email-ok').click(function(){
       emailok(true, true);
-    });
+    }); // fix this mess
 
     describeRole = function(actor_role, director, movie, people) {
       // for now very simple but in future would be nice to have more.
