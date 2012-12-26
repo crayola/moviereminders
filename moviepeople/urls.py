@@ -1,4 +1,6 @@
 from django.conf.urls import patterns, include, url
+from django.conf import settings
+
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -26,3 +28,9 @@ urlpatterns = patterns('',
     url(r'^api/signup$', 'moviepeopleapp.views.signup'),
     url(r'^api/forgot$', 'moviepeopleapp.views.sendToken')
 )
+
+if settings.LOCAL == True:
+   urlpatterns += patterns('',
+                           #local
+                           url(r'^loadsampledb/', 'moviepeopleapp.views.load_sample_db')
+                          )

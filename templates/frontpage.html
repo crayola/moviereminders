@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 
-  <head>
+<head>
     <title>Whispers</title>
     <meta name="description" content="Name your favorite stars and be the first to know about their upcoming movies."/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,97 +9,106 @@
     <link href="{{ STATIC_URL }}css/lib/bootstrap-2.1.0.css" type="text/css" rel="stylesheet" media="screen, projection" />
     <link href="{{ STATIC_URL }}css/lib/jquery-ui-1.9.0.custom.min.css" type="text/css" rel="stylesheet" media="screen, projection" />
     <link href="{{ STATIC_URL }}css/mp/frontpage.css" type="text/css" rel="stylesheet" media="screen, projection" />
-  </head>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
+</head>
 
 
-  <body>
-    <div class="container">
-      <div class="hero-unit">
+<body>
 
-        <h1>Whispers</h1>
-        <p>Name your favorite stars and be the first to know about their upcoming movies.</p>
+<div class="head">
+    <div class="content">
+        <h1>Keep up with cinema</h1>
+        <h2>Name an artist you love and be the first to know about his upcoming movies</h2>
 
-      </div>
+        <input id="name" type="text" placeholder="ex: Johnny Depp, Quentin Tarantino" class="ui-autocomplete-input" autocomplete="off"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible">1 result is available, use up and down arrow keys to navigate.</span>
+
+        <img src="{{ STATIC_URL }}img/enveloppe.png" class="enveloppe"/>
+    </div>
+</div>
+
+
+
+<div class="container" id="bigcont">
+
+    <div class="container" id="people" style="display:none">
+
+        <div class="row" id="right-pane" style="display:none;">
+            <div class="span7">
+                <h1 class="people-name"></h1>
+            </div>
+            <div class="span5" id="right-paneWrapper">
+                <div style="text-align: center;">
+                    <!-- <a class="btn btn-large btn-primary" type="button" id="subscribe">Be the first to hear about their next <span class="people-name"></span> movie!</a> -->
+                    <a class="btn btn-large btn-primary" style="width:280px" type="button" id="subscribe">Subscribe to the latest <br> <span class="people-name"></span> movie updates</a>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="inliner">&nsbp;</div>
+
+        <div class="row">
+            <div class="span7" id="timeline" style="margin-top:96px;">
+            </div>
+            <div class="span5">
+                &nbsp;
+                <div id="people-pic" class="people-pic"> </div>
+            </div>
+        </div>
+
     </div>
 
-    <div class="container" id="bigcont">
 
-      <div class="container" id="people-input">
+
+
+
+    <div class="container" id="signin" style="display:none">
         <div style="text-align: center;">
-          <form>
-            <label>Type in your favorite actor or director's name:</label>
-            <input id="name" type="text" placeholder="ex: Johnny Depp, Quentin Tarantino" style="width:325px">
-            <a id="go" class="btn" style="margin-top: -8px; width: 40px;">OK</a>
-          </form>
+            <form>
+                {{ signinform.as_p }}
+                <a id="forgot-password"> Forgot password? </a>
+                <br>
+                <br>
+                <a id="signin-submit" class="btn">Submit</a>
+            </form>
         </div>
-      </div>
+    </div>
 
-      <div class="container" id="people" style="display:none">
-        <div class="row">
-          <div class="span7" id="timeline">
-          </div>
-          <div class="span5" id="right-paneWrapper">
-            <div id="right-pane" style="display:none">
-              <!-- <a class="btn btn-large btn-primary" type="button" id="subscribe">Be the first to hear about their next <span class="people-name"></span> movie!</a> -->
-              <a class="btn btn-large btn-primary" style="width:350px" type="button" id="subscribe">Subscribe to the latest <br> <span class="people-name"></span> movie updates!</a>
-              <div id="people-pic" class="people-pic"> </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-
-
-
-
-      <div class="container" id="signin" style="display:none">
+    <div class="container" id="signinerror" style="display:none">
         <div style="text-align: center;">
-          <form>
-            {{ signinform.as_p }}
-            <a id="forgot-password"> Forgot password? </a>
-            <br>
-            <br>
-            <a id="signin-submit" class="btn">Submit</a>
-          </form>
+            <p>Sorry, wrong username or password.</p>
         </div>
-      </div>
+    </div>
 
-      <div class="container" id="signinerror" style="display:none">
+
+    <div class="container" id="signedin" style="display:none">
         <div style="text-align: center;">
-          <p>Sorry, wrong username or password.</p>
+            <p>You are now signed in as <span id='username'></span>.</p>
         </div>
-      </div>
+    </div>
 
 
-      <div class="container" id="signedin" style="display:none">
+    <div class="container" id="logout" style="display:none">
         <div style="text-align: center;">
-          <p>You are now signed in as <span id='username'></span>.</p>
+            <p>You are now logged out.</p>
         </div>
-      </div>
+    </div>
 
 
-      <div class="container" id="logout" style="display:none">
-        <div style="text-align: center;">
-          <p>You are now logged out.</p>
-        </div>
-      </div>
+    <div class="container" class="span7" id="yourwhispers" style="display:none"> </div>
 
 
-      <div class="container" class="span7" id="yourwhispers" style="display:none"> </div>
-
-
-      <div class="container" id="about" style="display:none">
+    <div class="container" id="about" style="display:none">
         <h1> About us </h1>
         <h2> Whispers -- when, why and how? </h2>
         <h2> Who is behind Whispers? </h2>
         <h3> Arnaud </h3>
         <h3> Timothée </h3>
         <p> </p>
-      </div>
+    </div>
 
 
-      <div class="container" id="faq" style="display:none">
+    <div class="container" id="faq" style="display:none">
         <h1> FAQ </h1>
         <h2> What is whispers? </h2>
         <p> The best. </p>
@@ -107,115 +116,115 @@
         <p> Arnaud and Timothée. </p>
         <h2> Is my data safe? </h2>
         <p> Totally. </p>
-      </div>
-
     </div>
 
-    <div class="navbar navbar-inner navbar-fixed-bottom">
-      <div class="container">
+</div>
+
+<div class="navbar navbar-inner navbar-fixed-bottom">
+    <div class="container">
         <ul class="nav">
-          <li id="home-btn" class="active"><a href="#">Home</a></li>
-          <li id="about-btn"><a href="#">About</a></li>
-          <li id="faq-btn"><a href="#">FAQ</a></li>
-          <li id="signin-btn"><a href="#">Sign in</a></li>
-          <li id="register-btn"><a href="#">Register</a></li>
-          <li id="yourwhispers-btn"><a href="#">Your Whispers</a></li>
+            <li id="home-btn" class="active"><a href="#">Home</a></li>
+            <li id="about-btn"><a href="#">About</a></li>
+            <li id="faq-btn"><a href="#">FAQ</a></li>
+            <li id="signin-btn"><a href="#">Sign in</a></li>
+            <li id="register-btn"><a href="#">Register</a></li>
+            <li id="yourwhispers-btn"><a href="#">Your Whispers</a></li>
         </ul>
-      </div>
     </div>
+</div>
 
 
-    <div id="forgot-modal" class="modal hide fade">
-      <div class="modal-header">
+<div id="forgot-modal" class="modal hide fade">
+    <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h3>Change your password.</h3>
-      </div>
-      <div class="modal-body">
+    </div>
+    <div class="modal-body">
         <p> Please give us your email adress. We will send you a link to allow you to change your password.</p>
         <p style="text-align: center;padding-top: 24px; padding-bottom: 12px;">
-        <label></label>
-        <input id="email" type="email" placeholder="Your email" style="width:325px">
+            <label></label>
+            <input id="forgot-email" type="email" placeholder="Your email" style="width:325px">
         </p>
-      </div>
-      <div class="modal-footer">
+    </div>
+    <div class="modal-footer">
         <a data-dismiss="modal" class="btn">Cancel</a>
         <a id="old-email-ok" class="btn btn-primary">OK</a>
-      </div>
     </div>
+</div>
 
 
-    <div id="register-modal" class="modal hide fade">
-      <div class="modal-header">
+<div id="register-modal" class="modal hide fade">
+    <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h3>Register to Whispers today!</h3>
-      </div>
-      <div class="modal-body">
+    </div>
+    <div class="modal-body">
         <p> Please give us your email adress.</p>
         <p style="text-align: center;padding-top: 24px; padding-bottom: 12px;">
-        <label></label>
-        <input id="email" type="email" placeholder="Your email" style="width:325px">
+            <label></label>
+            <input id="register-email" type="email" placeholder="Your email" style="width:325px">
         </p>
-      </div>
-      <div class="modal-footer">
-        <a data-dismiss="modal" class="btn">Cancel</a>
-        <a id="new-email-ok" class="btn btn-primary">OK</a>
-      </div>
     </div>
+    <div class="modal-footer">
+        <a data-dismiss="modal" class="btn">Cancel</a>
+        <a id="register-email-ok" class="btn btn-primary">OK</a>
+    </div>
+</div>
 
 
-    <div id="email-modal" class="modal hide fade">
-      <div class="modal-header">
+<div id="email-modal" class="modal hide fade">
+    <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h3>Receive updates for <span class="people-name"></span>'s work by email</h3>
-      </div>
-      <div class="modal-body">
+    </div>
+    <div class="modal-body">
         <p>We will send you updates about <span class="people-name"></span>'s releases and trailers by email.</p>
         <p style="text-align: center;padding-top: 24px; padding-bottom: 12px;">
-        <label></label>
-        <input id="email" type="email" placeholder="Your email" style="width:325px">
+            <label></label>
+            <input id="email" type="email" placeholder="Your email" style="width:325px">
         </p>
-      </div>
-      <div class="modal-footer">
+    </div>
+    <div class="modal-footer">
         <a data-dismiss="modal" class="btn">Cancel</a>
         <a id="new-email-ok" class="btn btn-primary">OK</a>
-      </div>
     </div>
+</div>
 
 
-    <div id="hidden-modal" class="modal hide fade">
+<div id="hidden-modal" class="modal hide fade">
 
-      <div class="modal-header">
+    <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h3>Hey, you've reached an hidden place</h3>
-      </div>
-      <div class="modal-body">
+    </div>
+    <div class="modal-body">
         <p>Why hello,<br/>
-        you were not really supposed to get there.</p>
+            you were not really supposed to get there.</p>
         <p>You see the site is a couple of days young, and we are still hard at work implementing everything.<br/>
-        If you are trying to log in an account you created earlier, I'm affraid it's not possible right now. I'll send you a mail ASAP.</p>
+            If you are trying to log in an account you created earlier, I'm affraid it's not possible right now. I'll send you a mail ASAP.</p>
         <p>Arnaud</p>
-      </div>
-
-      <div class="modal-footer">
-        <a data-dismiss="modal" class="btn">Okay</a>
-      </div>
-
     </div>
 
-    <script src="{{ STATIC_URL }}js/lib/jquery-1.8.2.min.js"></script>
-    <script src="{{ STATIC_URL }}js/lib/jquery-ui-1.9.0.custom.min.js"></script>
-    <script src="{{ STATIC_URL }}js/lib/bootstrap.js"></script>
-    <script src="{{ STATIC_URL }}js/lib/date.js"></script>
-    <script src="{{ STATIC_URL }}js/k/kdate.js"></script>
-    <script src="{{ STATIC_URL }}js/k/k.api.js"></script>
-    <script src="{{ STATIC_URL }}js/pages/frontpage.js"></script>
+    <div class="modal-footer">
+        <a data-dismiss="modal" class="btn">Okay</a>
+    </div>
 
-    {% if user.is_authenticated  %}
+</div>
+
+<script src="{{ STATIC_URL }}js/lib/jquery-1.8.2.min.js"></script>
+<script src="{{ STATIC_URL }}js/lib/jquery-ui-1.9.0.custom.min.js"></script>
+<script src="{{ STATIC_URL }}js/lib/bootstrap.js"></script>
+<script src="{{ STATIC_URL }}js/lib/date.js"></script>
+<script src="{{ STATIC_URL }}js/k/kdate.js"></script>
+<script src="{{ STATIC_URL }}js/k/k.api.js"></script>
+<script src="{{ STATIC_URL }}js/pages/frontpage.js"></script>
+
+{% if user.is_authenticated  %}
     <script>
-      mp.currentUser = {email: '{{ user.email }}' };
-      signinevents()
+        mp.currentUser = {email: '{{ user.email }}' };
+        signinevents()
     </script>
-    {% endif %}
+{% endif %}
 
-  </body>
+</body>
 </html>

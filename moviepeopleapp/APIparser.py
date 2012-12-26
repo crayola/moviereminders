@@ -13,7 +13,6 @@ from moviepeopleapp.models import (People, MoviePeople, Trailer,
                                    MovieCountry, MovieCompany)
 from urllib2 import urlopen, Request, URLError, HTTPError
 import requests
-import grequests
 import datetime
 
 log = logging.getLogger(__name__)
@@ -43,7 +42,7 @@ apikey="3dffd9e01086f6801f45d2161cd2710d"
 #        try:
 #            ret=simplejson.load(req)
 #            parsed=1
-#        except:
+#        except Exception:
 #            parsed=0
 #            print("JSON issue, probably socket.timeout.")
 #    return ret
@@ -58,7 +57,8 @@ def pullMovie(idmovie):
                       'append_to_response': 'trailers,releases,casts,changes',
                     })
   if rs.ok:
-    return rs.json
+    json = simplejson.loads(rs.content)
+    return json
   else: 
     return None
 
@@ -123,7 +123,7 @@ def movieUpdate(idmovie, date):
     for trailer in changedtrailers:
       try:
         tmp=[x['sources'] for x in trailer['value'] if x['site']=='YouTube'][0]
-      except:
+      except Exception:
         continue
       tmp.update({'name':trailer['value']['name']})
       makeDBtrailers(dbmovie, 
@@ -198,7 +198,7 @@ def processChanges(date):
 #def parseMovie(tmdbid):
 #    try:
 #        movie_main=checkmovie(tmdbid, "main")
-#    except:
+#    except Exception:
 #        print("id %s: no movie" % tmdbid)
 #        return 0
 #    i=0
@@ -206,7 +206,7 @@ def processChanges(date):
 #        try:
 #            movie_cast=checkmovie(tmdbid, "casts")
 #            i=10
-#        except:
+#        except Exception:
 #            movie_cast=''
 #            i+=1
 #    i=0
@@ -214,7 +214,7 @@ def processChanges(date):
 #        try:
 #            movie_release=checkmovie(tmdbid, "releases")
 #            i=10
-#        except:
+#        except Exception:
 #            movie_release=''
 #            i+=1
 #    print("id %s: writing to disk" % tmdbid)
@@ -272,6 +272,7 @@ def parseMovie(idmovie):
     else:
       movie_trailer = None
     dbmovie = writeMovie(movie_main, movie_cast, movie_release, movie_trailer)
+    log.info('Parsed movie: ' + str(dbmovie))
     return dbmovie
   else: 
     return None
@@ -297,7 +298,7 @@ def makeDBmovie(movie_main):
     production_companies=movie_main['production_companies']
     countries=[x['iso_3166_1'][:2] for x in Nonetostr(movie_main['production_countries'])]
     try: dbmovie=Movie.objects.get(tmdb_id=Nonetostr(movie_main['id']))
-    except: dbmovie=Movie()
+    except Exception: dbmovie=Movie()
     dbmovie.name=Nonetostr(movie_main['title'])
     dbmovie.poster=Nonetostr(movie_main['poster_path'])
     dbmovie.backdrop=Nonetostr(movie_main['backdrop_path'])
@@ -315,32 +316,32 @@ def makeDBmovie(movie_main):
     dbmovie.save()
     for genre in genres:
         try: dbmoviegenre=MovieGenre.objects.get(movie=dbmovie, genre=genre['name'])
-        except: dbmoviegenre=MovieGenre()
+        except Exception: dbmoviegenre=MovieGenre()
         dbmoviegenre.movie=dbmovie
         dbmoviegenre.genre=genre['name']
         dbmoviegenre.genre_tmdb_id=genre['id']
         dbmoviegenre.save()
     for company in production_companies:
         try: dbmoviecompany=MovieCompany.objects.get(movie=dbmovie, company=company['name'][:200])
-        except: dbmoviecompany=MovieCompany()
+        except Exception: dbmoviecompany=MovieCompany()
         dbmoviecompany.movie=dbmovie
         dbmoviecompany.company=company['name'][:200]
         dbmoviecompany.company_tmdb_id=company['id']
         dbmoviecompany.save()
     for language in languages:
         try: dbmovielanguage=MovieLanguage.objects.get(movie=dbmovie, language=language)
-        except: dbmovielanguage=MovieLanguage()
+        except Exception: dbmovielanguage=MovieLanguage()
         dbmovielanguage.movie=dbmovie
         dbmovielanguage.language=language
         dbmovielanguage.save()
     for country in countries:
         try: dbmoviecountry=MovieCountry.objects.get(movie=dbmovie, country=country)
-        except: dbmoviecountry=MovieCountry()
+        except Exception: dbmoviecountry=MovieCountry()
         dbmoviecountry.movie=dbmovie
         dbmoviecountry.country=country
         dbmoviecountry.save()
     try: dbmovieoverview=MovieOverview.objects.get(movie=dbmovie)
-    except: dbmovieoverview=MovieOverview()
+    except Exception: dbmovieoverview=MovieOverview()
     dbmovieoverview.movie=dbmovie
     dbmovieoverview.overview=Nonetostr(movie_main['overview'])
     dbmovieoverview.tagline=Nonetostr(movie_main['tagline'])
@@ -352,7 +353,7 @@ def makeDBreleases(dbmovie, movie_release, date_info=None):
     if movie_release: 
       for date in movie_release:
         try: dbmovierelease=Release.objects.get(movie=dbmovie, date=date['release_date'])
-        except: dbmovierelease=Release()
+        except Exception: dbmovierelease=Release()
         dbmovierelease.movie=dbmovie
         dbmovierelease.date=date['release_date'] # TODO: got an error with a date with year 20011-04-11 in tmdb. must make sure this doesn't break (insert null instead). For now (no time) I just fixed the date in the text dump :-/
         dbmovierelease.country=date['iso_3166_1'][:2]
@@ -379,7 +380,7 @@ def updateDBpeople(dbmovie, peoples, date):
   for people in peoples:
     #print(people)
     try: dbmoviepeople=MoviePeople.objects.get(movie=dbmovie, people=People.objects.get(tmdb_id=people['person_id']), role=people['role'], character=Nonetostr(people.get('character'))[:100])
-    except: return None
+    except Exception: return None
     dbmoviepeople.date_info = date
     dbmoviepeople.save()
   return dbmovie
@@ -387,22 +388,22 @@ def updateDBpeople(dbmovie, peoples, date):
 
 def makeDBpeople(dbmovie, movie_cast):
     try: actors=movie_cast['cast']
-    except: actors=[]
+    except Exception: actors=[]
     try: crews=movie_cast['crew']
-    except: crews=[]
+    except Exception: crews=[]
     for actor in actors: makeDBactor(dbmovie, actor)
     for crew in crews: makeDBcrew(dbmovie, crew)
     return 1
 
 def makeDBactor(dbmovie, actor):
     try: dbpeople=People.objects.get(tmdb_id=Nonetostr(actor['id']))
-    except: dbpeople=People()
+    except Exception: dbpeople=People()
     dbpeople.name=Nonetostr(actor['name'])[:200]
     dbpeople.tmdb_id=Nonetostr(actor['id'])
     dbpeople.profile=Nonetostr(actor['profile_path'])
     dbpeople.save()
     try: dbmoviepeople=MoviePeople.objects.get(people=dbpeople, movie=dbmovie, role='Actor', character=Nonetostr(actor['character'])[:100])
-    except: dbmoviepeople=MoviePeople()
+    except Exception: dbmoviepeople=MoviePeople()
     dbmoviepeople.movie=dbmovie
     dbmoviepeople.people=dbpeople
     dbmoviepeople.role='Actor'
@@ -416,7 +417,7 @@ def makeDBactor(dbmovie, actor):
 def makeDBcrew(dbmovie, crew):
     try: 
       dbpeople=People.objects.get(tmdb_id=Nonetostr(crew['id']))
-    except: dbpeople=People()
+    except Exception: dbpeople=People()
     dbpeople.name=Nonetostr(crew['name'])
     dbpeople.tmdb_id=Nonetostr(crew['id'])
     dbpeople.profile=Nonetostr(crew['profile_path'])
@@ -425,7 +426,7 @@ def makeDBcrew(dbmovie, crew):
       dbmoviepeople = MoviePeople.objects.get(people=dbpeople, 
                                               movie=dbmovie, 
                                               role=crew['job'])
-    except: 
+    except Exception: 
       dbmoviepeople=MoviePeople()
     dbmoviepeople.movie=dbmovie
     dbmoviepeople.people=dbpeople
