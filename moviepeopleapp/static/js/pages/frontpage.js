@@ -8,6 +8,7 @@ mp.pages.frontpage = new function(){
 
 
     showMovies = function(currentPeople) {
+        $('#home-btn').click();
         if(currentPeople){
             //call server to get stories
             $k.api.GET({
@@ -91,19 +92,21 @@ mp.pages.frontpage = new function(){
         }
     });
 
-    var emailok = function(existOk, forgot) {
-        var email = $('#email').val();
+    var emailok = function(existOk, forgot, emailid) {
+        var email = $(emailid).val();
         var url = '/api/signup';
         if (forgot) {
             url = '/api/forgot';
         }
         if(email.indexOf('@') === -1){
-            $('#email').tooltip({
+            $(emailid).tooltip({
                 title:'Please enter your email',
                 trigger:'manual'
-            }).tooltip('show');
+            })
+            $(emailid).tooltip('show');
         }
         else{
+            $(emailid).tooltip('destroy');
             $k.api.GET({
                 url:url,
                 json:{email:email},
@@ -123,15 +126,16 @@ mp.pages.frontpage = new function(){
                         $('#register-modal').modal('hide');
                         $('#forgot-modal').modal('hide');
                         $('#email-modal').modal('hide');
-                        $('#email').tooltip('hide');
                         mp.currentUser = {
                             email:email
                         }
                         $('#username').html(mp.currentUser.email)
-                        if (currentPeople && !register) {
+                        if (currentPeople && emailid==='#email') {
                             $('#subscribe').click();
                         }
-                        delete register;
+                        if (emailid !=='#forgot-email') {
+                          signinevents(mp.currentUser.email);
+                        }
                     }
                 },
                 error:function(){
@@ -142,12 +146,16 @@ mp.pages.frontpage = new function(){
         }
     };
 
+    $('#register-email-ok').click(function() {
+        emailok(false, false, '#register-email');
+    });
+
     $('#new-email-ok').click(function(){
-        emailok(false, false);
+        emailok(false, false, '#email');
     });
 
     $('#old-email-ok').click(function(){
-      emailok(true, true);
+      emailok(true, true, '#forgot-email');
     }); // fix this mess
 
     function describeRole(actor_role, director, movie, people) {
@@ -270,6 +278,52 @@ mp.pages.frontpage = new function(){
 
 
 
+    function makeFollowees(el, people) {
+      console.log(people);
+
+      $.each(people,function(i,item){
+        console.log(item.name);
+        el.append('<div class="followee-box" id="unsub_' + item.id + '">');
+        $('#unsub_' + item.id).append('<h1 class="title">'+item.name+'</h1>');
+        $('#unsub_' + item.id).append('<img src="http://cf2.imgobject.com/t/p/w185'+item.profile+'"/>');
+        $('#unsub_' + item.id).append('<a class="btn followee-unsubscribe" id="unsub_btn_' + item.id + '"> unsubscribe </a>');
+        $('#unsub_' + item.id).append(
+          $('#unsub_btn_' + item.id).click(function() {
+              $k.api.GET({
+                url:'/api/unfollow',
+                json:{followee:item.id},
+                success:function(json){
+                },
+                error:function(){
+                  response('boo');
+                }
+          })
+          //console.log('asjh');
+          console.log(item.id);
+          $('#unsub_' + item.id).fadeOut()
+          }));
+      });
+      //return ret;
+    }
+
+
+    function showFollowees() {
+        //call server to get stories
+        $k.api.GET({
+            url:'/api/followees',
+            success:function(json){
+                //console.log(json);
+                makeFollowees($('#followees'), json.people, '');
+                $('#followees').show();
+            },
+            error:function(){
+                $('#hidden-modal').modal('show');
+            }
+        });
+    }
+
+
+
     function onMovies(movies, currentPeople) {
         $('.people-name').html(currentPeople.name);
 
@@ -284,6 +338,7 @@ mp.pages.frontpage = new function(){
         }
 
         $('#people-pic').html('<img src="http://cf2.imgobject.com/t/p/w500' + currentPeople.profile + '">');
+        $('#people-pic').show();
         $('#people').fadeIn(100);
         $('#right-pane').show();
 
@@ -316,7 +371,9 @@ mp.pages.frontpage = new function(){
     $('#go').hide();
 
     $('#faq').hide();
+    $('#people-pic').hide();
     $('#yourwhispers-btn').hide();
+    $('#yourfollowees-btn').hide();
 
     $('#name').click(function() {
         $(this).val('')
@@ -382,6 +439,16 @@ mp.pages.frontpage = new function(){
     });
 
 
+    $('#yourfollowees-btn').click(function() {
+        $('#bigcont > div').hide();
+        showFollowees();
+        //$('#yourwhispers').show();
+        $('.nav li').removeClass('active');
+        $(this).addClass('active');
+
+    });
+
+
     $('#signin-btn').click(function() {
         $('#bigcont > div').hide();
         if (!mp.currentUser) {
@@ -406,9 +473,16 @@ mp.pages.frontpage = new function(){
 
     $('#register-btn').click(function() {
         $('#register').show();
-        var register = true;
         $('#register-modal').modal('show');
     });
+
+
+
+    $('#register-modal,#email-modal,#forgot-modal').on('hidden', function () {
+      $('#forgot-email,#email,#register-email').tooltip('destroy');
+    })
+
+
 
     $('#signin-submit').click(function() {
         var username = $('#id_username').val();
@@ -445,6 +519,7 @@ mp.pages.frontpage = new function(){
         $('#signin-btn > a').text('Log out');
         $('#register-btn').hide();
         $('#yourwhispers-btn').show();
+        $('#yourfollowees-btn').show();
     }
 
     logoutevents = function() {
@@ -452,6 +527,7 @@ mp.pages.frontpage = new function(){
         $('#signin-btn > a').text('Sign in');
         $('#register-btn').show();
         $('#yourwhispers-btn').hide();
+        $('#yourfollowees-btn').hide();
     }
 
 

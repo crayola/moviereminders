@@ -144,6 +144,27 @@ def yourwhispers(request):
   return HttpResponse(simplejson.dumps(ret_json), mimetype="application/json")
 
 
+def unfollow(request):
+  user=request.user;
+
+  json_string = request.GET.get('JSON')
+  json = simplejson.loads(json_string)
+  followee = json['followee']
+
+  people = Follow.objects.get(user_id=user.id, people_id=followee)
+  people.delete()
+  return HttpResponse(simplejson.dumps({}), mimetype="application/json")
+
+
+def followees(request):
+  user=request.user;
+  peoples = [follow.people for follow in Follow.objects.filter(user_id=user.id)]
+  ret_json = {'people': []}
+  for people in peoples:
+    ret_json['people'].append({'name': people.name, 'id': people.id, 'profile':people.profile})
+  return HttpResponse(simplejson.dumps(ret_json), mimetype="application/json")
+
+
 def people_movies(request,id):
   ret_json={'movies':make_people_movies(id)}
   return HttpResponse(simplejson.dumps(ret_json), mimetype="application/json")

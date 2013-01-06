@@ -232,6 +232,39 @@ a:hover {
 
 }
 
+#followees{
+  margin-top:50px;
+}
+
+.followee-box{
+    padding-left:191px;
+    margin-bottom:12px;
+    width: 100%;
+    border-box: b;
+    box-sizing: border-box;
+    position: relative;
+    border: 1px solid #CCC;
+    min-height: 278px;
+    font-family: 'open sans',arial,sans-serif;
+}
+.followee-box > img{
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 185px;
+    height: 278px;
+}
+.followee-box h1.title{
+    line-height:1;
+    font-size: 28px;
+    font-weight: 400;
+}
+.followee-box .date{
+
+}
+
+
+
 h1.people-name{
     font-size: 66px;
     font-weight: 200;

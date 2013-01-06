@@ -24,6 +24,8 @@ urlpatterns = patterns('',
     url(r'^api/people/manualsearch$', 'moviepeopleapp.views.manualsearch'),
     url(r'^api/people/(\d+)/movies$', 'moviepeopleapp.views.people_movies'),
     url(r'^api/yourwhispers$', 'moviepeopleapp.views.yourwhispers'),
+    url(r'^api/followees$', 'moviepeopleapp.views.followees'),
+    url(r'^api/unfollow$', 'moviepeopleapp.views.unfollow'),
     url(r'^api/people/(\d+)/subscribe$', 'moviepeopleapp.views.people_subscribe'),
     url(r'^api/signup$', 'moviepeopleapp.views.signup'),
     url(r'^api/forgot$', 'moviepeopleapp.views.sendToken')
