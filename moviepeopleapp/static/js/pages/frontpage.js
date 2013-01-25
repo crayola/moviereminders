@@ -327,6 +327,11 @@ mp.pages.frontpage = new function(){
     function onMovies(movies, currentPeople) {
         $('.people-name').html(currentPeople.name);
 
+        $('#people-pic').html('<img width=500 src="http://cf2.imgobject.com/t/p/w342' + currentPeople.profile + '">');
+        $('#people-pic').show();
+        $('#people').fadeIn(100);
+        $('#right-pane').show();
+
         //get all items
         items=makeItems(movies);
 
@@ -336,11 +341,6 @@ mp.pages.frontpage = new function(){
         if($('#people').outerHeight()<$(window).height()){
             $('#people').css('height',$(window).height());
         }
-
-        $('#people-pic').html('<img src="http://cf2.imgobject.com/t/p/w500' + currentPeople.profile + '">');
-        $('#people-pic').show();
-        $('#people').fadeIn(100);
-        $('#right-pane').show();
 
         var el=$('#right-pane');
         var elpos=el.offset().top;
@@ -413,14 +413,14 @@ mp.pages.frontpage = new function(){
         $(this).addClass('active');
     });
 
-
-    $('#about-btn').click(function() {
-        $('#bigcont > div').hide();
-        $('#about').show();
-        $('.nav li').removeClass('active');
-        $(this).addClass('active');
-    });
-
+//
+//    $('#about-btn').click(function() {
+//        $('#bigcont > div').hide();
+//        $('#about').show();
+//        $('.nav li').removeClass('active');
+//        $(this).addClass('active');
+//    });
+//
 
     $('#faq-btn').click(function() {
         $('#bigcont > div').hide();
