@@ -278,12 +278,12 @@ mp.pages.frontpage = new function(){
 
 
 
-    function makeFollowees(el, people) {
+    function makeFollowees(people) {
       console.log(people);
 
       $.each(people,function(i,item){
         console.log(item.name);
-        el.append('<div class="followee-box" id="unsub_' + item.id + '">');
+        $('#followees').html('<div class="followee-box" id="unsub_' + item.id + '">');
         $('#unsub_' + item.id).append('<h1 class="title">'+item.name+'</h1>');
         $('#unsub_' + item.id).append('<img src="http://cf2.imgobject.com/t/p/w185'+item.profile+'"/>');
         $('#unsub_' + item.id).append('<a class="btn followee-unsubscribe" id="unsub_btn_' + item.id + '"> unsubscribe </a>');
@@ -313,7 +313,7 @@ mp.pages.frontpage = new function(){
             url:'/api/followees',
             success:function(json){
                 //console.log(json);
-                makeFollowees($('#followees'), json.people, '');
+                makeFollowees(json.people, '');
                 $('#followees').show();
             },
             error:function(){
