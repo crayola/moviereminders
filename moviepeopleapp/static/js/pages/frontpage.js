@@ -442,6 +442,7 @@ mp.pages.frontpage = new function(){
 
     $('#yourfollowees-btn').click(function() {
         $('#bigcont > div').hide();
+        $('#yourwhispers').hide();
         showFollowees();
         //$('#yourwhispers').show();
         $('.nav li').removeClass('active');
