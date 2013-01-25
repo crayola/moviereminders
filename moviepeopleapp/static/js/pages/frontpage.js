@@ -331,7 +331,6 @@ mp.pages.frontpage = new function(){
 
         $('#people-pic').html('<img width=500 src="http://cf2.imgobject.com/t/p/w342' + currentPeople.profile + '">');
         $('#people-pic').show();
-        $('#people').fadeIn(100);
         $('#right-pane').show();
 
         //get all items
@@ -372,6 +371,7 @@ mp.pages.frontpage = new function(){
 
     $('#go').hide();
 
+    $('#people').fadeIn(100);
     $('#faq').hide();
     $('#people-pic').hide();
     $('#yourwhispers-btn').hide();
@@ -443,7 +443,6 @@ mp.pages.frontpage = new function(){
 
     $('#yourfollowees-btn').click(function() {
         $('#bigcont > div').hide();
-        $('#yourwhispers').hide();
         showFollowees();
         //$('#yourwhispers').show();
         $('.nav li').removeClass('active');
