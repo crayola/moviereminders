@@ -260,6 +260,8 @@ mp.pages.frontpage = new function(){
 
 
     function showyourWhispers() {
+      $('#yourwhispers').html('');
+      $('#yourwhispers').show();
         //call server to get stories
         $k.api.GET({
             url:'/api/yourwhispers',
@@ -268,7 +270,6 @@ mp.pages.frontpage = new function(){
                 items=makeItems(json.movies);
                 //console.log(items);
                 $('#yourwhispers').html(makeTimeline(items, ''));
-                $('#yourwhispers').show();
             },
             error:function(){
                 $('#hidden-modal').modal('show');
