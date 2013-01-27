@@ -87,6 +87,7 @@ def sendReleasemail(newMP, user, day):
 def sendMPmail(newMP, user):
   log.info("Sending email about " + newMP.__unicode__() + " to " + user.__unicode__() + ".")
   role = 'star in' if newMP.role == 'Actor' else 'direct' if newMP.role=='Director' else 'be involved in'
+  if role == 'be involved in': return 1
   print(user)
   subject = 'Whispers.io has news for you!'
   html_content = '<p>Hi,</p>'
