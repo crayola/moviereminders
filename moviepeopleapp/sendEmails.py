@@ -38,7 +38,7 @@ def checkNewStuff(day):
 
 def sendNewMPs(newMPs):
   for newMP in newMPs:
-    [sendMPmail(newMP, x.user, 'star in' if x.role == 'Actor' else 'direct' if x.role=='Director' else 'be involved in') for x in Follow.objects.filter(people = newMP.people)]
+    [sendMPmail(newMP, x.user) for x in Follow.objects.filter(people = newMP.people)]
   log.info("Done sending emails about new announcements.")
 
 def sendNewTrailers(movies):
@@ -84,8 +84,9 @@ def sendReleasemail(newMP, user, day):
   return 1
 
 
-def sendMPmail(newMP, user, role):
+def sendMPmail(newMP, user):
   log.info("Sending email about " + newMP.__unicode__() + " to " + user.__unicode__() + ".")
+  role = 'star in' if newMP.role == 'Actor' else 'direct' if newMP.role=='Director' else 'be involved in')
   print(user)
   subject = 'Whispers.io has news for you!'
   html_content = '<p>Hi,</p>'
