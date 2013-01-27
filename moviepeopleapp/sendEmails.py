@@ -28,7 +28,7 @@ def sendUpdates(day):
   return 1
 
 def checkNewStuff(day):
-  date= (datetime.datetime.strptime(day, "%Y-%m-%d"))
+  date= (datetime.date.strptime(day, "%Y-%m-%d"))
   newMPs = [x for x in MoviePeople.objects.filter(date_info=day) if (lambda x: x[0].date < date if x else True)(Release.objects.filter(movie=x.movie, country='US'))]
   newTrailers_movies = [(x.movie, x.url) for x in Trailer.objects.filter(date_info=day) if (lambda x: x[0].date < date if x else True)(Release.objects.filter(movie=x.movie, country='US'))]
   newTrailers_MPs = [(MoviePeople.objects.filter(movie=x[0]), x[0], x[1]) for x in newTrailers_movies]
