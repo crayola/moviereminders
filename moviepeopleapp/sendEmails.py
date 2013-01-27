@@ -29,10 +29,10 @@ def sendUpdates(day):
 
 def checkNewStuff(day):
   date= (datetime.datetime.strptime(day, "%Y-%m-%d"))
-  newMPs = [x for x in MoviePeople.objects.filter(date_info=day) if not (Release.objects.filter(movie=x.movie, country='US').release[0] < date)]
-  newTrailers_movies = [(x.movie, x.url) for x in Trailer.objects.filter(date_info=day) if not (Release.objects.filter(movie=x.movie, country='US').release[0] < date)]
+  newMPs = [x for x in MoviePeople.objects.filter(date_info=day) if not (Release.objects.filter(movie=x.movie, country='US').date[0] < date)]
+  newTrailers_movies = [(x.movie, x.url) for x in Trailer.objects.filter(date_info=day) if not (Release.objects.filter(movie=x.movie, country='US').date[0] < date)]
   newTrailers_MPs = [(MoviePeople.objects.filter(movie=x[0]), x[0], x[1]) for x in newTrailers_movies]
-  newReleases_movies = [(x.movie, date + datetime.timedelta(7)) for x in Release.objects.filter(date=date + datetime.timedelta(7), country='US') if not (Release.objects.filter(movie=x.movie, country='US').release[0] < date)]
+  newReleases_movies = [(x.movie, date + datetime.timedelta(7)) for x in Release.objects.filter(date=date + datetime.timedelta(7), country='US') if not (Release.objects.filter(movie=x.movie, country='US').date[0] < date)]
   newReleases_MPs = [(MoviePeople.objects.filter(movie=x[0]), x[0], x[1]) for x in newReleases_movies]
   return (newMPs, newTrailers_MPs, newReleases_MPs)
 
