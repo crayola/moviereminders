@@ -67,7 +67,7 @@ mp.pages.frontpage = new function(){
     $('#subscribe').click(function(){
       $(this).addClass('disabled');
       $(this).removeClass('btn-primary');
-      if (currentPeople.follow) {
+      if (currentPeople['follow']===true) {
         $('.subscribe-text').html('You are already following ' + currentPeople.name + "'s movie updates.");
       } else {
         $('.subscribe-text').html('You are now following ' + currentPeople.name + "'s movie updates!");
@@ -207,18 +207,18 @@ mp.pages.frontpage = new function(){
             ret += '<div class="movie-box">';
 
             if (item.movie.poster!=='') { 
-          ret +=  '<img src="http://cf2.imgobject.com/t/p/w185'+item.movie.poster+'"/>';
+              ret +=  '<img src="http://cf2.imgobject.com/t/p/w185'+item.movie.poster+'"/>';
             } else { 
-          ret += '<img src="' + staticfolder + 'img/question_mark.png"/>';
+              ret += '<img src="' + staticfolder + 'img/question_mark.png"/>';
             }
-            ret +=  '<h1 class="title">'+item.movie.name+'</h1><hr/>'
+            ret +=  '<h1 class="title">'+item.movie.name+'</h1><hr/>';
             ret += '<div class="date">'+item.date.prettyDate()+'</div>';
-            console.log(ret)
+            console.log(ret);
             ret +=  '<span class="is">'+describeRole(item.moviepeople_actor, item.moviepeople_director, item.movie, item.movie.people)+'</span>';
             ret +=  '<div style="position:absolute;right:6px;bottom:6px;">';
             if (item.trailer && item.trailer.date) {
-            ret +=   '<a href="http://www.youtu.be/'+item.trailer.url+'" class="dark-link" target="_new"><i class="icon-film"></i> Watch trailer</a>';
-	    }
+              ret +=   '<a href="http://www.youtu.be/'+item.trailer.url+'" class="dark-link" target="_new"><i class="icon-film"></i> Watch trailer</a>';
+            }
             ret +=  '</div>';
             ret += '</div>';
 
@@ -354,7 +354,7 @@ mp.pages.frontpage = new function(){
 
     function onMovies(movies, currentPeople) {
       $('.people-name').html(currentPeople.name)
-      if (currentPeople.follow===true) {
+      if (currentPeople['follow']===true) {
         $('#subscribe').addClass('disabled');
         $('#subscribe').removeClass('btn-primary');
         $('.subscribe-text').html('You are already following ' + currentPeople.name + "'s movie updates.");
@@ -407,12 +407,12 @@ mp.pages.frontpage = new function(){
             //el.stop().css({'margin-top':Math.max(0, y-elpos)});
         });
 
-        $('body').animate({
-                scrollTop: elpos
-            },
-            200);
+        //$('body').animate({
+        //        scrollTop: elpos
+        //    },
+        //    200);
 
-
+        $('#name').blur()
     }
 
 
@@ -609,6 +609,17 @@ mp.pages.frontpage = new function(){
         }
     });
 
+
+    $(document).keyup(function(ev) {
+      if (ev.which === 191) {
+        $('#name').val('');
+        //$('html,body').animate({
+        //  scrollTop: $("#name").offset().top
+        //}, 2000);
+        $('#name').focus();
+      }
+    }
+    );
 
 };
 

@@ -193,9 +193,9 @@ margin-top:-50px;
 }
 
 .movie-box{
-    padding-left:191px;
+    padding-left:185px;
     margin-bottom:12px;
-    width: 100%;
+    /*width: 100%; */ /* buggy in firefox if not commented out*/
     border-box: b;
     box-sizing: border-box;
     position: relative;
@@ -241,7 +241,7 @@ margin-top:-50px;
 .followee-box{
     padding-left:191px;
     margin-bottom:12px;
-    width: 100%;
+    /*width: 100%; */
     border-box: b;
     box-sizing: border-box;
     position: relative;
