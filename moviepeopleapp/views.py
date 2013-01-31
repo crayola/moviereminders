@@ -102,10 +102,16 @@ def autocomplete(request):
     ret_json = {'peoples':[]}
     for result in autocomplete:
         people = result.object
+        try: 
+          Follow.objects.get(user=request.user, people=people)
+          follow=True
+        except Exception:
+          follow=False
         people_map = {
-            'id' : people.id,
-            'name' : people.name,
-            'profile' : people.profile
+            'id': people.id,
+            'name': people.name,
+            'profile': people.profile,
+            'follow': follow
         }
         ret_json['peoples'].append(people_map)
     return HttpResponse(simplejson.dumps(ret_json), mimetype="application/json")
@@ -127,10 +133,16 @@ def manualsearch(request):
       return None
 
     #create response
+    try: 
+      Follow.objects.get(user=request.user, people=people)
+      follow=True
+    except Exception:
+      follow=False
     ret_json = {
             'id' : people.id,
             'name' : people.name,
-            'profile' : people.profile
+            'profile' : people.profile,
+            'follow': follow
         }
     return HttpResponse(simplejson.dumps(ret_json), mimetype="application/json")
 

@@ -65,21 +65,30 @@ mp.pages.frontpage = new function(){
 
 
     $('#subscribe').click(function(){
+      $(this).addClass('disabled');
+      $(this).removeClass('btn-primary');
+      if (currentPeople.follow) {
+        $('.subscribe-text').html('You are already following ' + currentPeople.name + "'s movie updates.");
+      } else {
+        $('.subscribe-text').html('You are now following ' + currentPeople.name + "'s movie updates!");
+        currentPeople['follow']=true
+      }
         if(mp.currentUser){
             $k.api.GET({
+              
                 url:'/api/people/'+currentPeople.id+'/subscribe',
                 success:function(json){
-                    var title = 'you are following '+currentPeople.name+'';
-                    if(json.already_follows){
-                        title = 'you were already following '+currentPeople.name+''
-                    }
-                    $('#subscribe').tooltip({
-                        title:title,
-                        trigger:'manual'
-                    }).attr('data-original-title', title)
-                        .tooltip('fixTitle')
-                        .tooltip('show');
-                    setTimeout(function(){ $('#subscribe').tooltip('hide');},2000);
+                    //var title = 'you are following '+currentPeople.name+'';
+                    //if(json.already_follows){
+                    //    title = 'you were already following '+currentPeople.name+''
+                    //}
+                    //$('#subscribe').tooltip({
+                    //    title:title,
+                    //    trigger:'manual'
+                    //}).attr('data-original-title', title)
+                    //    .tooltip('fixTitle')
+                    //    .tooltip('show');
+                    //setTimeout(function(){ $('#subscribe').tooltip('hide');},2000);
                 },
                 error:function(){
                     $('#email-modal').modal('show');
@@ -344,7 +353,18 @@ mp.pages.frontpage = new function(){
 
 
     function onMovies(movies, currentPeople) {
-        $('.people-name').html(currentPeople.name);
+      $('.people-name').html(currentPeople.name)
+      if (currentPeople.follow===true) {
+        $('#subscribe').addClass('disabled');
+        $('#subscribe').removeClass('btn-primary');
+        $('.subscribe-text').html('You are already following ' + currentPeople.name + "'s movie updates.");
+      } else {
+        $('#subscribe').removeClass('disabled');
+        $('#subscribe').addClass('btn-primary');
+        $('.subscribe-text').html('Subscribe to the latest ' + currentPeople.name + ' movie updates!');
+      }
+
+      //class="subscribe-text"></span>Subscribe to the latest <br> <span class="people-name"></span> movie updates</a>
 
 //$('#people-pic').html('<img width=500 src="http://cf2.imgobject.com/t/p/w342' + currentPeople.profile + '">');
             if (currentPeople.profile!=='') { 
