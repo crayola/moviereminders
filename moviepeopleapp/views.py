@@ -191,6 +191,9 @@ def make_people_movies(id, mindate = "1900-01-01"):
             'poster':movie.poster,
             'name':movie.name,
             'trailers':[],
+            'people':{'id':people.id,
+                      'name':people.name,
+                      'profile':people.profile},
         }
         moviepeople_actor = None
         moviepeoples_actor = MoviePeople.objects.filter(

@@ -159,6 +159,8 @@ mp.pages.frontpage = new function(){
     }); // fix this mess
 
     function describeRole(actor_role, director, movie, people) {
+      console.log('hi')
+      console.log(actor_role, director, movie, people)
         // for now very simple but in future would be nice to have more.
         if (actor_role) {
             roleimp='a supporting role';
@@ -189,7 +191,7 @@ mp.pages.frontpage = new function(){
     }
 
     //display
-    function makeTimeline(items, currentPeople) {
+    function makeTimeline(items) {
         var ret = '';
         $.each(items,function(i,item){
             console.log(item);
@@ -203,7 +205,7 @@ mp.pages.frontpage = new function(){
             ret +=  '<h1 class="title">'+item.movie.name+'</h1><hr/>'
             ret += '<div class="date">'+item.date.prettyDate()+'</div>';
             console.log(ret)
-            ret +=  '<span class="is">'+describeRole(item.moviepeople_actor, item.moviepeople_director, item.movie, currentPeople)+'</span>';
+            ret +=  '<span class="is">'+describeRole(item.moviepeople_actor, item.moviepeople_director, item.movie, item.movie.people)+'</span>';
             ret +=  '<div style="position:absolute;right:6px;bottom:6px;">';
             if (item.trailer && item.trailer.date) {
             ret +=   '<a href="http://www.youtu.be/'+item.trailer.url+'" class="dark-link" target="_new"><i class="icon-film"></i> Watch trailer</a>';
@@ -279,7 +281,7 @@ mp.pages.frontpage = new function(){
                 //console.log(json);
                 items=makeItems(json.movies, asc=true);
                 //console.log(items);
-                $('#yourwhispers').html(makeTimeline(items, ''));
+                $('#yourwhispers').html(makeTimeline(items));
             },
             error:function(){
                 $('#hidden-modal').modal('show');
@@ -356,9 +358,13 @@ mp.pages.frontpage = new function(){
 
         //get all items
         items=makeItems(movies, asc=false);
+        
+        for (var i = 0; i < items.length; i++) {
+          items[i]['people'] = currentPeople;
+        }
 
         //make timeline
-        $('#timeline').html(makeTimeline(items, currentPeople));
+        $('#timeline').html(makeTimeline(items));
 
         if($('#people').outerHeight()<$(window).height()){
             $('#people').css('height',$(window).height());
