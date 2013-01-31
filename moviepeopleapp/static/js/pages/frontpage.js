@@ -298,9 +298,9 @@ mp.pages.frontpage = new function(){
         $('#followees').append('<div class="followee-box" id="unsub_' + item.id + '">');
         $('#unsub_' + item.id).append('<h1 class="title">'+item.name+'</h1>');
         if (item.profile!=='') { 
-          $('#people-pic').html('<img src="http://cf2.imgobject.com/t/p/w185' + item.profile + '">');
+          $('#unsub_' + item.id).append('<img src="http://cf2.imgobject.com/t/p/w185' + item.profile + '">');
         } else { 
-          $('#people-pic').html('<img src="' + staticfolder + 'img/question_mark.png"/>');
+          $('#unsub_' + item.id).append('<img src="' + staticfolder + 'img/question_mark.png"/>');
         }
         //$('#unsub_' + item.id).append('<img src="http://cf2.imgobject.com/t/p/w185'+item.profile+'"/>');
         $('#unsub_' + item.id).append('<a class="btn followee-unsubscribe" id="unsub_btn_' + item.id + '"> unsubscribe </a>');
