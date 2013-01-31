@@ -115,10 +115,10 @@ def manualsearch(request):
     json_string = request.GET.get('JSON')
     json = simplejson.loads(json_string)
     term = json['term']
+    if len(term) < 3: return None
 
     #get results
     try:
-      assert len(term) > 3
       people = People.objects.filter(name__icontains=term)
       people = sorted(people, key=lambda k: -(k.importance or 0))[0]
       log.info("term: "+term+" results:"+people.name)

@@ -228,7 +228,7 @@ mp.pages.frontpage = new function(){
         return ret;
     }
 
-    function makeItems(movies) {
+    function makeItems(movies, asc) {
         var items = [];
         $.each(movies,function(i,movie){
             if(movie.release){
@@ -252,7 +252,12 @@ mp.pages.frontpage = new function(){
         });
 
         //sort
-        items.sort(function(a,b){return b.date.getTime() - a.date.getTime();});
+        if (!asc) {
+          items.sort(function(a,b){return b.date.getTime() - a.date.getTime();});
+        } else {
+          items.sort(function(a,b){return a.date.getTime() - b.date.getTime();});
+        }
+
 
         return items;
     }
@@ -267,7 +272,7 @@ mp.pages.frontpage = new function(){
             url:'/api/yourwhispers',
             success:function(json){
                 //console.log(json);
-                items=makeItems(json.movies);
+                items=makeItems(json.movies, asc=true);
                 //console.log(items);
                 $('#yourwhispers').html(makeTimeline(items, ''));
             },
@@ -334,7 +339,7 @@ mp.pages.frontpage = new function(){
         $('#right-pane').show();
 
         //get all items
-        items=makeItems(movies);
+        items=makeItems(movies, asc=false);
 
         //make timeline
         $('#timeline').html(makeTimeline(items, currentPeople));
