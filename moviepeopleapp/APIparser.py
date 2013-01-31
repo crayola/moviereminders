@@ -449,9 +449,9 @@ def writeMovie(movie_main, movie_cast, movie_release, movie_trailer):
 
 
 def buildImportance(a, b):
-  #for i in People.objects.filter(id__gte=a, id__lte=b).iterator():
-  for i in People.objects.all().iterator():
-    if i.id % 100 == 0: print(i.id)
+  for i in People.objects.filter(id__gte=a, id__lte=b):
+    if i.id % 100 == 0: 
+      print(i.id)
     i.importance=sum(
             [6-(min(6, (x.order or 10))) for x in MoviePeople.objects.filter(people=i, role='Actor', movie__adult=False, movie__popularity__gt=1)] + 
             [6 for x in MoviePeople.objects.filter(people=i, role='Director', movie__adult=False)]
