@@ -186,7 +186,7 @@ def make_people_movies(id, mindate = "1900-01-01"):
     #mindate = datetime.datetime.strptime(mindate, "%Y-%m-%d")
     people = People.objects.get(pk=id)
     ret_json = []
-    moviePeoples = MoviePeople.objects.filter(people=people, role__in=['Actor', 'Director'])
+    moviePeoples = MoviePeople.objects.filter(people=people, role__in=['Actor', 'Director'], movie__adult=False)
     # select which movies to show
     def keyfun(movie):
       try: 
