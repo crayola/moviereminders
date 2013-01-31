@@ -532,6 +532,11 @@ mp.pages.frontpage = new function(){
     })
 
 
+    $('#id_password').keyup(function(e) {
+      if(e.keyCode == 13) {       
+        $("#signin-submit").click();
+      }
+    });
 
     $('#signin-submit').click(function() {
         var username = $('#id_username').val();

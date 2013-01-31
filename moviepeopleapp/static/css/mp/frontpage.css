@@ -59,23 +59,6 @@ a:hover {
     border-bottom: 1px solid #CCC;
 }
 
-.people-pic{
-    margin-top: 80px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 300px;
-    /* 
-    padding:12px 6px; 
-    -webkit-border-radius: 2px!important;
-    -moz-border-radius: 2px!important;
-    border-radius: 2px!important;
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    */
-    box-shadow: 1px 3px 10px black;
-}
-
-
 .poster{
     width: 185px;
     /* 
@@ -91,6 +74,10 @@ a:hover {
 
 .btn{
     border-radius:2px!important;
+}
+
+#people{
+margin-top:-50px;
 }
 
 .people-pic {
@@ -111,6 +98,7 @@ a:hover {
 
 .head{
     background: #86b5d1;
+    margin-bottom: 50px;
     height: 500px;
     width: 100%;
     font-family: 'open sans',arial,sans-serif;
@@ -231,7 +219,12 @@ a:hover {
 
 }
 
+/*
 #faq{
+  margin-top:50px;
+}
+
+#signin{
   margin-top:50px;
 }
 
@@ -243,6 +236,7 @@ a:hover {
 #followees{
   margin-top:50px;
 }
+*/
 
 .followee-box{
     padding-left:191px;

@@ -47,7 +47,7 @@
         <div id="inliner">&nbsp;</div>
 
         <div class="row">
-            <div class="span7" id="timeline" style="margin-top:96px;">
+            <div class="span7" id="timeline" style="margin-top:16px;">
             </div>
             <div class="span5">
                 &nbsp;
@@ -61,14 +61,14 @@
 
 
 
-    <div class="container" id="signin" style="display:none">
+    <div class="container" class="span7" id="signin" style="display:none">
         <div style="text-align: center;">
-            <form>
+            <form >
                 {{ signinform.as_p }}
                 <a id="forgot-password"> Forgot password? </a>
                 <br>
                 <br>
-                <a id="signin-submit" class="btn">Submit</a>
+                <input type="button" id="signin-submit" class="btn" value="Submit">
             </form>
         </div>
     </div>
