@@ -194,7 +194,12 @@ mp.pages.frontpage = new function(){
         $.each(items,function(i,item){
             console.log(item);
             ret += '<div class="movie-box">';
-            ret +=  '<img src="http://cf2.imgobject.com/t/p/w185'+item.movie.poster+'"/>';
+
+            if (item.movie.poster!=='') { 
+          ret +=  '<img src="http://cf2.imgobject.com/t/p/w185'+item.movie.poster+'"/>';
+            } else { 
+          ret += '<img src="' + staticfolder + 'img/question_mark.png"/>';
+            }
             ret +=  '<h1 class="title">'+item.movie.name+'</h1><hr/>'
             ret += '<div class="date">'+item.date.prettyDate()+'</div>';
             console.log(ret)
