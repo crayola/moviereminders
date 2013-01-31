@@ -266,6 +266,18 @@ margin-top:-50px;
 }
 
 
+.accordion-body {
+  margin:-7px;
+  }
+
+.accordion-toggle > h4 {
+  color: #376b8b;
+  }
+
+
+.accordion-heading {
+  margin:-7px;
+  }
 
 h1.people-name{
     font-size: 60px;
