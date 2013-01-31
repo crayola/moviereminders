@@ -453,8 +453,8 @@ def buildImportance(a, b):
     if i.id % 100 == 0: 
       print(i.id)
     i.importance=sum(
-            [6-(min(6, (x.order or 10))) for x in MoviePeople.objects.filter(people=i, role='Actor', movie__adult=False, movie__popularity__gt=1)] + 
-            [6 for x in MoviePeople.objects.filter(people=i, role='Director', movie__adult=False)]
+            [6-(min(6, x.order)) for x in MoviePeople.objects.filter(people=i, role='Actor', movie__adult=False, movie__popularity__gt=1, order__lte=5)] + 
+            [6 for x in MoviePeople.objects.filter(people=i, role='Director', movie__adult=False, movie__popularity__gt=1)]
     )
     i.save()
   return 1

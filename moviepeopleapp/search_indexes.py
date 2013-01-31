@@ -11,7 +11,7 @@ class PeopleIndex(indexes.SearchIndex):
         return People
 
     def index_queryset(self):
-        return People.objects.filter(importance__gte=50)
+        return People.objects.filter(importance__gte=40)
 
 
 site.register(People, PeopleIndex)
