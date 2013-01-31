@@ -297,7 +297,12 @@ mp.pages.frontpage = new function(){
         console.log(item.name);
         $('#followees').append('<div class="followee-box" id="unsub_' + item.id + '">');
         $('#unsub_' + item.id).append('<h1 class="title">'+item.name+'</h1>');
-        $('#unsub_' + item.id).append('<img src="http://cf2.imgobject.com/t/p/w185'+item.profile+'"/>');
+        if (item.profile!=='') { 
+          $('#people-pic').html('<img src="http://cf2.imgobject.com/t/p/w185' + item.profile + '">');
+        } else { 
+          $('#people-pic').html('<img src="' + staticfolder + 'img/question_mark.png"/>');
+        }
+        //$('#unsub_' + item.id).append('<img src="http://cf2.imgobject.com/t/p/w185'+item.profile+'"/>');
         $('#unsub_' + item.id).append('<a class="btn followee-unsubscribe" id="unsub_btn_' + item.id + '"> unsubscribe </a>');
         $('#unsub_' + item.id).append(
           $('#unsub_btn_' + item.id).click(function() {
@@ -339,7 +344,13 @@ mp.pages.frontpage = new function(){
     function onMovies(movies, currentPeople) {
         $('.people-name').html(currentPeople.name);
 
-        $('#people-pic').html('<img width=500 src="http://cf2.imgobject.com/t/p/w342' + currentPeople.profile + '">');
+//$('#people-pic').html('<img width=500 src="http://cf2.imgobject.com/t/p/w342' + currentPeople.profile + '">');
+            if (currentPeople.profile!=='') { 
+              $('#people-pic').html('<img width=500 src="http://cf2.imgobject.com/t/p/w342' + currentPeople.profile + '">');
+            } else { 
+              $('#people-pic').html('<img width=500 src="' + staticfolder + 'img/question_mark.png"/>');
+            }
+
         $('#people-pic').show();
         $('#right-pane').show();
 
