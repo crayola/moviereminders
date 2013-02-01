@@ -217,8 +217,10 @@ mp.pages.frontpage = new function(){
         } else { 
           ret += '<img src="' + staticfolder + 'img/question_mark.png"/>';
         }
+        ret +=  '<div class="movie-box-title">';
         ret +=  '<h1 class="title">'+item.movie.name+'</h1><hr/>';
         ret += '<div class="date">'+item.date.prettyDate()+'</div>';
+        ret +=  '</div>';
         console.log(item);
         ret +=  '<span class="is">'+describeRole(item.movie, item.movie.people[0])+'</span>';
         console.log(item.movie.RT_audience_score)
