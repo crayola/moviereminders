@@ -215,10 +215,12 @@ margin-top:-50px;
     line-height:1;
     font-size: 28px;
     font-weight: 400;
+    padding-left:10px;
 }
 .movie-box .date{
     font-size: 14px;
-    border: 2px solid #CCC;
+    border: 1px solid #BBB;
+    border-right: 0px;
     position: absolute;
     padding:5px;
     background:#F4F4FF;
