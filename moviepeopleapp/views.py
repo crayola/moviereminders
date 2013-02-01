@@ -200,6 +200,10 @@ def make_people_movies(id, mindate = "1900-01-01"):
         #if len(ret_json['movies']) >= 5: break
         movie_map = {
             'id':movie.id,
+            'RT_critics_score': movie.RT_critics_score,
+            'RT_audience_score': movie.RT_audience_score,
+            'RT_critics_rating': movie.RT_critics_rating,
+            'RT_audience_rating': movie.RT_audience_rating,
             'poster':movie.poster,
             'name':movie.name,
             'trailers':[],

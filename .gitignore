@@ -1,6 +1,7 @@
 /moviepeople/local_settings.py
 /moviepeople/Session.vim
 /moviepeopleapp/Session.vim
+/moviepeopleapp/migrations
 /###/*
 *.swp
 *.pyc

@@ -18,6 +18,7 @@ import datetime
 log = logging.getLogger(__name__)
 
 apikey="3dffd9e01086f6801f45d2161cd2710d"
+RTapikey="5z9vxrv4mrkcdkw2fbymhhdh"
 
 #def checkmovie(idmovie, info):
 #    """Downloads info (main, releases, casts, ..) about movie idmovie from tmdb."""
@@ -459,6 +460,37 @@ def buildImportance(a, b):
     i.save()
   return 1
 
+
+def getRTdata(movie):
+  url='http://api.rottentomatoes.com/api/public/v1.0/movie_alias.json'
+  rs = requests.get(url, 
+                    params={
+                      'api_key': RTapikey,
+                      'type':'imdb',
+                      'id':movie.imdb_id[2:],
+                    })
+  return rs
+  #if rs.ok:
+  #  json = rs.json
+  #  return json
+  #else: 
+  #  return None
+
+def updateRTscores(movie):
+    json = getRTdata(movie)
+    print(json)
+    movie.RT_id = json['id']
+    movie.RT_link = json['links']['alternate'][:200]
+    movie.RT_critics_score = json['ratings']['critics_score']
+    movie.RT_audience_score = json['ratings']['audience_score']
+    movie.RT_critics_rating = json['ratings']['critics_rating']
+    movie.RT_audience_rating = json['ratings']['audience_rating']
+    movie.save()
+    return movie
+
+#a=(updateRTscores(movie) for movie in Movie.objects.filter(popularity__gte=10).iterator())
+#for i in a:
+#  print(i)
 
 
 #[parseMovie(x) for x in range(1000, 5000)]

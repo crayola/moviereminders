@@ -201,47 +201,68 @@ mp.pages.frontpage = new function(){
 
     //display
     function makeTimeline(items) {
-        var ret = '';
-        $.each(items,function(i,item){
-            console.log(item);
-            ret += '<div class="movie-box">';
+      var ret = '';
+      $.each(items,function(i,item){
+        console.log(item);
+        ret += '<div class="movie-box">';
 
-            if (item.movie.poster!=='') { 
-              ret +=  '<img src="http://cf2.imgobject.com/t/p/w185'+item.movie.poster+'"/>';
-            } else { 
-              ret += '<img src="' + staticfolder + 'img/question_mark.png"/>';
+        if (item.movie.poster!=='') { 
+          ret +=  '<img src="http://cf2.imgobject.com/t/p/w185'+item.movie.poster+'"/>';
+        } else { 
+          ret += '<img src="' + staticfolder + 'img/question_mark.png"/>';
+        }
+        ret +=  '<h1 class="title">'+item.movie.name+'</h1><hr/>';
+        ret += '<div class="date">'+item.date.prettyDate()+'</div>';
+        console.log(ret);
+        ret +=  '<span class="is">'+describeRole(item.moviepeople_actor, item.moviepeople_director, item.movie, item.movie.people)+'</span>';
+        console.log(item.movie.RT_audience_score)
+        if (item.movie.RT_critics_score!==null || item.movie.RT_audience_score!==null) {
+          ret += '<div class="RT-box"><a class="RT-link" href="http://rottentomatoes"></a>';
+          if (item.movie.RT_critics_score!==null) {
+            if (item.movie.RT_critics_score >= 60) {
+              var tomato = staticfolder + 'img/fresh.png';
+            } else {
+              var tomato = staticfolder + 'img/rotten.png';
             }
-            ret +=  '<h1 class="title">'+item.movie.name+'</h1><hr/>';
-            ret += '<div class="date">'+item.date.prettyDate()+'</div>';
-            console.log(ret);
-            ret +=  '<span class="is">'+describeRole(item.moviepeople_actor, item.moviepeople_director, item.movie, item.movie.people)+'</span>';
-            ret +=  '<div style="position:absolute;right:6px;bottom:6px;">';
-            if (item.trailer && item.trailer.date) {
-              ret +=   '<a href="http://www.youtu.be/'+item.trailer.url+'" class="dark-link" target="_new"><i class="icon-film"></i> Watch trailer</a>';
+            ret +=   '<div class="RT-score RT-critic-score">Critics: <img width=12px src="' + tomato + '"> ' + item.movie.RT_critics_score +'%</div>';
+          }
+          if (item.movie.RT_audience_score!==null) {
+            if (item.movie.RT_audience_score >= 60) {
+              var tomato = staticfolder + 'img/fresh.png';
+            } else {
+              var tomato = staticfolder + 'img/rotten.png';
             }
-            ret +=  '</div>';
-            ret += '</div>';
+            ret +=   '<div class="RT-score RT-audience-score">Audience: <img width=12px src="' + tomato + '"> ' + item.movie.RT_audience_score +'%</div>';
+          }
+          ret +=  '</div>';
+        }
+        ret +=  '<div style="position:absolute;right:6px;bottom:6px;">';
+        if (item.trailer && item.trailer.date) {
+          ret +=   '<a href="http://www.youtu.be/'+item.trailer.url+'" class="dark-link" target="_new"><i class="icon-film"></i> Watch trailer</a>';
+        }
+        ret +=  '</div>';
+        ret += '</div>';
 
-//            ret += '<div class="row">';
-//            if(item.type === 'release'){
-//                if (item.movie.poster) {
-//                    ret += '<div class="span2"><img src="http://cf2.imgobject.com/t/p/w185' + item.movie.poster + '" class="poster"></div>';
-//                }
-//                var trailertext = ''
-//                if (item.trailer && item.trailer.date) {
-//                    //$div.append('<br> <br> <div class="date">'+item.trailer.date.prettyDate()+'</div>' + 'Watch the trailer! <br> <iframe height="200" src="http://www.youtube.com/embed/'+item.trailer.url+'" frameborder="0"></iframe>');
-//                    //trailertext = '<br> <br> <a href=> Watch the trailer! <br> <iframe height="200" src="http://www.youtube.com/embed/'+item.trailer.url+'" frameborder="0"></iframe>';
-//                    trailertext = '<br> <br> <a target="_blank" href="http://www.youtu.be/'+item.trailer.url+'"> Watch the trailer on YouTube!</a>';
-//                }
-//                //console.log(ret);
-//                if (currentPeople) {
-//                    ret += '<div class="span" style="width:360px;"><h3>' + item.movie.name+' </h3><div>' + describeRole(item.moviepeople_actor, item.moviepeople_director, item.movie, currentPeople) + trailertext + '</div></div></div></div>';
-//                } else {
-//                    ret += '<div class="span" style="width:360px;"><h3>' + item.movie.name+' </h3><div>' + trailertext + '</div></div></div></div>';
-//                }
-//            }
-        });
-        return ret;
+        //            ret += '<div class="row">';
+        //            if(item.type === 'release'){
+        //                if (item.movie.poster) {
+        //                    ret += '<div class="span2"><img src="http://cf2.imgobject.com/t/p/w185' + item.movie.poster + '" class="poster"></div>';
+        //                }
+        //                var trailertext = ''
+        //                if (item.trailer && item.trailer.date) {
+        //                    //$div.append('<br> <br> <div class="date">'+item.trailer.date.prettyDate()+'</div>' + 'Watch the trailer! <br> <iframe height="200" src="http://www.youtube.com/embed/'+item.trailer.url+'" frameborder="0"></iframe>');
+        //                    //trailertext = '<br> <br> <a href=> Watch the trailer! <br> <iframe height="200" src="http://www.youtube.com/embed/'+item.trailer.url+'" frameborder="0"></iframe>';
+        //                    trailertext = '<br> <br> <a target="_blank" href="http://www.youtu.be/'+item.trailer.url+'"> Watch the trailer on YouTube!</a>';
+        //                }
+        //                //console.log(ret);
+        //                if (currentPeople) {
+        //                    ret += '<div class="span" style="width:360px;"><h3>' + item.movie.name+' </h3><div>' + describeRole(item.moviepeople_actor, item.moviepeople_director, item.movie, currentPeople) + trailertext + '</div></div></div></div>';
+        //                } else {
+        //                    ret += '<div class="span" style="width:360px;"><h3>' + item.movie.name+' </h3><div>' + trailertext + '</div></div></div></div>';
+        //                }
+        //            }
+      });
+      return ret;
     }
 
     function makeItems(movies, asc) {
