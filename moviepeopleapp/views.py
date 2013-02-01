@@ -152,8 +152,7 @@ def yourwhispers(request):
   user=request.user;
   peoples = [follow.people_id for follow in Follow.objects.filter(user_id=user.id)]
   ret_json = {'movies':[]}
-  for people in peoples:
-    ret_json['movies'] += make_people_movies(people, nowdate)
+  ret_json['movies'] = make_people_movies(peoples, nowdate)
   return HttpResponse(simplejson.dumps(ret_json), mimetype="application/json")
 
 
@@ -171,33 +170,54 @@ def unfollow(request):
 
 def followees(request):
   user=request.user;
-  peoples = [follow.people for follow in Follow.objects.filter(user_id=user.id)]
+  peoples = Follow.objects.filter(user_id=user.id).order_by('people__name').values('people__name', 'people_id', 'people__profile')
   ret_json = {'people': []}
   for people in peoples:
-    ret_json['people'].append({'name': people.name, 'id': people.id, 'profile':people.profile})
+    ret_json['people'].append({'name': people['people__name'], 'id': people['people_id'], 'profile':people['people__profile']})
   return HttpResponse(simplejson.dumps(ret_json), mimetype="application/json")
 
 
 def people_movies(request,id):
-  ret_json={'movies':make_people_movies(id)}
+  ret_json={'movies':make_people_movies([id])}
   return HttpResponse(simplejson.dumps(ret_json), mimetype="application/json")
 
 def make_people_movies(id, mindate = "1900-01-01"):
     #mindate = datetime.datetime.strptime(mindate, "%Y-%m-%d")
-    people = People.objects.get(pk=id)
+    #people = People.objects.filter(pk__in=id)
     ret_json = []
-    moviePeoples = MoviePeople.objects.filter(people=people, role__in=['Actor', 'Director'], movie__adult=False)
+    #moviePeoples = MoviePeople.objects.filter(people__in=people, role__in=['Actor', 'Director'], movie__adult=False)
     # select which movies to show
-    def keyfun(movie):
-      try: 
-        return str(Release.objects.filter(movie=movie)[0].date)
-      except Exception:
-        return "3000"
-    movies = sorted(set([x.movie for x in moviePeoples]), 
-                    key=keyfun,
-                    reverse=True)
-    for movie in movies:
+
+    #def keyfun(movie):
+    #  try: 
+    #    return str(Release.objects.filter(movie=movie)[0].date)
+    #  except Exception:
+    #    return "3000"
+    #movies = sorted(set([x.movie for x in moviePeoples]), 
+    #                key=keyfun,
+    #                reverse=True)
+    
+#    moviePeoples_actor = MoviePeople.objects.filter(people__id__in=id, role='Actor', movie__adult=False).order_by('people', 'movie', 'order')
+#    log.info(moviePeoples_actor[0])
+#    moviePeoples_director = MoviePeople.objects.filter(people__id__in=id, role='Director', movie__adult=False)
+#
+    #movies = moviePeoples_director.values_list('movie', flat=True).distinct() | moviePeoples_actor.values_list('movie', flat=True).distinct()
+
+    if mindate == "1900-01-01":
+      moviePeople = MoviePeople.objects.filter(people__id__in=id, movie__adult=False)
+      movies = moviePeople.values_list('movie', flat=True).distinct()
+    else:
+      mindategood=datetime.datetime.strptime(mindate, "%Y-%m-%d")
+      torelease = Release.objects.filter(country='US', date__gte=mindategood).values_list('movie', flat=True).distinct()
+      moviePeople = MoviePeople.objects.filter(movie__id__in=torelease, people__id__in=id, movie__adult=False)
+      movies = moviePeople.values_list('movie', flat=True).distinct()
+      log.info(movies)
+
+    
+    for movie_id in movies:
         #if len(ret_json['movies']) >= 5: break
+        movie = Movie.objects.get(pk=movie_id)
+
         movie_map = {
             'id':movie.id,
             'RT_critics_score': movie.RT_critics_score,
@@ -207,22 +227,38 @@ def make_people_movies(id, mindate = "1900-01-01"):
             'poster':movie.poster,
             'name':movie.name,
             'trailers':[],
-            'people':{'id':people.id,
-                      'name':people.name,
-                      'profile':people.profile},
+            'people':[],
+            #{'id':people.id,
+            #          'name':people.name,
+            #          'profile':people.profile},
         }
-        moviepeople_actor = None
-        moviepeoples_actor = MoviePeople.objects.filter(
-          movie=movie, people=people, role='Actor')
-        if moviepeoples_actor:
-          moviepeople_actor = sorted(
-            moviepeoples_actor, key=lambda k: k.order)[0]
-          moviepeople_actor = {k:getattr(moviepeople_actor, k) for k
-                             in ['id', 'character', 'order']}
-        movie_map['moviepeople_actor'] = moviepeople_actor
-        moviepeoples_director = MoviePeople.objects.filter(
-          movie=movie, people=people, role='Director')
-        movie_map['moviepeople_director']=bool(moviepeoples_director)
+
+        #moviepeople = moviePeoples_actor.filter(movie_id=movie_id) | moviePeoples_director.filter(movie_id=movie_id)
+        moviepeople = moviePeople.filter(movie=movie)
+        peoples = moviepeople.values_list('people', flat=True).distinct()
+        for people_id in peoples:
+          people = People.objects.get(id=people_id)
+          tmp={}
+          tmp['id'] = people.id
+          tmp['name'] = people.name
+          tmp['profile'] = people.profile
+          tmp['roles'] = list(moviepeople.filter(people=people).values('role', 'character', 'order'))
+          movie_map['people'].append(tmp)
+
+
+       # moviepeople_actor = None
+       # moviepeoples_actor = MoviePeople.objects.filter(
+       #   movie=movie, people=people, role='Actor')
+       # if moviepeoples_actor:
+       #   moviepeople_actor = sorted(
+       #     moviepeoples_actor, key=lambda k: k.order)[0]
+       #   moviepeople_actor = {k:getattr(moviepeople_actor, k) for k
+       #                      in ['id', 'character', 'order']}
+       # movie_map['moviepeople_actor'] = moviepeople_actor
+       # moviepeoples_director = MoviePeople.objects.filter(
+       #   movie=movie, people=people, role='Director')
+       # movie_map['moviepeople_director']=bool(moviepeoples_director)
+
         trailers = Trailer.objects.filter(movie=movie)
         for trailer in trailers:
             trailer_map = {
@@ -232,6 +268,7 @@ def make_people_movies(id, mindate = "1900-01-01"):
             if trailer.date_info: 
               trailer_map['date'] = trailer.date_info.strftime("%Y-%m-%d")
             movie_map['trailers'].append(trailer_map)
+
         try: 
             try:
               release = Release.objects.filter(movie=movie, country="US")[0].date
@@ -239,16 +276,13 @@ def make_people_movies(id, mindate = "1900-01-01"):
               release = Release.objects.filter(movie=movie) #[0]
               release = min([x.date for x in release])
             if release.strftime("%Y-%m-%d") < mindate: continue
-            release_map = {
-                "date": release.strftime("%Y-%m-%d")
-                }
+            movie_map['release'] = release.strftime("%Y-%m-%d")
         except Exception:
-            release_map = {
-                "date": "1970-01-01"
-                }
+            #movie_map['release'] = "1970-01-01"
             continue
-        movie_map['release'] = release_map
         ret_json.append(movie_map)
+    
+    log.info(ret_json)
     return ret_json;
 
 def sendToken(request, new=False):

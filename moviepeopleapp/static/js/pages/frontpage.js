@@ -167,11 +167,19 @@ mp.pages.frontpage = new function(){
       emailok(true, true, '#forgot-email');
     }); // fix this mess
 
-    function describeRole(actor_role, director, movie, people) {
-      console.log('hi')
-      console.log(actor_role, director, movie, people)
+    function describeRole(movie, people) {
+      console.log('hi2');
+      console.log(people);
+      director = (people.roles.filter(function(x) {return x.role==='Director'})).length > 0;
+      console.log('hi3');
         // for now very simple but in future would be nice to have more.
-        if (actor_role) {
+      actor_role=(people.roles.filter(function(x) {return x.role==='Actor'}));
+      if (actor_role.length > 0) {
+        actor_role = actor_role.sort(function(a,b) {return b.order - a.order})[0];
+      } else {
+        actor_role = undefined;
+      }
+      if (typeof(actor_role) !== "undefined") {
             roleimp='a supporting role';
             switch (actor_role.order) {
                 case 0:
@@ -193,8 +201,7 @@ mp.pages.frontpage = new function(){
                 comma = ', ';
             }
             return (people.name + isdir + ' stars as ' + actor_role.character + comma + roleimp + '.')
-        }
-        else if (director) {
+        } else if (director) {
             return (people.name + ' is the director.')
         }
     }
@@ -203,7 +210,6 @@ mp.pages.frontpage = new function(){
     function makeTimeline(items) {
       var ret = '';
       $.each(items,function(i,item){
-        console.log(item);
         ret += '<div class="movie-box">';
 
         if (item.movie.poster!=='') { 
@@ -213,8 +219,8 @@ mp.pages.frontpage = new function(){
         }
         ret +=  '<h1 class="title">'+item.movie.name+'</h1><hr/>';
         ret += '<div class="date">'+item.date.prettyDate()+'</div>';
-        console.log(ret);
-        ret +=  '<span class="is">'+describeRole(item.moviepeople_actor, item.moviepeople_director, item.movie, item.movie.people)+'</span>';
+        console.log(item);
+        ret +=  '<span class="is">'+describeRole(item.movie, item.movie.people[0])+'</span>';
         console.log(item.movie.RT_audience_score)
         if (item.movie.RT_critics_score!==null || item.movie.RT_audience_score!==null) {
           ret += '<div class="RT-box"><a class="RT-link" href="http://rottentomatoes"></a>';
@@ -269,8 +275,10 @@ mp.pages.frontpage = new function(){
         var items = [];
         $.each(movies,function(i,movie){
             if(movie.release){
-                var release = movie.release;
-                release.date = new KDate().fromJsDate(Date.parse(release.date));
+                var release = {};
+                release.movie=movie;
+                release.date = new KDate().fromJsDate(Date.parse(movie.release));
+                console.log(release);
                 //release.date = new KDate()
                 release.type='release';
                 release.movie = movie;
@@ -282,8 +290,8 @@ mp.pages.frontpage = new function(){
                     release.trailer.date = new KDate().fromJsDate(Date.parse(release.trailer.date));
                 }
                 //release.trailer.date = new KDate().fromJsDate(Date.parse(release.trailer.date));
-                release.moviepeople_actor = movie.moviepeople_actor;
-                release.moviepeople_director = movie.moviepeople_director;
+                //release.moviepeople_actor = movie.moviepeople_actor;
+                //release.moviepeople_director = movie.moviepeople_director;
                 items.push(release);
             }
         });
