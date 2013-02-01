@@ -211,7 +211,6 @@ def make_people_movies(id, mindate = "1900-01-01"):
       torelease = Release.objects.filter(country='US', date__gte=mindategood).values_list('movie', flat=True).distinct()
       moviePeople = MoviePeople.objects.filter(movie__id__in=torelease, people__id__in=id, movie__adult=False)
       movies = moviePeople.values_list('movie', flat=True).distinct()
-      log.info(movies)
 
     
     for movie_id in movies:
@@ -244,7 +243,6 @@ def make_people_movies(id, mindate = "1900-01-01"):
           tmp['profile'] = people.profile
           tmp['roles'] = list(moviepeople.filter(people=people).values('role', 'character', 'order'))
           movie_map['people'].append(tmp)
-
 
        # moviepeople_actor = None
        # moviepeoples_actor = MoviePeople.objects.filter(
@@ -282,8 +280,8 @@ def make_people_movies(id, mindate = "1900-01-01"):
             continue
         ret_json.append(movie_map)
     
-    log.info(ret_json)
     return ret_json;
+
 
 def sendToken(request, new=False):
     json = simplejson.loads(request.GET.get('JSON'))
