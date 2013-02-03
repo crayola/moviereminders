@@ -204,12 +204,12 @@ def make_people_movies(id, mindate = "1900-01-01"):
     #movies = moviePeoples_director.values_list('movie', flat=True).distinct() | moviePeoples_actor.values_list('movie', flat=True).distinct()
 
     if mindate == "1900-01-01":
-      moviePeople = MoviePeople.objects.filter(people__id__in=id, movie__adult=False)
+      moviePeople = MoviePeople.objects.filter(people__id__in=id, role__in=['Actor', 'Director'], movie__adult=False)
       movies = moviePeople.values_list('movie', flat=True).distinct()
     else:
       mindategood=datetime.datetime.strptime(mindate, "%Y-%m-%d")
       torelease = Release.objects.filter(country='US', date__gte=mindategood).values_list('movie', flat=True).distinct()
-      moviePeople = MoviePeople.objects.filter(movie__id__in=torelease, people__id__in=id, movie__adult=False)
+      moviePeople = MoviePeople.objects.filter(movie__id__in=torelease, people__id__in=id, role__in=['Actor', 'Director'], movie__adult=False)
       movies = moviePeople.values_list('movie', flat=True).distinct()
 
     

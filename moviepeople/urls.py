@@ -12,7 +12,7 @@ urlpatterns = patterns('',
 
     #auth
     url(r'^login/([a-z]+)$', 'moviepeopleapp.views.createAccount'),
-    url(r'^thanks/([a-z]+)$', 'moviepeopleapp.views.accountCreated'),
+    #url(r'^thanks/([a-z]+)$', 'moviepeopleapp.views.accountCreated'),
     url(r'^signin$', 'moviepeopleapp.views.signin'),
     url(r'^logout$', 'moviepeopleapp.views.logoutview'),
 
