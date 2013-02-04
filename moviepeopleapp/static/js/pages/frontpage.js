@@ -529,10 +529,10 @@ mp.pages.frontpage = new function(){
     });
 
 
-    $('#signin-btn').click(function() {
-        $('#bigcont > div').hide();
+    $('#login-btn').click(function() {
+
         if (!mp.currentUser) {
-            $('#signin').show();
+            $('#login-modal').modal('show');
             $('.nav li').removeClass('active');
             $(this).addClass('active');
         } else {

@@ -23,7 +23,7 @@
                 <ul class="navi">
                     <li id="home-btn" class="active"><a href="#">Home</a></li>
                     <li id="faq-btn"><a href="#">FAQ</a></li>
-                    <li id="signin-btn"><a href="#">Sign in</a></li>
+                    <li id="login-btn"><a href="#">Log in</a></li>
                     <li id="register-btn"><a href="#">Register</a></li>
                     <li id="yourwhispers-btn"><a href="#">Your Whispers</a></li>
                     <li id="yourfollowees-btn"><a href="#">Your Follows</a></li>
@@ -70,42 +70,6 @@
     </div>
 
     <div id="inliner">&nbsp;</div>
-</div>
-
-
-
-
-
-<div class="container" class="span7" id="signin" style="display:none">
-    <div style="text-align: center;">
-        <form >
-            {{ signinform.as_p }}
-            <a id="forgot-password"> Forgot password? </a>
-            <br>
-            <br>
-            <input type="button" id="signin-submit" class="btn" value="Submit">
-        </form>
-    </div>
-</div>
-
-<div class="container" id="signinerror" style="display:none">
-    <div style="text-align: center;">
-        <p>Sorry, wrong username or password.</p>
-    </div>
-</div>
-
-
-<div class="container" id="signedin" style="display:none">
-    <div style="text-align: center;">
-        <p>You are now signed in as <span id='username'></span>.</p>
-    </div>
-</div>
-
-
-<div class="container" id="logout" style="display:none">
-    <div style="text-align: center;">
-        <p>You are now logged out.</p>
-    </div>
 </div>
 
 
@@ -295,6 +259,33 @@
 
     </div>
 </div>
+</div>
+
+<div id="login-modal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Log in</h3>
+    </div>
+    <form style="margin:0">
+        <div class="modal-body">
+
+            <p id="signinerror" style="display:none">Sorry, wrong username or password.</p>
+            <p id="signedin" style="display:none">You are now signed in as <span id='username'></span>.</p>
+            <p id="logout" style="display:none">You are now logged out.</p>
+
+            {{ signinform.as_p }}
+
+            <a id="forgot-password"> Forgot password? </a>
+            <br>
+            <br>
+
+
+        </div>
+        <div class="modal-footer">
+            <a data-dismiss="modal" class="btn">Cancel</a>
+            <input type="button" id="signin-submit" class="btn btn-primary" value="OK">
+        </div>
+    </form>
 </div>
 
 <div id="forgot-modal" class="modal hide fade">
