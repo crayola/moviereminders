@@ -9,14 +9,27 @@
     <link href="{{ STATIC_URL }}css/lib/bootstrap-2.1.0.css" type="text/css" rel="stylesheet" media="screen, projection" />
     <link href="{{ STATIC_URL }}css/lib/jquery-ui-1.9.0.custom.min.css" type="text/css" rel="stylesheet" media="screen, projection" />
     <link href="{{ STATIC_URL }}css/mp/frontpage.css" type="text/css" rel="stylesheet" media="screen, projection" />
+    <link href="{{ STATIC_URL }}css/mp/header.css" type="text/css" rel="stylesheet" media="screen, projection" />
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
 </head>
 
 
 <body>
 
-<div class="head">
+<div class="landing">
     <div class="content">
+        <div class="head">
+            <div class="right">
+                <ul class="navi">
+                    <li id="home-btn" class="active"><a href="#">Home</a></li>
+                    <li id="faq-btn"><a href="#">FAQ</a></li>
+                    <li id="signin-btn"><a href="#">Sign in</a></li>
+                    <li id="register-btn"><a href="#">Register</a></li>
+                    <li id="yourwhispers-btn"><a href="#">Your Whispers</a></li>
+                    <li id="yourfollowees-btn"><a href="#">Your Follows</a></li>
+                </ul>
+            </div>
+        </div>
         <h1>Keep up with cinema</h1>
         <h2>Name an artist you love and be the first to know about their upcoming movies</h2>
 
@@ -31,251 +44,251 @@
 
 <div class="container" id="bigcont">
 
-    <div class="container" id="people" style="display:none">
+<div class="container" id="people" style="display:none">
 
-        <div class="row" id="right-pane" style="display:none;">
-            <div class="span7">
-                <h1 class="people-name"></h1>
+    <div class="row" id="right-pane" style="display:none;">
+        <div class="span7">
+            <h1 class="people-name"></h1>
+        </div>
+        <div class="span5" id="right-paneWrapper">
+            <div style="text-align: center;">
+                <!-- <a class="btn btn-large btn-primary" type="button" id="subscribe">Be the first to hear about their next <span class="people-name"></span> movie!</a> -->
+                <a class="btn btn-large btn-primary" style="width:280px" type="button" id="subscribe"><span class="subscribe-text"></span></a>
             </div>
-            <div class="span5" id="right-paneWrapper">
-                <div style="text-align: center;">
-                    <!-- <a class="btn btn-large btn-primary" type="button" id="subscribe">Be the first to hear about their next <span class="people-name"></span> movie!</a> -->
-                    <a class="btn btn-large btn-primary" style="width:280px" type="button" id="subscribe"><span class="subscribe-text"></span></a>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="span7" id="timeline" style="margin-top:16px;">
+            &nbsp;
+        </div>
+        <div class="span5">
+            &nbsp;
+            <div id="people-pic" class="people-pic"> </div>
+        </div>
+    </div>
+
+    <div id="inliner">&nbsp;</div>
+</div>
+
+
+
+
+
+<div class="container" class="span7" id="signin" style="display:none">
+    <div style="text-align: center;">
+        <form >
+            {{ signinform.as_p }}
+            <a id="forgot-password"> Forgot password? </a>
+            <br>
+            <br>
+            <input type="button" id="signin-submit" class="btn" value="Submit">
+        </form>
+    </div>
+</div>
+
+<div class="container" id="signinerror" style="display:none">
+    <div style="text-align: center;">
+        <p>Sorry, wrong username or password.</p>
+    </div>
+</div>
+
+
+<div class="container" id="signedin" style="display:none">
+    <div style="text-align: center;">
+        <p>You are now signed in as <span id='username'></span>.</p>
+    </div>
+</div>
+
+
+<div class="container" id="logout" style="display:none">
+    <div style="text-align: center;">
+        <p>You are now logged out.</p>
+    </div>
+</div>
+
+
+<div class="container" class="span7" id="yourwhispers" style="display:none"> </div>
+
+<div class="container" class="span7" id="followees" style="display:none"> </div>
+
+
+<div class="container" class="span7" id="faq" style="display:none; margin-bottom:100px">
+
+    <div class="accordion" id="accordion2">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#collapse1">
+                    <h4> What is Whispers? </h4>
+                </a>
+            </div>
+            <div id="collapse1" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <p>Whispers is a service that helps you keep up with the work of artists that matter to you. Signing up only takes seconds!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#collapse2">
+                    <h4> How does it work? </h4>
+                </a>
+            </div>
+            <div id="collapse2" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <p>You tell us the names of the artists you like; we notify you whenever they are involved in a new project. We made it as simple as possible.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#collapse3">
+                    <h4> Why can't I just follow a star's twitter account? </h4>
+                </a>
+            </div>
+            <div id="collapse3" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <p>First, not all stars have a twitter account. Second, and more crucially, some celebrities tend to be quite spammy on Twitter. If all you want is a short, timely update when something new comes up, then Twitter is a terribly noisy tool for this. </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#collapse4">
+                    <h4> I want it for music releases / concerts / books / video games / comics / TV shows / everything! </h4>
+                </a>
+            </div>
+            <div id="collapse4" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <p>We are considering expanding to these, and more! But it will take some time.</p>
                 </div>
             </div>
         </div>
 
 
-        <div class="row">
-            <div class="span7" id="timeline" style="margin-top:16px;">
-             &nbsp;
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#collapse5">
+                    <h4> What country are the release dates for? </h4>
+                </a>
             </div>
-            <div class="span5">
-                &nbsp;
-                <div id="people-pic" class="people-pic"> </div>
+            <div id="collapse5" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <p>The United States -- for now. One day, we will be a bit more clever about it, we promise!</p>
+                </div>
             </div>
         </div>
 
-        <div id="inliner">&nbsp;</div>
-    </div>
 
-
-
-
-
-    <div class="container" class="span7" id="signin" style="display:none">
-        <div style="text-align: center;">
-            <form >
-                {{ signinform.as_p }}
-                <a id="forgot-password"> Forgot password? </a>
-                <br>
-                <br>
-                <input type="button" id="signin-submit" class="btn" value="Submit">
-            </form>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#collapse6">
+                    <h4> Is it free? </h4>
+                </a>
+            </div>
+            <div id="collapse6" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <p>Of course, and it will always be.</p>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="container" id="signinerror" style="display:none">
-        <div style="text-align: center;">
-            <p>Sorry, wrong username or password.</p>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#collapse7">
+                    <h4> Where do you get your data? </h4>
+                </a>
+            </div>
+            <div id="collapse7" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <p>At the moment, all our movie data comes from themoviedb.org. They do an excellent job, and their data is volunteered and maintained by people like you. If you see something wrong with our data, you can go there and fix it yourself!</p>
+                </div>
+            </div>
         </div>
-    </div>
 
+        <!--
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" data-toggle="collapse" href="#collapse8">
+        <h4> IMDb has better data! </h4>
+              </a>
+            </div>
+            <div id="collapse8" class="accordion-body collapse">
+              <div class="accordion-inner">
+        <p>Be that as it may, IMDb charge dearly for an application like ours to access to their data. We prefer supporting an open solution, at the expense of the occasional anomaly or missing cast. In our experience, the data is fairly high quality for most films.</p>
+              </div>
+            </div>
+          </div>
+        -->
 
-    <div class="container" id="signedin" style="display:none">
-        <div style="text-align: center;">
-            <p>You are now signed in as <span id='username'></span>.</p>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#collapse9">
+                    <h4> What is the philosophy behind Whispers? </h4>
+                </a>
+            </div>
+            <div id="collapse9" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <p> We want to save our users time and effort by providing them with the right information at the right time. Our guarantee is twofold: (1) we will never miss a beat: if you follow an artist, you will hear about their movies from us in a timely fashion; and (2) we will only contact you with valuable information. No noise, no unwanted gossips. </p>
+                    <p> Information streams such as those provided by Facebook, Twitter, Google Plus or even RSS are not well suited for our use case. </p>
+                </div>
+            </div>
         </div>
-    </div>
 
 
-    <div class="container" id="logout" style="display:none">
-        <div style="text-align: center;">
-            <p>You are now logged out.</p>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#collapse10">
+                    <h4> Why should I use Whispers? </h4>
+                </a>
+            </div>
+            <div id="collapse10" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <p>Why not? Sign up for free within seconds and we will strive send you accurate, timely updates on your favourite stars so you're the first to know about their next projects.</p>
+                </div>
+            </div>
         </div>
-    </div>
 
 
-    <div class="container" class="span7" id="yourwhispers" style="display:none"> </div>
-
-    <div class="container" class="span7" id="followees" style="display:none"> </div>
-
-
-    <div class="container" class="span7" id="faq" style="display:none; margin-bottom:100px">
-
-<div class="accordion" id="accordion2">
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" href="#collapse1">
-        <h4> What is Whispers? </h4>
-      </a>
-    </div>
-    <div id="collapse1" class="accordion-body collapse">
-      <div class="accordion-inner">
-<p>Whispers is a service that helps you keep up with the work of artists that matter to you. Signing up only takes seconds!</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" href="#collapse2">
-      <h4> How does it work? </h4>
-      </a>
-    </div>
-    <div id="collapse2" class="accordion-body collapse">
-      <div class="accordion-inner">
-<p>You tell us the names of the artists you like; we notify you whenever they are involved in a new project. We made it as simple as possible.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" href="#collapse3">
-<h4> Why can't I just follow a star's twitter account? </h4>
-      </a>
-    </div>
-    <div id="collapse3" class="accordion-body collapse">
-      <div class="accordion-inner">
-<p>First, not all stars have a twitter account. Second, and more crucially, some celebrities tend to be quite spammy on Twitter. If all you want is a short, timely update when something new comes up, then Twitter is a terribly noisy tool for this. </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" href="#collapse4">
-<h4> I want it for music releases / concerts / books / video games / comics / TV shows / everything! </h4>
-      </a>
-    </div>
-    <div id="collapse4" class="accordion-body collapse">
-      <div class="accordion-inner">
-<p>We are considering expanding to these, and more! But it will take some time.</p>
-      </div>
-    </div>
-  </div>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#collapse11">
+                    <h4> When do you send updates? </h4>
+                </a>
+            </div>
+            <div id="collapse11" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <p> At the moment, there are three types of updates that trigger a notification: </p>
+                    <ol>
+                        <li> When it is announced that an artist you follow is involved in a new movie;
+                        <li> When a new trailer is released for a movie that involves an artist you follow;
+                        <li> One week before the US release date of such a movie.
+                    </ol>
+                    <p>This means that you will typically receive three updates per movie. We plan on offering more flexibility in the future (e.g. so you can opt to get one notification per movie only). </p>
+                </div>
+            </div>
+        </div>
 
 
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" href="#collapse5">
-<h4> What country are the release dates for? </h4>
-      </a>
-    </div>
-    <div id="collapse5" class="accordion-body collapse">
-      <div class="accordion-inner">
-<p>The United States -- for now. One day, we will be a bit more clever about it, we promise!</p>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" href="#collapse6">
-<h4> Is it free? </h4>
-      </a>
-    </div>
-    <div id="collapse6" class="accordion-body collapse">
-      <div class="accordion-inner">
-<p>Of course, and it will always be.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" href="#collapse7">
-<h4> Where do you get your data? </h4>
-      </a>
-    </div>
-    <div id="collapse7" class="accordion-body collapse">
-      <div class="accordion-inner">
-<p>At the moment, all our movie data comes from themoviedb.org. They do an excellent job, and their data is volunteered and maintained by people like you. If you see something wrong with our data, you can go there and fix it yourself!</p>
-      </div>
-    </div>
-  </div>
-
-<!--
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" href="#collapse8">
-<h4> IMDb has better data! </h4>
-      </a>
-    </div>
-    <div id="collapse8" class="accordion-body collapse">
-      <div class="accordion-inner">
-<p>Be that as it may, IMDb charge dearly for an application like ours to access to their data. We prefer supporting an open solution, at the expense of the occasional anomaly or missing cast. In our experience, the data is fairly high quality for most films.</p>
-      </div>
-    </div>
-  </div>
--->
-
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" href="#collapse9">
-<h4> What is the philosophy behind Whispers? </h4>
-      </a>
-    </div>
-    <div id="collapse9" class="accordion-body collapse">
-      <div class="accordion-inner">
-<p> We want to save our users time and effort by providing them with the right information at the right time. Our guarantee is twofold: (1) we will never miss a beat: if you follow an artist, you will hear about their movies from us in a timely fashion; and (2) we will only contact you with valuable information. No noise, no unwanted gossips. </p>
-<p> Information streams such as those provided by Facebook, Twitter, Google Plus or even RSS are not well suited for our use case. </p>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" href="#collapse10">
-<h4> Why should I use Whispers? </h4>
-      </a>
-    </div>
-    <div id="collapse10" class="accordion-body collapse">
-      <div class="accordion-inner">
-<p>Why not? Sign up for free within seconds and we will strive send you accurate, timely updates on your favourite stars so you're the first to know about their next projects.</p>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" href="#collapse11">
-<h4> When do you send updates? </h4>
-      </a>
-    </div>
-    <div id="collapse11" class="accordion-body collapse">
-      <div class="accordion-inner">
-<p> At the moment, there are three types of updates that trigger a notification: </p>
-<ol>
-<li> When it is announced that an artist you follow is involved in a new movie; 
-<li> When a new trailer is released for a movie that involves an artist you follow; 
-<li> One week before the US release date of such a movie. 
-</ol>
-<p>This means that you will typically receive three updates per movie. We plan on offering more flexibility in the future (e.g. so you can opt to get one notification per movie only). </p>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="accordion-group">
-    <div class="accordion-heading">
-      <a class="accordion-toggle" data-toggle="collapse" href="#collapse12">
-<h4> Who is behind the project? </h4>
-      </a>
-    </div>
-    <div id="collapse12" class="accordion-body collapse">
-      <div class="accordion-inner">
-<p> Whispers is developed by Arnaud and Timothee. </p>
-<p> Arnaud is a San Francisco-based French entrepreneur. </p>
-<p>Timothee is a London-based French economist, data scientist and film lover. Finding his free time increasingly scarce as time goes by, he uses Whispers to keep up with all the artists he fell in love with over the years. </p>
-<p>Miriam and Catherine offer invaluable advice and support. </p>
-      </div>
-    </div>
-  </div>
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#collapse12">
+                    <h4> Who is behind the project? </h4>
+                </a>
+            </div>
+            <div id="collapse12" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <p> Whispers is developed by Arnaud and Timothee. </p>
+                    <p> Arnaud is a San Francisco-based French entrepreneur. </p>
+                    <p>Timothee is a London-based French economist, data scientist and film lover. Finding his free time increasingly scarce as time goes by, he uses Whispers to keep up with all the artists he fell in love with over the years. </p>
+                    <p>Miriam and Catherine offer invaluable advice and support. </p>
+                </div>
+            </div>
+        </div>
 
 
 
@@ -283,20 +296,6 @@
     </div>
 </div>
 </div>
-
-<div class="navbar navbar-inner navbar-fixed-bottom">
-    <div class="container">
-        <ul class="nav">
-            <li id="home-btn" class="active"><a href="#">Home</a></li>
-            <li id="faq-btn"><a href="#">FAQ</a></li>
-            <li id="signin-btn"><a href="#">Sign in</a></li>
-            <li id="register-btn"><a href="#">Register</a></li>
-            <li id="yourwhispers-btn"><a href="#">Your Whispers</a></li>
-            <li id="yourfollowees-btn"><a href="#">Your Follows</a></li>
-        </ul>
-    </div>
-</div>
-
 
 <div id="forgot-modal" class="modal hide fade">
     <div class="modal-header">
@@ -399,3 +398,4 @@
 
 </body>
 </html>
+
