@@ -26,11 +26,11 @@ class Movie(models.Model):
   homepage = models.CharField(max_length=200)
   popularity = models.FloatField(null=True)
   RT_id = models.PositiveIntegerField(null=True)
-  RT_link = models.CharField(null=True, max_length=200)
+  RT_link = models.CharField(max_length=200)
   RT_critics_score = models.FloatField(null=True)
   RT_audience_score = models.FloatField(null=True)
-  RT_critics_rating = models.CharField(max_length=50, null=True)
-  RT_audience_rating = models.CharField(max_length=50, null=True)
+  RT_critics_rating = models.CharField(max_length=50)
+  RT_audience_rating = models.CharField(max_length=50)
   votes = models.PositiveIntegerField(null=True)
   vote_average = models.FloatField(null=True)
   runtime = models.PositiveIntegerField(null=True)
@@ -90,7 +90,7 @@ class Release(models.Model):
                                       default=datetime.datetime.now())
 
   class Meta:
-    unique_together = ('movie', 'country', 'date')
+    unique_together = ('movie', 'country')
 
 
 class Trailer(models.Model):

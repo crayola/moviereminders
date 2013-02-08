@@ -97,20 +97,20 @@ margin-top:-50px;
     src: local('Open Sans'), local('OpenSans'), url('http://themes.googleusercontent.com/static/fonts/opensans/v5/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff') format('woff');
 }
 
-.head{
+.landing{
     background: #86b5d1;
     margin-bottom: 50px;
     height: 500px;
     width: 100%;
     font-family: 'open sans',arial,sans-serif;
 }
-.head .content{
+.landing .content{
     margin: auto;
     width:940px;
     height:500px;
     position:relative;
 }
-.head .logo{
+.landing .logo{
     font-size: 24px;
     line-height:1;
     letter-spacing: normal;
@@ -118,7 +118,7 @@ margin-top:-50px;
     font-weight: normal;
 
 }
-.head h1{
+.landing h1{
     font-size: 65px;
     line-height: 54px;
     letter-spacing: normal;
@@ -131,7 +131,7 @@ margin-top:-50px;
     padding-top: 60px;
     padding-bottom: 60px;
 }
-.head h2{
+.landing h2{
     line-height: 39px;
     font-weight: 100;
     color:white;
@@ -143,7 +143,7 @@ margin-top:-50px;
     outline: 0;
     padding-bottom: 12px;
 }
-.head input{
+.landing input{
     width: 434px;
     border-radius: 2px;
     height: 36px;
@@ -160,7 +160,7 @@ margin-top:-50px;
     -ms-transition: border-color .05s linear;
     transition: border-color .05s linear;
 }
-.head input.error{
+.landing input.error{
     border-color:#d24836;
 
     -webkit-transition: border-color .2s linear;
@@ -169,20 +169,25 @@ margin-top:-50px;
     -ms-transition: border-color .2s linear;
     transition: border-color .2s linear;
 }
-.head .input .loader{
+.landing .input .loader{
     position: absolute;
     right:0;
     top:50%;
     margin-top:-16px;
     height: 32px;width:32px;;
 }
-.head input.loading .loader{
+.landing input.loading .loader{
     display:block!important;
 }
-.head .enveloppe{
+.landing .enveloppe{
     position: absolute;
     right: -104px;
     bottom: -60px;
+}
+
+.landing .head{
+    height: 80px;
+    line-height: 80px;
 }
 
 .ui-autocomplete-loading {
