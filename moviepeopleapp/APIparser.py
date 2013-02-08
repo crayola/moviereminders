@@ -351,9 +351,9 @@ def makeDBmovie(movie_main, date):
 def makeDBreleases(dbmovie, movie_release, date_info=None):
     Release.objects.filter(movie=dbmovie).exclude(country__in=[date['iso_3166_1'][:2] for date in movie_release]).delete()
     for date in movie_release:
-      try: pydate = datetime.datetime.strftime(date['release_date'], '%Y-%m-%d')
+      try: pydate = datetime.datetime.strptime(date['release_date'], '%Y-%m-%d')
       except ValueError: continue
-      dbmovierelease, created = Release.objects.get_or_create(movie=dbmovie, country=date['iso_3166_1'][:2])
+      dbmovierelease, created = Release.objects.get_or_create(movie=dbmovie, country=date['iso_3166_1'][:2], defaults={'date': pydate})
       dbmovierelease.date = pydate
       if created: dbmovierelease.date_info = date_info
       dbmovierelease.save()
