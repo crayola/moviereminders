@@ -378,7 +378,6 @@ def updateDBpeople(dbmovie, peoples, date):
     x['character']=''
     x['role']=x['job']
   peoples=cast+crew
-  print(peoples)
   MoviePeople.objects.filter(movie=dbmovie).exclude(people__tmdb_id__in=[people['id'] for people in peoples]).delete()
   for people in set([people['id'] for people in peoples]):
     dbpeople, created=People.objects.get_or_create(tmdb_id=people)
@@ -388,7 +387,6 @@ def updateDBpeople(dbmovie, peoples, date):
     roles = set([x['role'] for x in peoples if x['id'] == people])
     MoviePeople.objects.filter(movie=dbmovie, people=dbpeople).exclude(role__in=roles).delete()
     for role in roles:
-      print(people)
       characters = set([(x.get('character', '') or '')[:100] for x in peoples if x['id'] == people and x['role'] == role])
       MoviePeople.objects.filter(movie=dbmovie, people=dbpeople, role=role).exclude(character__in=characters).delete()
     #print(people)
