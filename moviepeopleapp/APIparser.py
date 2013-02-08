@@ -14,6 +14,7 @@ from moviepeopleapp.models import (People, MoviePeople, Trailer,
 from urllib2 import urlopen, Request, URLError, HTTPError
 import requests
 import datetime
+import time
 
 log = logging.getLogger(__name__)
 
@@ -469,24 +470,34 @@ def getRTdata(movie):
                       'type':'imdb',
                       'id':movie.imdb_id[2:],
                     })
-  return rs
-  #if rs.ok:
-  #  json = rs.json
-  #  return json
-  #else: 
-  #  return None
+  if rs.ok:
+    json = rs.json
+    return json
+  else: 
+    return None
 
-def updateRTscores(movie):
+def updateRTscore(movie):
     json = getRTdata(movie)
     print(json)
-    movie.RT_id = json['id']
-    movie.RT_link = json['links']['alternate'][:200]
-    movie.RT_critics_score = json['ratings']['critics_score']
-    movie.RT_audience_score = json['ratings']['audience_score']
-    movie.RT_critics_rating = json['ratings']['critics_rating']
-    movie.RT_audience_rating = json['ratings']['audience_rating']
-    movie.save()
-    return movie
+    try:
+      movie.RT_id = json['id']
+      movie.RT_link = json['links']['alternate'][:200]
+      movie.RT_critics_score = json['ratings'].get('critics_score')
+      movie.RT_audience_score = json['ratings'].get('audience_score')
+      movie.RT_critics_rating = json['ratings'].get('critics_rating')
+      movie.RT_audience_rating = json['ratings'].get('audience_rating')
+      movie.save()
+      return movie
+    except Exception:
+      return None
+
+
+def updateRTscores(popmin, popmax):
+  a=(updateRTscore(movie) for movie in Movie.objects.filter(popularity__lte=popmax, popularity__gte=popmin, RT_audience_score__isnull=True).iterator())
+  for i in a:
+    print(i)
+    time.sleep(1)
+
 
 #a=(updateRTscores(movie) for movie in Movie.objects.filter(popularity__gte=10).iterator())
 #for i in a:
