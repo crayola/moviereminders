@@ -26,8 +26,6 @@
                     <li id="faq-btn"><a href="/faq">FAQ</a></li>
                     <li id="login-btn"><a href="#">Log in</a></li>
                     <li id="register-btn"><a href="#">Register</a></li>
-                    <li id="yourwhispers-btn"><a href="#">Your Whispers</a></li>
-                    <li id="yourfollowees-btn"><a href="#">Your Follows</a></li>
                 </ul>
             </div>
         </div>
@@ -121,12 +119,17 @@
 <script src="{{ STATIC_URL }}js/k/commons.page.js"></script>
 <script src="{{ STATIC_URL }}js/k/kdate.js"></script>
 <script src="{{ STATIC_URL }}js/k/k.api.js"></script>
+<script src="{{ STATIC_URL }}js/mp/mp.js"></script>
+<script src="{{ STATIC_URL }}js/mp/guest.js"></script>
 <script src="{{ STATIC_URL }}js/pages/frontpage.js"></script>
 
 {% if user.is_authenticated  %}
     <script>
         mp.currentUser = {email: '{{ user.email }}' };
-        signinevents();
+    </script>
+{% else %}
+    <script>
+        mp.guest.init();
     </script>
 {% endif %}
 
