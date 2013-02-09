@@ -22,7 +22,7 @@
         <div class="head">
             <div class="right">
                 <ul class="navi">
-                    <li id="home-btn" class="active"><a href="#">Home</a></li>
+                    <li id="home-btn" class="active"><a href="/">Home</a></li>
                     <li id="faq-btn"><a href="/faq">FAQ</a></li>
                     <li id="login-btn"><a href="#">Log in</a></li>
                     <li id="register-btn"><a href="#">Register</a></li>
@@ -116,6 +116,9 @@
 <script src="{{ STATIC_URL }}js/lib/jquery-ui-1.9.0.custom.min.js"></script>
 <script src="{{ STATIC_URL }}js/lib/bootstrap.js"></script>
 <script src="{{ STATIC_URL }}js/lib/date.js"></script>
+<script src="{{ STATIC_URL }}js/k/commons.js"></script>
+<script src="{{ STATIC_URL }}js/k/commons.log.js"></script>
+<script src="{{ STATIC_URL }}js/k/commons.page.js"></script>
 <script src="{{ STATIC_URL }}js/k/kdate.js"></script>
 <script src="{{ STATIC_URL }}js/k/k.api.js"></script>
 <script src="{{ STATIC_URL }}js/pages/frontpage.js"></script>
@@ -123,10 +126,14 @@
 {% if user.is_authenticated  %}
     <script>
         mp.currentUser = {email: '{{ user.email }}' };
-        signinevents()
+        signinevents();
     </script>
 {% endif %}
 
+{# LOAD CONTEXTUAL JAVASCRIPT PAGE #}
+<script>
+    $(document).ready(function(){$k.load('{% block jspage %}{% endblock %}');});
+</script>
 
 <div id="getsat-widget-4140"></div>
 <script type="text/javascript" src="https://loader.engage.gsfn.us/loader.js"></script>

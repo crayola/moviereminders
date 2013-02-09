@@ -1,8 +1,6 @@
 var mp = {};
 
-mp.pages = {};
-
-mp.pages.frontpage = new function(){
+$k.pages.frontpage = new function(){
 
     var currentPeople;
 
@@ -654,6 +652,5 @@ mp.pages.frontpage = new function(){
 
 };
 
-$(document).ready(mp.pages.frontpage.init);
 
 
