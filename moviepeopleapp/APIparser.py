@@ -393,6 +393,10 @@ def updateDBpeople(dbmovie, peoples, date):
       for character in characters:
         dbmoviepeople, created=MoviePeople.objects.get_or_create(movie=dbmovie, people=dbpeople, role=role, character=character)
         if created: dbmoviepeople.date_info = date
+        dictpeople=[x for x in peoples if x['id'] == people and x['role'] == role and (x.get('character', '') or '')[:100] == character][0]
+        dbmoviepeople.department='Acting' if role=='Actor' else dictpeople.get('department', '')
+        dbmoviepeople.cast_id=dictpeople['cast_id'] if role=='Actor' else None
+        dbmoviepeople.order=dictpeople['order'] if role=='Actor' else None
         dbmoviepeople.save()
   return dbmovie
 
