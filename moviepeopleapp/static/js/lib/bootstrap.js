@@ -59,7 +59,7 @@
 
 }(window.jQuery);/* ==========================================================
  * bootstrap-alert.js v2.1.0
- * http://twitter.github.com/bootstrap/javascript.html#alerts
+ * http://twitter.github.com/bootstrap/js.html#alerts
  * ==========================================================
  * Copyright 2012 Twitter, Inc.
  *
@@ -148,7 +148,7 @@
 
 }(window.jQuery);/* ============================================================
  * bootstrap-button.js v2.1.0
- * http://twitter.github.com/bootstrap/javascript.html#buttons
+ * http://twitter.github.com/bootstrap/js.html#buttons
  * ============================================================
  * Copyright 2012 Twitter, Inc.
  *
@@ -243,7 +243,7 @@
 
 }(window.jQuery);/* ==========================================================
  * bootstrap-carousel.js v2.1.0
- * http://twitter.github.com/bootstrap/javascript.html#carousel
+ * http://twitter.github.com/bootstrap/js.html#carousel
  * ==========================================================
  * Copyright 2012 Twitter, Inc.
  *
@@ -418,7 +418,7 @@
 
 }(window.jQuery);/* =============================================================
  * bootstrap-collapse.js v2.1.0
- * http://twitter.github.com/bootstrap/javascript.html#collapse
+ * http://twitter.github.com/bootstrap/js.html#collapse
  * =============================================================
  * Copyright 2012 Twitter, Inc.
  *
@@ -575,7 +575,7 @@
 
 }(window.jQuery);/* ============================================================
  * bootstrap-dropdown.js v2.1.0
- * http://twitter.github.com/bootstrap/javascript.html#dropdowns
+ * http://twitter.github.com/bootstrap/js.html#dropdowns
  * ============================================================
  * Copyright 2012 Twitter, Inc.
  *
@@ -724,7 +724,7 @@
 
 }(window.jQuery);/* =========================================================
  * bootstrap-modal.js v2.1.0
- * http://twitter.github.com/bootstrap/javascript.html#modals
+ * http://twitter.github.com/bootstrap/js.html#modals
  * =========================================================
  * Copyright 2012 Twitter, Inc.
  *
@@ -962,7 +962,7 @@
 
 }(window.jQuery);/* ===========================================================
  * bootstrap-tooltip.js v2.1.0
- * http://twitter.github.com/bootstrap/javascript.html#tooltips
+ * http://twitter.github.com/bootstrap/js.html#tooltips
  * Inspired by the original jQuery.tipsy by Jason Frame
  * ===========================================================
  * Copyright 2012 Twitter, Inc.
@@ -1237,7 +1237,7 @@
 }(window.jQuery);
 /* ===========================================================
  * bootstrap-popover.js v2.1.0
- * http://twitter.github.com/bootstrap/javascript.html#popovers
+ * http://twitter.github.com/bootstrap/js.html#popovers
  * ===========================================================
  * Copyright 2012 Twitter, Inc.
  *
@@ -1339,7 +1339,7 @@
 
 }(window.jQuery);/* =============================================================
  * bootstrap-scrollspy.js v2.1.0
- * http://twitter.github.com/bootstrap/javascript.html#scrollspy
+ * http://twitter.github.com/bootstrap/js.html#scrollspy
  * =============================================================
  * Copyright 2012 Twitter, Inc.
  *
@@ -1489,7 +1489,7 @@
 
 }(window.jQuery);/* ========================================================
  * bootstrap-tab.js v2.1.0
- * http://twitter.github.com/bootstrap/javascript.html#tabs
+ * http://twitter.github.com/bootstrap/js.html#tabs
  * ========================================================
  * Copyright 2012 Twitter, Inc.
  *
@@ -1623,7 +1623,7 @@
 
 }(window.jQuery);/* =============================================================
  * bootstrap-typeahead.js v2.1.0
- * http://twitter.github.com/bootstrap/javascript.html#typeahead
+ * http://twitter.github.com/bootstrap/js.html#typeahead
  * =============================================================
  * Copyright 2012 Twitter, Inc.
  *
@@ -1923,7 +1923,7 @@
 }(window.jQuery);
 /* ==========================================================
  * bootstrap-affix.js v2.1.0
- * http://twitter.github.com/bootstrap/javascript.html#affix
+ * http://twitter.github.com/bootstrap/js.html#affix
  * ==========================================================
  * Copyright 2012 Twitter, Inc.
  *

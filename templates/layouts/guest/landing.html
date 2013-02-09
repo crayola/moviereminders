@@ -1,0 +1,138 @@
+{% load auth %}
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title>{% block title %}Whispers{% endblock %}</title>
+    <meta name="description" content="Name your favorite artists and be the first to know about their upcoming movies."/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link href="{{ STATIC_URL }}css/lib/bootstrap-2.1.0.css" type="text/css" rel="stylesheet" media="screen, projection" />
+    <link href="{{ STATIC_URL }}css/lib/jquery-ui-1.9.0.custom.min.css" type="text/css" rel="stylesheet" media="screen, projection" />
+    <link href="{{ STATIC_URL }}css/mp/frontpage.css" type="text/css" rel="stylesheet" media="screen, projection" />
+    <link href="{{ STATIC_URL }}css/mp/header.css" type="text/css" rel="stylesheet" media="screen, projection" />
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
+</head>
+
+
+<body>
+
+<div class="landing">
+    <div class="content">
+        <div class="head">
+            <div class="right">
+                <ul class="navi">
+                    <li id="home-btn" class="active"><a href="#">Home</a></li>
+                    <li id="faq-btn"><a href="/faq">FAQ</a></li>
+                    <li id="login-btn"><a href="#">Log in</a></li>
+                    <li id="register-btn"><a href="#">Register</a></li>
+                    <li id="yourwhispers-btn"><a href="#">Your Whispers</a></li>
+                    <li id="yourfollowees-btn"><a href="#">Your Follows</a></li>
+                </ul>
+            </div>
+        </div>
+        <h1>Keep up with cinema</h1>
+        <h2>Name an artist you love and be the first to know about their upcoming movies</h2>
+
+        <input id="name" type="text" placeholder="ex: Johnny Depp, Quentin Tarantino" class="ui-autocomplete-input" autocomplete="off"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible">1 result is available, use up and down arrow keys to navigate.</span>
+
+        <img src="{{ STATIC_URL }}img/enveloppe.png" class="enveloppe"/>
+    </div>
+</div>
+
+{# WRITTEN BY TEMPLATE #}
+{% block content %}{% endblock %}
+
+{# LOG IN MODAL #}
+<div id="login-modal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Log in</h3>
+    </div>
+    <form style="margin:0">
+        <div class="modal-body">
+
+            <p id="signinerror" style="display:none">Sorry, wrong username or password.</p>
+            <p id="signedin" style="display:none">You are now signed in as <span id='username'></span>.</p>
+            <p id="logout" style="display:none">You are now logged out.</p>
+            <p><label for="id_username">Username:</label> <input id="id_username" type="text" name="username" maxlength="30"></p>
+            <p><label for="id_password">Password:</label> <input type="password" name="password" id="id_password"></p>
+            <a id="forgot-password"> Forgot password? </a>
+            <br>
+            <br>
+
+
+        </div>
+        <div class="modal-footer">
+            <a data-dismiss="modal" class="btn">Cancel</a>
+            <input type="button" id="signin-submit" class="btn btn-primary" value="OK">
+        </div>
+    </form>
+</div>
+
+{# REGISTER MODAL #}
+<div id="register-modal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Register to Whispers today!</h3>
+    </div>
+    <div class="modal-body">
+        <p> Please give us your email adress.</p>
+        <p style="text-align: center;padding-top: 24px; padding-bottom: 12px;">
+            <label></label>
+            <input id="register-email" type="email" placeholder="Your email" style="width:325px">
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a data-dismiss="modal" class="btn">Cancel</a>
+        <a id="register-email-ok" class="btn btn-primary">OK</a>
+    </div>
+</div>
+
+{# ERROR MODAL #}
+<div id="hidden-modal" class="modal hide fade">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Hey, you've reached an hidden place</h3>
+    </div>
+    <div class="modal-body">
+        <p>Why hello,<br/>
+            you were not really supposed to get there.</p>
+        <p>You see the site is a couple of days young, and we are still hard at work implementing everything.<br/>
+            If you are trying to log in an account you created earlier, I'm affraid it's not possible right now. I'll send you a mail ASAP.</p>
+        <p>Arnaud</p>
+    </div>
+
+    <div class="modal-footer">
+        <a data-dismiss="modal" class="btn">Okay</a>
+    </div>
+
+</div>
+
+{# DEFERRED SCRIPT LOADING #}
+<script type="text/javascript"> var staticfolder="{{ STATIC_URL}}" </script>
+<script src="{{ STATIC_URL }}js/lib/jquery-1.8.2.min.js"></script>
+<script src="{{ STATIC_URL }}js/lib/jquery-ui-1.9.0.custom.min.js"></script>
+<script src="{{ STATIC_URL }}js/lib/bootstrap.js"></script>
+<script src="{{ STATIC_URL }}js/lib/date.js"></script>
+<script src="{{ STATIC_URL }}js/k/kdate.js"></script>
+<script src="{{ STATIC_URL }}js/k/k.api.js"></script>
+<script src="{{ STATIC_URL }}js/pages/frontpage.js"></script>
+
+{% if user.is_authenticated  %}
+    <script>
+        mp.currentUser = {email: '{{ user.email }}' };
+        signinevents()
+    </script>
+{% endif %}
+
+
+<div id="getsat-widget-4140"></div>
+<script type="text/javascript" src="https://loader.engage.gsfn.us/loader.js"></script>
+<script type="text/javascript">if (typeof GSFN !== "undefined"){ GSFN.loadWidget(4140,{"containerId":"getsat-widget-4140"});}</script>
+
+
+</body>
+</html>
+

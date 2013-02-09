@@ -7,32 +7,37 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    #web
-    url(r'^$', 'moviepeopleapp.views.frontpage', name='home'),
 
-    #auth
-    url(r'^login/([a-z]+)$', 'moviepeopleapp.views.createAccount'),
-    #url(r'^thanks/([a-z]+)$', 'moviepeopleapp.views.accountCreated'),
-    url(r'^signin$', 'moviepeopleapp.views.signin'),
-    url(r'^logout$', 'moviepeopleapp.views.logoutview'),
+    #WEB - GUEST
+    url(r'^$', 'moviepeopleapp.views.web.guest.frontpage', name='home'),
+    url(r'^faq$', 'moviepeopleapp.views.web.guest.faq', name='webFAQ'),
+    url(r'^login/([a-z]+)$', 'moviepeopleapp.views.web.guest.createAccount'),
 
-    #admin
+    #WEB - USER
+
+    #JS - GUEST
+    url(r'^signin$', 'moviepeopleapp.views.js.guest.login'),
+    url(r'^api/signup$', 'moviepeopleapp.views.js.guest.signup'),
+    url(r'^api/forgot$', 'moviepeopleapp.views.js.guest.sendToken'),
+    url(r'^api/people/autocomplete$', 'moviepeopleapp.views.js.guest.autocomplete'),
+    url(r'^api/people/manualsearch$', 'moviepeopleapp.views.js.guest.manualsearch'),
+
+    #JS - USER
+    url(r'^logout$', 'moviepeopleapp.views.js.user.logoutview'),
+    url(r'^api/people/(\d+)/movies$', 'moviepeopleapp.user.js.guest.people_movies'),
+    url(r'^api/yourwhispers$', 'moviepeopleapp.views.js.user.yourwhispers'),
+    url(r'^api/followees$', 'moviepeopleapp.views.js.user.followees'),
+    url(r'^api/unfollow$', 'moviepeopleapp.views.js.user.unfollow'),
+    url(r'^api/people/(\d+)/subscribe$', 'moviepeopleapp.views.js.user.people_subscribe'),
+
+
+    #python admin
     url(r'^admin/', include(admin.site.urls)),
 
-    #API
-    url(r'^api/people/autocomplete$', 'moviepeopleapp.views.autocomplete'),
-    url(r'^api/people/manualsearch$', 'moviepeopleapp.views.manualsearch'),
-    url(r'^api/people/(\d+)/movies$', 'moviepeopleapp.views.people_movies'),
-    url(r'^api/yourwhispers$', 'moviepeopleapp.views.yourwhispers'),
-    url(r'^api/followees$', 'moviepeopleapp.views.followees'),
-    url(r'^api/unfollow$', 'moviepeopleapp.views.unfollow'),
-    url(r'^api/people/(\d+)/subscribe$', 'moviepeopleapp.views.people_subscribe'),
-    url(r'^api/signup$', 'moviepeopleapp.views.signup'),
-    url(r'^api/forgot$', 'moviepeopleapp.views.sendToken')
 )
 
 if settings.LOCAL == True:
    urlpatterns += patterns('',
-                           #local
-                           url(r'^loadsampledb/', 'moviepeopleapp.views.load_sample_db')
-                          )
+       #DEV
+       url(r'^loadsampledb/', 'moviepeopleapp.views.dev.load_sample_db')
+    )
