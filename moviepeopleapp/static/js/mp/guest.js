@@ -29,13 +29,7 @@ mp.guest = new function(){
                 },
                 success:function(json){
                     if (json.auth) {
-                        mp.currentUser = {
-                            email: json.username,
-                        };
-                        $('#signin').hide();
-                        $('#signinerror').hide();
-                        $('#signedin').show();
-                        signinevents(mp.currentUser.email);
+                       $k.utils.redirect('/');
                     } else {
                         $('#signinerror').show();
                     }

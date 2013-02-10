@@ -10,6 +10,8 @@
     <div class="text-box">
         <h1>Keep up with cinema</h1>
         <h2>Follow your favorite artists and get fresh news about their upcoming movies</h2>
+
+        <h4>Search for an artist name or a movie</h4>
         <input id="artist-name" class="front-input" type="text" placeholder="ex: Johnny Depp, Quentin Tarantino" class="ui-autocomplete-input" autocomplete="off">
 
     </div>
@@ -25,13 +27,17 @@
                     <img src="{{ STATIC_URL }}img/question_mark.png"/>
                 {% endif %}
                 <div class="follow-btn-box">
-                    <a class="btn btn-front btn-large">Follow {{ artist.name }}</a>
+                    <a class="btn btn-front btn-large">Follow <br/>{{ artist.name }}</a>
                 </div>
             </div>
         {% endfor %}
 
     </div>
 
+    <div class="menu-box">
+        <a href="javascript:void(0)" id="login-btn">Log in</a>
+        <a href="javascript:void(0)" id="register-btn">Register</a>
+    </div>
 
 
 {% endblock %}
