@@ -32,25 +32,38 @@
     z-index: 1;
 }
 
+.menu-top{
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 6px;
+    padding-right: 18px;
+    height: 24px;
+    line-height: 24px;
+    background: #e0e0e0;
+}
+.menu-top a.link{
+    color:#999;
+    margin-left: 18px;
+}
+.menu-top a.link:hover{
+    color:#000000;
+}
 #menu-box{
     position: fixed;
     bottom: 0;
     right: 0;
     padding: 6px;
-    height: 36px;
-    line-height: 24px;
+    height: 44px;
+    line-height: 44px;
     background: #e0e0e0;
 }
-#menu-box a.link{
-    color:#999;
-    margin-left: 18px;
-}
-#menu-box a.link:hover{
-    color:#000000;
+#follow-artists{
+    margin-right: 12px;
 }
 #menu-box .artist-small-pic{
-    width:24px;
-    height:34px;
+    width:30px;
+    height:44px;
     margin-right: 6px;
 }
 
