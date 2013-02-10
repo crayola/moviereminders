@@ -33,12 +33,13 @@ $k.pages.frontpagev2 = new function(){
             }
         });
 
-        $('.btn-follow').each(function(){
+        $('.artist-box').each(function(){
             activateFollowBtn($(this));
         });
     }
 
-    function activateFollowBtn($btn){
+    function activateArtistBox($box){
+        var $btn = $('.btn-follow',$box)
         $btn.async('ajax',{
             url:'/api/people/frontFollow',
             data:function(){
@@ -46,8 +47,16 @@ $k.pages.frontpagev2 = new function(){
             },
             success:function(){
                 log.info('followed artist');
+                $box.flip({
+                    direction:'lr',
+                    content:'<div class="artist-box"><img src="http://cf2.imgobject.com/t/p/w342/rYV0KmcBsJ5umzzp6rvLMJDVIO.jpg"> <div class="follow-btn-box"><a class="btn btn-follow btn-large" artist-id="3305">Follow <br>Alfred Hitchcock</a></div></div>'
+                })
             }
         });
+    }
+
+    function flipBox($box){
+        $
     }
 
 }

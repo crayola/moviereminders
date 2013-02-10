@@ -66,6 +66,7 @@
     letter-spacing: normal;
     vertical-align: top;
     text-align: center;
+    background: #e0e0e0;
 }
 .artist-box img{
     width:180px;
