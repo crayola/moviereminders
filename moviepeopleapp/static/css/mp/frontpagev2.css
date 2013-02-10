@@ -1,3 +1,7 @@
+.front body{
+    background: #e0e0e0;
+}
+
 .front h1,.front h2,.front h3,.front h4{
     font-weight: 300;
     font-family: 'open sans',arial,sans-serif;
@@ -28,19 +32,20 @@
     z-index: 1;
 }
 
-.menu-box{
+#menu-box{
     position: fixed;
-    top: 0;
+    bottom: 0;
     right: 0;
     padding: 6px;
     height: 24px;
     line-height: 24px;
+    background: #e0e0e0;
 }
-.menu-box a{
+#menu-box a{
     color:#999;
     margin-left: 18px;
 }
-.menu-box a:hover{
+#menu-box a:hover{
     color:#000000;
 }
 
@@ -50,6 +55,7 @@
     padding: 48px 48px 48px 540px;
     z-index: 0;
     letter-spacing: -.31em;
+    background: #e0e0e0;
 }
 .artist-box{
     display: inline-block;
@@ -71,7 +77,7 @@
     margin-top:12px;
 }
 
-.artist-box .follow-btn-box .btn-front {
+.artist-box .follow-btn-box .btn-follow {
     background-color: hsl(169, 3%, 87%) !important;
     background-repeat: repeat-x;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e7e8e8", endColorstr="#dcdede");
@@ -97,7 +103,7 @@
     display: block;
 }
 
-.artist-box .follow-btn-box .btn-front:hover {
+.artist-box .follow-btn-box .btn-follow:hover {
     background-color: hsl(214, 91%, 80%) !important;
     background-repeat: repeat-x;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#c4dcfc", endColorstr="#9dc5fa");

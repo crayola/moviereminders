@@ -99,7 +99,19 @@ def manualsearch(request):
     }
     return HttpResponse(simplejson.dumps(ret_json), mimetype="application/json")
 
+#follow an artist on the frontpage
+#store in session, will be lost if person does not create an account
+def frontpageFollow(request):
+    json = simplejson.loads(request.GET.get('JSON'))
+    artistId = json['artist_id']
+    artist = People.objects.get(pk=artistId)
+    if('artists_front_follow' not in request.session):
+        request.session['artists_front_follow'] = []
+    request.session['artists_front_follow'].append(artist)
+    log.info('front-following artist:'+artist.name+' id:'+str(artist.id))
+    return HttpResponse(simplejson.dumps({}), mimetype="application/json")
 
+#send password token
 def sendToken(request, new=False):
     json = simplejson.loads(request.GET.get('JSON'))
     email = json['email']

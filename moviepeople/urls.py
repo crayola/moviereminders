@@ -14,11 +14,12 @@ urlpatterns = patterns('',
     url(r'^login/([a-z]+)$',                'moviepeopleapp.views.web.guest.createAccount'),
 
     #WEB - USER
-    url(r'^home$',                           'moviepeopleapp.views.web.user.homepage', name='home'),
+    url(r'^home$',                          'moviepeopleapp.views.web.user.homepage', name='home'),
     url(r'^find',                           'moviepeopleapp.views.web.user.find_artists', name='find'),
-    url(r'^follows',                           'moviepeopleapp.views.web.user.follows', name='follows'),
+    url(r'^follows',                        'moviepeopleapp.views.web.user.follows', name='follows'),
 
     #JS - GUEST
+    url(r'^api/people/frontFollow',         'moviepeopleapp.views.js.guest.frontpageFollow'),
     url(r'^signin$',                        'moviepeopleapp.views.js.guest.loginAjax'),
     url(r'^api/signup$',                    'moviepeopleapp.views.js.guest.signup'),
     url(r'^api/forgot$',                    'moviepeopleapp.views.js.guest.sendToken'),
