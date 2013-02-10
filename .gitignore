@@ -11,3 +11,4 @@
 /.idea/*
 /moviepeopleapp/fixtures/initial_data.json
 *.vim
+.idea

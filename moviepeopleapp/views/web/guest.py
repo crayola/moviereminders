@@ -27,7 +27,10 @@ log = logging.getLogger(__name__)
 def frontpage(request):
   if(request.user.is_anonymous()):
     log.info("frontpage hit")
-    return render(request, 'guest/frontpagev2.html', {})
+    #take 8 artists randomly
+    #artists = People.objects.order_by('?')[0:8]
+    artists = People.objects.exclude(importance__isnull=True).order_by('-importance')[0:8]
+    return render(request, 'guest/frontpagev2.html', {'artists':artists})
   else:
     log.info("frontpage, user:"+str(request.user.email))
     return redirect('/home')
