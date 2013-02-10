@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.db.models import Q
 import datetime
+from django.template import Template
 
 from django.utils import simplejson
 from django.http import HttpResponse, HttpResponseRedirect
@@ -18,6 +19,8 @@ import moviepeople.settings
 from moviepeopleapp.models import People, MoviePeople, Trailer, Release, Movie, Follow, CreateAccountToken
 from urllib2 import urlopen
 from django.views.decorators.csrf import ensure_csrf_cookie
+from moviepeopleapp.templatetags.artist import artist_box
+
 
 log = logging.getLogger(__name__)
 
@@ -109,7 +112,11 @@ def frontpageFollow(request):
         request.session['artists_front_follow'] = []
     request.session['artists_front_follow'].append(artist)
     log.info('front-following artist:'+artist.name+' id:'+str(artist.id))
-    return HttpResponse(simplejson.dumps({}), mimetype="application/json")
+    #find a new artist
+    artist = artists = People.objects.order_by('?')[0]
+    t = Template('artist_box')
+    box = artist_box(artist)
+    return HttpResponse(simplejson.dumps({'artist_box':box}), mimetype="application/json")
 
 #send password token
 def sendToken(request, new=False):

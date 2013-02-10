@@ -1,5 +1,7 @@
 {% extends "layouts/guest/empty.html" %}
 
+{%  load artist %}
+
 {% block title %}Whispers{% endblock %}
 {% block jspage %}frontpagev2{% endblock %}
 
@@ -18,18 +20,8 @@
 
     <div id="artist-boxes">
 
-
         {% for artist in artists %}
-            <div class="artist-box">
-                {% if artist.profile != '' %}
-                    <img src="http://cf2.imgobject.com/t/p/w342{{ artist.profile }}"/>
-                {% else %}
-                    <img src="{{ STATIC_URL }}img/question_mark.png"/>
-                {% endif %}
-                <div class="follow-btn-box">
-                    <a class="btn btn-follow btn-large" artist-id="{{ artist.id }}">Follow <br/>{{ artist.name }}</a>
-                </div>
-            </div>
+            {{ artist|artist_box }}
         {% endfor %}
 
     </div>
