@@ -19,7 +19,7 @@ import moviepeople.settings
 from moviepeopleapp.models import People, MoviePeople, Trailer, Release, Movie, Follow, CreateAccountToken
 from urllib2 import urlopen
 from django.views.decorators.csrf import ensure_csrf_cookie
-from moviepeopleapp.templatetags.artist import artist_box
+from moviepeopleapp.templatetags.artist import artist_box, artist_pic_url
 
 
 log = logging.getLogger(__name__)
@@ -108,15 +108,21 @@ def frontpageFollow(request):
     json = simplejson.loads(request.GET.get('JSON'))
     artistId = json['artist_id']
     artist = People.objects.get(pk=artistId)
+    #save in session
     if('artists_front_follow' not in request.session):
         request.session['artists_front_follow'] = []
     request.session['artists_front_follow'].append(artist)
     log.info('front-following artist:'+artist.name+' id:'+str(artist.id))
     #find a new artist
-    artist = artists = People.objects.order_by('?')[0]
+    artist_random = artists = People.objects.order_by('?')[0]
     t = Template('artist_box')
-    box = artist_box(artist)
-    return HttpResponse(simplejson.dumps({'artist_box':box}), mimetype="application/json")
+    box = artist_box(artist_random)
+    #create map of artist
+    artistMap = {'id':artist.id,'name':artist.name,'pic_url':artist_pic_url(artist)}
+    return HttpResponse(simplejson.dumps({
+        'artist_box':box,
+        'artist':artistMap
+    }), mimetype="application/json")
 
 #send password token
 def sendToken(request, new=False):

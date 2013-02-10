@@ -37,16 +37,21 @@
     bottom: 0;
     right: 0;
     padding: 6px;
-    height: 24px;
+    height: 36px;
     line-height: 24px;
     background: #e0e0e0;
 }
-#menu-box a{
+#menu-box a.link{
     color:#999;
     margin-left: 18px;
 }
-#menu-box a:hover{
+#menu-box a.link:hover{
     color:#000000;
+}
+#menu-box .artist-small-pic{
+    width:24px;
+    height:34px;
+    margin-right: 6px;
 }
 
 #artist-boxes{
