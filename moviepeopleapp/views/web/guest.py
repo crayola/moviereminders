@@ -10,7 +10,7 @@ import datetime
 
 from django.utils import simplejson
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils.datetime_safe import date
 from haystack.query import SearchQuerySet
 from moviepeople import settings
@@ -27,9 +27,11 @@ log = logging.getLogger(__name__)
 def frontpage(request):
   if(request.user.is_anonymous()):
     log.info("frontpage hit")
+    return render(request, 'guest/frontpage.html', {})
   else:
     log.info("frontpage, user:"+str(request.user.email))
-  return render(request, 'guest/frontpage.html', {})
+    return redirect('/home')
+
 
 def faq(request):
     return render(request, 'guest/faq.html',{})

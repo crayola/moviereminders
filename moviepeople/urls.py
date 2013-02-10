@@ -9,14 +9,17 @@ admin.autodiscover()
 urlpatterns = patterns('',
 
     #WEB - GUEST
-    url(r'^$',                              'moviepeopleapp.views.web.guest.frontpage', name='home'),
+    url(r'^$',                              'moviepeopleapp.views.web.guest.frontpage', name='front'),
     url(r'^faq$',                           'moviepeopleapp.views.web.guest.faq', name='webFAQ'),
     url(r'^login/([a-z]+)$',                'moviepeopleapp.views.web.guest.createAccount'),
 
     #WEB - USER
+    url(r'^home$',                           'moviepeopleapp.views.web.user.homepage', name='home'),
+    url(r'^find',                           'moviepeopleapp.views.web.user.find_artists', name='find'),
+    url(r'^follows',                           'moviepeopleapp.views.web.user.follows', name='follows'),
 
     #JS - GUEST
-    url(r'^signin$',                        'moviepeopleapp.views.js.guest.login'),
+    url(r'^signin$',                        'moviepeopleapp.views.js.guest.loginAjax'),
     url(r'^api/signup$',                    'moviepeopleapp.views.js.guest.signup'),
     url(r'^api/forgot$',                    'moviepeopleapp.views.js.guest.sendToken'),
     url(r'^api/people/autocomplete$',       'moviepeopleapp.views.js.guest.autocomplete'),

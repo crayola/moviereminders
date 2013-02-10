@@ -1,0 +1,25 @@
+{% extends "layouts/user/base.html" %}
+
+{% block title %}You follow {{ artists|length }} artists{% endblock %}
+{% block jspage %}find{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+
+                <h1>You follow {{ artists|length }} artists</h1>
+
+                {% for artist in artists %}
+                    <div class="artist-box">
+                        {{ artist.name }}
+                    </div>
+
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

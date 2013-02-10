@@ -21,7 +21,7 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 
 log = logging.getLogger(__name__)
 
-def login(request):
+def loginAjax(request):
     #redirect_to = request.REQUEST.get(REDIRECT_FIELD_NAME, '')
     if request.POST:
         json=simplejson.loads(request.POST.get('JSON'))

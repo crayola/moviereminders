@@ -4,86 +4,111 @@
 {% block jspage %}frontpage{% endblock %}
 
 {% block content %}
-<div class="container" id="bigcont">
 
-<div class="container" id="people" style="display:none">
 
-    <div class="row" id="right-pane" style="display:none;">
-        <div class="span7">
-            <h1 class="people-name"></h1>
+    <div class="landing">
+        <div class="content">
+            <div class="head">
+                <div class="right">
+                    <ul class="navi">
+                        <li id="home-btn" class="active"><a href="/">Home</a></li>
+                        <li id="faq-btn"><a href="/faq">FAQ</a></li>
+                        <li id="login-btn"><a href="#">Log in</a></li>
+                        <li id="register-btn"><a href="#">Register</a></li>
+                    </ul>
+                </div>
+            </div>
+            <h1>Keep up with cinema</h1>
+            <h2>Name an artist you love and be the first to know about their upcoming movies</h2>
+
+            <input id="artist-name" type="text" placeholder="ex: Johnny Depp, Quentin Tarantino" class="ui-autocomplete-input" autocomplete="off"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible">1 result is available, use up and down arrow keys to navigate.</span>
+
+            <img src="{{ STATIC_URL }}img/enveloppe.png" class="enveloppe"/>
         </div>
-        <div class="span5" id="right-paneWrapper">
-            <div style="text-align: center;">
-                <!-- <a class="btn btn-large btn-primary" type="button" id="subscribe">Be the first to hear about their next <span class="people-name"></span> movie!</a> -->
-                <a class="btn btn-large btn-primary" style="width:280px" type="button" id="subscribe"><span class="subscribe-text"></span></a>
+    </div>
+
+
+    <div class="container" id="people" style="display:none">
+
+        <div class="row" id="right-pane" style="display:none;">
+            <div class="span7">
+                <h1 class="people-name"></h1>
+            </div>
+            <div class="span5" id="right-paneWrapper">
+                <div style="text-align: center;">
+                    <!-- <a class="btn btn-large btn-primary" type="button" id="subscribe">Be the first to hear about their next <span class="people-name"></span> movie!</a> -->
+                    <a class="btn btn-large btn-primary" style="width:280px" type="button" id="subscribe"><span class="subscribe-text"></span></a>
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <div class="row">
-        <div class="span7" id="timeline" style="margin-top:16px;">
-            &nbsp;
+        <div class="row">
+            <div class="span7" id="timeline" style="margin-top:16px;">
+                &nbsp;
+            </div>
+            <div class="span5">
+                &nbsp;
+                <div id="people-pic" class="people-pic"> </div>
+            </div>
         </div>
-        <div class="span5">
-            &nbsp;
-            <div id="people-pic" class="people-pic"> </div>
+
+        <div id="inliner">&nbsp;</div>
+    </div>
+
+
+
+    <div class="container" class="span7" id="yourwhispers" style="display:none"> </div>
+
+    <div class="container" class="span7" id="followees" style="display:none"> </div>
+
+
+
+    </div>
+
+
+
+    <div id="forgot-modal" class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Change your password.</h3>
+        </div>
+        <div class="modal-body">
+            <p> Please give us your email adress. We will send you a link to allow you to change your password.</p>
+            <p style="text-align: center;padding-top: 24px; padding-bottom: 12px;">
+                <label></label>
+                <input id="forgot-email" type="email" placeholder="Your email" style="width:325px">
+            </p>
+        </div>
+        <div class="modal-footer">
+            <a data-dismiss="modal" class="btn">Cancel</a>
+            <a id="old-email-ok" class="btn btn-primary">OK</a>
         </div>
     </div>
 
-    <div id="inliner">&nbsp;</div>
-</div>
 
 
 
-<div class="container" class="span7" id="yourwhispers" style="display:none"> </div>
-
-<div class="container" class="span7" id="followees" style="display:none"> </div>
-
-
-
-</div>
-
-
-
-<div id="forgot-modal" class="modal hide fade">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>Change your password.</h3>
+    <div id="email-modal" class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Receive updates for <span class="people-name"></span>'s work by email</h3>
+        </div>
+        <div class="modal-alert error" id="email-modal-already-exists" style="display:none;">
+            This email is already in the system, please log in
+        </div>
+        <div class="modal-body">
+            <p>We will send you updates about <span class="people-name"></span>'s releases and trailers by email.</p>
+            <p style="text-align: center;padding-top: 24px; padding-bottom: 12px;">
+                <label></label>
+                <input id="email" type="email" placeholder="Your email" style="width:325px">
+            </p>
+        </div>
+        <div class="modal-footer">
+            <a data-dismiss="modal" class="btn">Cancel</a>
+            <a id="new-email-ok" class="btn btn-primary">OK</a>
+        </div>
     </div>
-    <div class="modal-body">
-        <p> Please give us your email adress. We will send you a link to allow you to change your password.</p>
-        <p style="text-align: center;padding-top: 24px; padding-bottom: 12px;">
-            <label></label>
-            <input id="forgot-email" type="email" placeholder="Your email" style="width:325px">
-        </p>
-    </div>
-    <div class="modal-footer">
-        <a data-dismiss="modal" class="btn">Cancel</a>
-        <a id="old-email-ok" class="btn btn-primary">OK</a>
-    </div>
-</div>
-
-
-
-
-<div id="email-modal" class="modal hide fade">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>Receive updates for <span class="people-name"></span>'s work by email</h3>
-    </div>
-    <div class="modal-body">
-        <p>We will send you updates about <span class="people-name"></span>'s releases and trailers by email.</p>
-        <p style="text-align: center;padding-top: 24px; padding-bottom: 12px;">
-            <label></label>
-            <input id="email" type="email" placeholder="Your email" style="width:325px">
-        </p>
-    </div>
-    <div class="modal-footer">
-        <a data-dismiss="modal" class="btn">Cancel</a>
-        <a id="new-email-ok" class="btn btn-primary">OK</a>
-    </div>
-</div>
 
 
 

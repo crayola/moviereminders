@@ -1,0 +1,48 @@
+.usr h1,.usr h2,.usr h3,.usr h4{
+    font-weight: 100;
+    font-family: 'open sans',arial,sans-serif;
+}
+.usr h1{
+    font-size: 36px;
+}
+.usr h2{
+    font-size: 24px;
+}
+
+
+input#artist-name{
+    width: 434px;
+    border-radius: 2px;
+    height: 36px;
+    margin-top: 24px;
+    font-size: 18px;
+    font-weight: lighter;
+    color: black;
+    line-height: 36px;
+    border:1px solid #ccc;
+
+    -webkit-transition: border-color .05s linear;
+    -moz-transition: border-color .05s linear;
+    -o-transition: border-color .05s linear;
+    -ms-transition: border-color .05s linear;
+    transition: border-color .05s linear;
+}
+input#artist-name.error{
+    border-color:#d24836;
+
+    -webkit-transition: border-color .2s linear;
+    -moz-transition: border-color .2s linear;
+    -o-transition: border-color .2s linear;
+    -ms-transition: border-color .2s linear;
+    transition: border-color .2s linear;
+}
+input#artist-name .loader{
+    position: absolute;
+    right:0;
+    top:50%;
+    margin-top:-16px;
+    height: 32px;width:32px;;
+}
+input#artist-name.loading .loader{
+    display:block!important;
+}

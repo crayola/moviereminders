@@ -1,6 +1,8 @@
 .head{
     line-height: 80px;
     position: relative;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 48px;
 }
 
 .head .left{

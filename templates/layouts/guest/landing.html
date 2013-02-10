@@ -17,26 +17,6 @@
 
 <body>
 
-<div class="landing">
-    <div class="content">
-        <div class="head">
-            <div class="right">
-                <ul class="navi">
-                    <li id="home-btn" class="active"><a href="/">Home</a></li>
-                    <li id="faq-btn"><a href="/faq">FAQ</a></li>
-                    <li id="login-btn"><a href="#">Log in</a></li>
-                    <li id="register-btn"><a href="#">Register</a></li>
-                </ul>
-            </div>
-        </div>
-        <h1>Keep up with cinema</h1>
-        <h2>Name an artist you love and be the first to know about their upcoming movies</h2>
-
-        <input id="name" type="text" placeholder="ex: Johnny Depp, Quentin Tarantino" class="ui-autocomplete-input" autocomplete="off"><span role="status" aria-live="polite" class="ui-helper-hidden-accessible">1 result is available, use up and down arrow keys to navigate.</span>
-
-        <img src="{{ STATIC_URL }}img/enveloppe.png" class="enveloppe"/>
-    </div>
-</div>
 
 {# WRITTEN BY TEMPLATE #}
 {% block content %}{% endblock %}
@@ -121,6 +101,7 @@
 <script src="{{ STATIC_URL }}js/k/k.api.js"></script>
 <script src="{{ STATIC_URL }}js/mp/mp.js"></script>
 <script src="{{ STATIC_URL }}js/mp/guest.js"></script>
+<script src="{{ STATIC_URL }}js/mp/artistsSearch.js"></script>
 <script src="{{ STATIC_URL }}js/pages/frontpage.js"></script>
 
 {% if user.is_authenticated  %}

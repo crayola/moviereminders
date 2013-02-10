@@ -89,6 +89,7 @@ TEMPLATE_LOADERS = (
     #     'django.template.loaders.eggs.Loader',
     )
 
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -119,7 +120,7 @@ INSTALLED_APPS = (
     'longerusername', #yeah, 30 char is not really enough
     'south',
     # Uncomment the next line to enable the admin:
-     'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'moviepeopleapp',
