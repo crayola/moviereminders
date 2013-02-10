@@ -9,17 +9,7 @@ mp.guest = new function(){
                 $('.nav li').removeClass('active');
                 $(this).addClass('active');
             } else {
-                $k.api.POST({
-                    url:'/logout',
-                    json:{},
-                    success:function(json){
-                        mp.currentUser = '';
-                        $('#logout').show();
-                        $('.nav li').removeClass('active');
-                        $('#home-btn').addClass('active');
-                        logoutevents();
-                    },
-                });
+
             }
         });
 
@@ -66,8 +56,16 @@ mp.guest = new function(){
             $('#yourwhispers-btn').hide();
             $('#yourfollowees-btn').hide();
         }
+    }
 
-
+    this.logout = function(){
+       return $k.api.POST({
+            url:'/logout',
+            json:{},
+            success:function(json){
+                $k.utils.redirect('/');
+            }
+        });
     }
 
 }

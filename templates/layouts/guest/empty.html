@@ -17,7 +17,6 @@
 
 <body>
 
-
 {# WRITTEN BY TEMPLATE #}
 {% block content %}{% endblock %}
 
@@ -107,15 +106,9 @@
 <script src="{{ STATIC_URL }}js/mp/artistsSearch.js"></script>
 <script src="{{ STATIC_URL }}js/pages/frontpage.js"></script>
 
-{% if user.is_authenticated  %}
-    <script>
-        mp.currentUser = {email: '{{ user.email }}' };
-    </script>
-{% else %}
-    <script>
-        mp.guest.init();
-    </script>
-{% endif %}
+<script>
+    mp.guest.init();
+</script>
 
 {# LOAD CONTEXTUAL JAVASCRIPT PAGE #}
 <script>

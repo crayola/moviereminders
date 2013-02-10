@@ -22,37 +22,39 @@
     <splitter split-orientation="horizontal" split-proportion="0.5083333">
       <split-first>
         <leaf>
-          <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/moviepeople/urls.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="10" column="16" selection-start="238" selection-end="238" vertical-scroll-proportion="-5.4">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="homepage.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/pages/homepage.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="16" selection-start="16" selection-end="16" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="find.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/pages/find.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="4" column="1" selection-start="128" selection-end="128" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/templates/layouts/user/base.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="38" column="6" selection-start="1697" selection-end="1697" vertical-scroll-proportion="-19.333334">
+                <state line="40" column="74" selection-start="2121" selection-end="2121" vertical-scroll-proportion="0.32309443">
+                  <folding>
+                    <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="jquery.loader.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/lib/jquery/jquery.loader.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="bootstrap-responsive-2.3.0.min.css" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/css/lib/bootstrap/bootstrap-responsive-2.3.0.min.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="bootstrap-2.3.0.min.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/lib/bootstrap/bootstrap-2.3.0.min.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -82,10 +84,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="follows.html" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="follows.html" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/templates/user/follows.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="14" column="44" selection-start="412" selection-end="412" vertical-scroll-proportion="0.23542601">
+                <state line="14" column="44" selection-start="412" selection-end="412" vertical-scroll-proportion="-8.75">
                   <folding />
                 </state>
               </provider>
@@ -122,19 +124,10 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="frontpage.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/pages/frontpage.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="9" column="47" selection-start="201" selection-end="201" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="landing.html" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/templates/layouts/guest/landing.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="18" column="0" selection-start="1032" selection-end="1032" vertical-scroll-proportion="-11.25">
+                <state line="92" column="69" selection-start="0" selection-end="5492" vertical-scroll-proportion="-10.625">
                   <folding>
                     <element signature="n#style#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#p#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -147,34 +140,64 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="frontpage.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/templates/guest/frontpage.html">
+          <file leaf-file-name="guest.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/mp/guest.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="27" column="10" selection-start="1211" selection-end="1211" vertical-scroll-proportion="-13.75">
+                <state line="30" column="36" selection-start="886" selection-end="886" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="frontpagev2.html" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/templates/guest/frontpagev2.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="empty.html" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/templates/layouts/guest/empty.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="111" column="0" selection-start="0" selection-end="5342" vertical-scroll-proportion="-24.75">
                   <folding>
-                    <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#3;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#p#1;n#div#1;n#div#4;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#input#0;n#p#1;n#div#1;n#div#4;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#1;n#div#5;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#p#1;n#div#2;n#div#5;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#input#0;n#p#1;n#div#2;n#div#5;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#p#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#p#1;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#p#2;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#p#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#input#0;n#p#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="commons.utils.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/k/commons.utils.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/moviepeopleapp/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="19" column="41" selection-start="664" selection-end="664" vertical-scroll-proportion="0.31284302">
+                <state line="1" column="33" selection-start="49" selection-end="49" vertical-scroll-proportion="-0.6">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="header.css" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/css/mp/header.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="76" column="17" selection-start="1522" selection-end="1522" vertical-scroll-proportion="0.0">
                   <folding>
-                    <element signature="e#0#15#0" expanded="true" />
+                    <element signature="e#2137#5922#1" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -200,6 +223,17 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="guest.py" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/moviepeopleapp/views/web/guest.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="29" column="45" selection-start="1118" selection-end="1118" vertical-scroll-proportion="0.48821548">
+                  <folding>
+                    <element signature="e#0#14#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
         </leaf>
       </split-second>
     </splitter>
@@ -212,22 +246,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/moviepeopleapp/templatetags/user.py" />
-        <option value="$PROJECT_DIR$/moviepeople/settings.py" />
-        <option value="$PROJECT_DIR$/moviepeople/urls.py" />
-        <option value="$PROJECT_DIR$/moviepeopleapp/static/js/pages/follows.js" />
-        <option value="$PROJECT_DIR$/moviepeopleapp/static/js/pages/homepage.js" />
         <option value="$PROJECT_DIR$/moviepeopleapp/static/js/pages/frontpage.js" />
         <option value="$PROJECT_DIR$/moviepeopleapp/static/js/pages/find.js" />
-        <option value="$PROJECT_DIR$/templates/layouts/user/base.html" />
         <option value="$PROJECT_DIR$/templates/user/homepage.html" />
         <option value="$PROJECT_DIR$/moviepeopleapp/static/css/mp/user.css" />
         <option value="$PROJECT_DIR$/moviepeopleapp/static/js/mp/artistsSearch.js" />
-        <option value="$PROJECT_DIR$/templates/layouts/guest/landing.html" />
         <option value="$PROJECT_DIR$/templates/guest/frontpage.html" />
         <option value="$PROJECT_DIR$/templates/user/find.html" />
         <option value="$PROJECT_DIR$/moviepeopleapp/views/web/user.py" />
         <option value="$PROJECT_DIR$/templates/user/follows.html" />
+        <option value="$PROJECT_DIR$/moviepeopleapp/static/css/mp/header.css" />
+        <option value="$PROJECT_DIR$/templates/layouts/guest/landing.html" />
+        <option value="$PROJECT_DIR$/templates/layouts/user/base.html" />
+        <option value="$PROJECT_DIR$/templates/guest/frontpagev2.html" />
+        <option value="$PROJECT_DIR$/templates/layouts/guest/empty.html" />
+        <option value="$PROJECT_DIR$/moviepeopleapp/static/js/mp/guest.js" />
+        <option value="$PROJECT_DIR$/moviepeopleapp/views/web/guest.py" />
       </list>
     </option>
   </component>
@@ -469,88 +503,6 @@
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeople" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviereminders" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeopleapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeople" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviereminders" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeopleapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeople" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviereminders" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeopleapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="k" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -602,6 +554,62 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="moviepeopleapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="moviepeople" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="moviereminders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="moviepeopleapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bootstrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="moviepeople" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="moviereminders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="moviepeople" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -634,17 +642,17 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\python\moviereminders\moviepeopleapp\static\js\k" />
+      <recent name="C:\python\moviereminders\moviepeopleapp\static\js\lib" />
+      <recent name="C:\python\moviereminders\moviepeopleapp\static\css\lib\bootstrap" />
       <recent name="C:\python\moviereminders\moviepeopleapp\static\img" />
       <recent name="C:\python\MoviePeople\moviepeopleapp\static\js\lib" />
-      <recent name="C:\python\MoviePeople\moviepeopleapp\static\js\k" />
-      <recent name="C:\python\MoviePeople\moviepeopleapp\static\css\lib" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\python\moviereminders\moviepeopleapp\static\js\lib\bootstrap" />
+      <recent name="C:\python\moviereminders\moviepeopleapp\static\css\lib\bootstrap" />
+      <recent name="C:\python\moviereminders\moviepeopleapp\static\js\lib\jquery" />
       <recent name="C:\python\moviereminders\moviepeopleapp\views\js" />
       <recent name="C:\python\moviereminders\templates\layouts\guest" />
-      <recent name="C:\python\moviereminders\templates\guest" />
-      <recent name="C:\python\moviereminders\moviepeopleapp\views\web" />
-      <recent name="C:\python\moviereminders\moviepeopleapp\views" />
     </key>
   </component>
   <component name="RunManager" selected="Django server.moviepeople">
@@ -868,12 +876,26 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/moviepeopleapp/templatetags/user.py">
+    <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/css/mp/header.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="58" selection-start="272" selection-end="272" vertical-scroll-proportion="-4.8">
+        <state line="76" column="17" selection-start="1522" selection-end="1522" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#0#27#0" expanded="true" />
+            <element signature="e#2137#5922#1" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/moviepeople/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="16" selection-start="238" selection-end="238" vertical-scroll-proportion="-5.4">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/lib/jquery/jquery.loader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -884,16 +906,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/pages/follows.js">
+    <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/css/lib/bootstrap/bootstrap-responsive-2.3.0.min.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="1" selection-start="68" selection-end="68" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/pages/frontpage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="47" selection-start="201" selection-end="201" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -905,23 +920,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/user/homepage.html">
+    <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/lib/bootstrap/bootstrap-2.3.0.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="32" selection-start="0" selection-end="342" vertical-scroll-proportion="-5.625">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/css/mp/user.css">
+    <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/k/commons.utils.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="20" selection-start="133" selection-end="133" vertical-scroll-proportion="-1.5">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layouts/user/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="74" selection-start="2121" selection-end="2121" vertical-scroll-proportion="0.32309443">
+          <folding>
+            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/guest/frontpagev2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/pages/frontpage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="47" selection-start="201" selection-end="201" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/layouts/guest/landing.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="1032" selection-end="1032" vertical-scroll-proportion="-11.25">
+        <state line="92" column="69" selection-start="0" selection-end="5492" vertical-scroll-proportion="-10.625">
           <folding>
             <element signature="n#style#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#p#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -933,30 +971,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/mp/artistsSearch.js">
+    <entry file="file://$PROJECT_DIR$/templates/layouts/guest/empty.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="29" selection-start="730" selection-end="730" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/layouts/user/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="6" selection-start="1697" selection-end="1697" vertical-scroll-proportion="-19.333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/user/find.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="10" selection-start="1657" selection-end="1657" vertical-scroll-proportion="-29.375">
+        <state line="111" column="0" selection-start="0" selection-end="5342" vertical-scroll-proportion="-24.75">
           <folding>
-            <element signature="e#642#662#0" expanded="true" />
-            <element signature="e#706#727#0" expanded="true" />
-            <element signature="e#902#929#0" expanded="true" />
-            <element signature="e#1166#1185#0" expanded="true" />
-            <element signature="e#1386#1410#0" expanded="true" />
+            <element signature="n#style#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#2;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#p#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/mp/guest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="36" selection-start="886" selection-end="886" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -980,35 +1012,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/moviepeopleapp/views/web/user.py">
+    <entry file="file://$PROJECT_DIR$/moviepeopleapp/views/web/guest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="28" selection-start="1689" selection-end="1689" vertical-scroll-proportion="-25.2">
+        <state line="29" column="45" selection-start="1118" selection-end="1118" vertical-scroll-proportion="0.48821548">
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/moviepeopleapp/views/js/user.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="27" selection-start="605" selection-end="605" vertical-scroll-proportion="-1.12">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/moviepeopleapp/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="41" selection-start="664" selection-end="664" vertical-scroll-proportion="0.31284302">
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/user/follows.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="44" selection-start="412" selection-end="412" vertical-scroll-proportion="0.23542601">
-          <folding />
         </state>
       </provider>
     </entry>

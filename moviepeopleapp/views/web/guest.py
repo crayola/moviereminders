@@ -27,7 +27,7 @@ log = logging.getLogger(__name__)
 def frontpage(request):
   if(request.user.is_anonymous()):
     log.info("frontpage hit")
-    return render(request, 'guest/frontpage.html', {})
+    return render(request, 'guest/frontpagev2.html', {})
   else:
     log.info("frontpage, user:"+str(request.user.email))
     return redirect('/home')
