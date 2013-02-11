@@ -42,7 +42,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="frontpagev2.js" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="frontpagev2.js" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/pages/frontpagev2.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="69" column="88" selection-start="2389" selection-end="2389" vertical-scroll-proportion="0.74572647">
@@ -117,10 +117,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="frontpagev2.html" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="frontpagev2.html" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/templates/guest/frontpagev2.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="33" column="20" selection-start="932" selection-end="933" vertical-scroll-proportion="0.5133333">
+                <state line="33" column="20" selection-start="932" selection-end="933" vertical-scroll-proportion="-20.086956">
                   <folding />
                 </state>
               </provider>
@@ -135,10 +135,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="empty.html" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="empty.html" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/templates/layouts/guest/empty.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="12" column="55" selection-start="877" selection-end="877" vertical-scroll-proportion="-7.304348">
+                <state line="119" column="0" selection-start="5393" selection-end="5393" vertical-scroll-proportion="0.8288889">
                   <folding>
                     <element signature="n#style#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#p#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -207,11 +207,11 @@
         <option value="C:/javascript/jquery-plugins/jquery-async/js/jquery.async.js" />
         <option value="$PROJECT_DIR$/moviepeopleapp/templatetags/artist.py" />
         <option value="$PROJECT_DIR$/moviepeopleapp/views/js/guest.py" />
-        <option value="$PROJECT_DIR$/templates/layouts/guest/empty.html" />
         <option value="$PROJECT_DIR$/moviepeopleapp/static/css/mp/mp.bootstrap.css" />
         <option value="$PROJECT_DIR$/templates/guest/frontpagev2.html" />
         <option value="$PROJECT_DIR$/moviepeopleapp/static/css/mp/frontpagev2.css" />
         <option value="$PROJECT_DIR$/moviepeopleapp/static/js/pages/frontpagev2.js" />
+        <option value="$PROJECT_DIR$/templates/layouts/guest/empty.html" />
       </list>
     </option>
   </component>
@@ -714,7 +714,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1592" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -724,7 +724,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39854318" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3278237" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.27884614" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="2" y="440" width="1168" height="430" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.27884614" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="2" y="440" width="1168" height="430" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -899,23 +899,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/layouts/guest/empty.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="55" selection-start="877" selection-end="877" vertical-scroll-proportion="-7.304348">
-          <folding>
-            <element signature="n#style#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#1;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#2;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#p#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/guest/frontpagev2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="20" selection-start="932" selection-end="933" vertical-scroll-proportion="0.5133333">
+        <state line="33" column="20" selection-start="932" selection-end="933" vertical-scroll-proportion="-20.086956">
           <folding />
         </state>
       </provider>
@@ -931,6 +917,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="69" column="88" selection-start="2389" selection-end="2389" vertical-scroll-proportion="0.74572647">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layouts/guest/empty.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="119" column="0" selection-start="5393" selection-end="5393" vertical-scroll-proportion="0.8288889">
+          <folding>
+            <element signature="n#style#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#2;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#p#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
