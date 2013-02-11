@@ -9,29 +9,51 @@
 
     <div class="front">
 
-    <div class="text-box">
-        <h1>Keep up with cinema</h1>
-        <h2>Follow your favorite artists and get fresh news about their upcoming movies</h2>
+        <div class="text-box">
+            <h1>Keep up with cinema</h1>
+            <h2>Follow your favorite artists and get fresh news about their upcoming movies</h2>
 
-        <h4>Search for an artist name or a movie</h4>
-        <input id="artist-name" class="front-input" type="text" placeholder="ex: Johnny Depp, Quentin Tarantino" class="ui-autocomplete-input" autocomplete="off">
+            <h4>Search for an artist name or a movie</h4>
+            <input id="artist-name" class="front-input" type="text" placeholder="ex: Johnny Depp, Quentin Tarantino" class="ui-autocomplete-input" autocomplete="off">
 
-    </div>
+        </div>
 
-    <div id="artist-boxes">
+        <div id="artist-boxes">
 
-        {% for artist in artists %}
-            {{ artist|artist_box }}
-        {% endfor %}
+            {% for artist in artists %}
+                {{ artist|artist_box }}
+            {% endfor %}
 
-    </div>
+        </div>
 
-    <div class="menu-top">
-        <a href="javascript:void(0)" class="link" id="login-btn">Log in</a>
-        <a href="javascript:void(0)" class="link" id="register-btn">Register</a>
-    </div>
+        <div class="menu-top">
+            <a href="javascript:void(0)" class="link" id="login-btn">Log in</a>
+        </div>
 
-    <div id="menu-box">
+        <div id="menu-box">
+        </div>
+
+        <div id="create-account-box">
+            <h1>Create an account</h1>
+            <h3>keep track of <span id="create-account-actor-names"></span></h3>
+            <hr/>
+            <div class="connect-block" id="facebook-connect-block" style="display:none;">
+                <a class="btn btn-large" id="facebook-connect" href="javascript:void(0)">
+                    <img src="{{ STATIC_URL }}img/facebook.png">
+                    One-click connect via Facebook
+                </a>
+                <p class="facebook-safe">We will not publish on your wall.</p>
+            </div>
+            <div class="connect-block" id="email-connect-block">
+                <label>Your email:</label>
+                <input name="account-email" type="email" id="create-account-email"/><a class="btn btn-large btn-primary" id="create-account-email-ok">OK</a>
+                <p id="create-account-email-error">
+                </p>
+            </div>
+            <div class="alternate-connect-block" style="display:none;">
+                <a class="alternate-connect" href="javascript:void(0)">Or create an account with your email address</a>
+            </div>
+        </div>
     </div>
 
 {% endblock %}

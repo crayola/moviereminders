@@ -113,6 +113,7 @@ def frontpageFollow(request):
         request.session['artists_front_follow'] = []
     request.session['artists_front_follow'].append(artist)
     log.info('front-following artist:'+artist.name+' id:'+str(artist.id))
+    log.info('request.session[artists_front_follow]:'+str(request.session['artists_front_follow']))
     #find a new artist
     artist_random = artists = People.objects.order_by('?')[0]
     t = Template('artist_box')
@@ -126,7 +127,7 @@ def frontpageFollow(request):
 
 #send password token
 def sendToken(request, new=False):
-    json = simplejson.loads(request.GET.get('JSON'))
+    json = simplejson.loads(request.GET.get('json'))
     email = json['email']
     log.info("Token for:"+email)
     user = User.objects.get(username=email)
@@ -156,17 +157,25 @@ def sendToken(request, new=False):
 
 def signup(request):
     #get email
-    json = simplejson.loads(request.GET.get('JSON'))
+    json = simplejson.loads(request.GET.get('json'))
     email = json['email']
     log.info("signup:"+email)
     users = User.objects.filter(username=email)
     if(len(users)>0):
+        log.info('Account already exists:'+email)
         return HttpResponse(simplejson.dumps({"already_exists":True}), mimetype="application/json")
     user = User.objects.create_user(email, email, '*')
     user.save()
     user = authenticate(username=email,password='*')
     login(request, user)
     log.info("user:"+user.email+" logged in")
+
+    #create the follows
+    log.info('request.session[artists_front_follow]:'+str(request.session['artists_front_follow']))
+    if 'artists_front_follow' in request.session:
+        for artist in request.session['artists_front_follow']:
+            log.info('saving follow'+artist.name)
+            Follow.objects.create(user=user,people=artist)
 
     sendToken(request, new=True)
 

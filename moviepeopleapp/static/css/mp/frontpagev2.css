@@ -14,6 +14,11 @@
 .front h2{
     color: black;
     font-size: 24px;
+    margin-bottom: 0;
+}
+.front h3{
+    font-size: 18px;
+    margin-top: 0;
 }
 .front h4{
     margin-top: 80px;
@@ -156,7 +161,7 @@ input.front-input{
     -ms-transition: border-color .05s linear;
     transition: border-color .05s linear;
 }
- input.error.front-input{
+input.error.front-input{
     border-color:#d24836;
 
     -webkit-transition: border-color .2s linear;
@@ -174,4 +179,67 @@ input.front-input{
 }
 input.loading.front-input .loader{
     display:block!important;
+}
+
+#create-account-box{
+    position: fixed;
+    padding:40px 12px 12px 12px;
+    right:-600px;
+    top: 0;
+    bottom: 0;
+    background: white;
+    box-shadow: 0 0 16px rgba(0,0,0,0.6);
+    width: 520px;
+    text-align: center;
+}
+
+.connect-block{
+    display:inline-block;
+    text-align: left;
+    margin-top: 48px;
+}
+
+#create-account-box label{
+    color: #999;
+}
+#facebook-connect{
+    background: #5b74a8!important;
+    background-image: -moz-linear-gradient(center top,#516795,#5b74a8);
+    background-image: -webkit-linear-gradient(center top,#516795,#5b74a8);
+    border: 1px solid transparent;
+    color: #fff!important;
+
+    text-shadow: 0 1px rgba(0,0,0,0.1);
+    position: relative;
+    padding-left: 35px;
+    font-weight: bold;
+}
+#facebook-connect img{
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+}
+.facebook-safe{
+    font-size: 10px;
+    color: #999;
+}
+.alternate-connect-block{
+    position: absolute;
+    bottom: 0;
+    left:0;
+    right: 0;
+    text-align: center;
+    padding-bottom:24px;
+}
+.alternate-connect{
+    color: #666;
+}
+#create-account-email{
+    width: 300px;
+    height: 34px;
+    margin-bottom: 0;
+    margin-right: 6px;
+}
+#create-account-email-error{
+    color:#8b0000;
 }

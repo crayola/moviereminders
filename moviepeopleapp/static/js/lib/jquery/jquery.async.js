@@ -55,7 +55,15 @@ jQuery.fn.async = function(async, options) {
 
             //construct data
             if(options.json){
-                ajaxOptions.data ='json='+encodeURIComponent(JSON.stringify(options.json));
+                ajaxOptions.data ={json:options.json};
+            }
+            if($.isFunction(options.json)){
+                var json = options.json(deferred);
+                if(!json){
+                    deferred.reject();
+                    return false;
+                }
+                ajaxOptions.data = {json:json};
             }
             if($.isFunction(options.data)){
                 ajaxOptions.data = options.data(deferred);

@@ -38,6 +38,37 @@ $k.pages.frontpagev2 = new function(){
         $('.artist-box').each(function(){
             activateArtistBox($(this));
         });
+
+        $('#create-account-email-ok').async('ajax',{
+            url:'/api/signup',
+            json:function(){
+                var $email = $('#create-account-email');
+                var email = $email.val();
+                if(email.indexOf('@') === -1){
+                    $email.tooltip({
+                        title:'Please enter your email',
+                        trigger:'manual'
+                    }).show();
+                    return false;
+                }
+                return {email:email}
+            },
+            success:function(json,deferred){
+                if(json.already_exists){
+                    var $login = $('<a href="javascript:void(0)">log in instead</a>');
+                    $login.click(function(){
+                        $('#login-modal').modal('show');
+                       $('#id_username').val($('#create-account-email').val());
+                    });
+                    $('#create-account-email-error').html('This email already exists, please ');
+                    $('#create-account-email-error').append($login);
+                    deferred.reject();
+                }
+                else{
+                    $k.utils.redirect('/home');
+                }
+            }
+        });
     }
 
     function activateArtistBox($box){
@@ -68,9 +99,7 @@ $k.pages.frontpagev2 = new function(){
         var $menu = $('#menu-box');
         if(artistFrontFolloweds.length<=0){
             var $next = $('<a class="btn btn-primary btn-large">Keep track of their work &raquo;</a>');
-            $next.click(function(){
-               alert('TODO');
-            });
+            $next.click(openCreateAccount);
             $menu.html('You follow: <span id="follow-artists"></span>');
             $menu.append($next);
         }
@@ -78,6 +107,16 @@ $k.pages.frontpagev2 = new function(){
         artistFrontFolloweds.push(artist);
         var $pic =$('<img src="'+artist.pic_url+'" class="artist-small-pic"/>');
         $artists.prepend($pic);
+    }
+
+    function openCreateAccount(){
+        var artistNames = [];
+        $.each(artistFrontFolloweds,function(i,artist){
+           artistNames.push(artist.name);
+        });
+        $('#create-account-actor-names').html(artistNames.join(', '));
+        var $create = $('#create-account-box');
+        $create.animate({right:0},200);
     }
 
 }

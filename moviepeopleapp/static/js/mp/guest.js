@@ -4,13 +4,8 @@ mp.guest = new function(){
 
         $('#login-btn').click(function() {
 
-            if (!mp.currentUser) {
-                $('#login-modal').modal('show');
-                $('.nav li').removeClass('active');
-                $(this).addClass('active');
-            } else {
+            $('#login-modal').modal('show');
 
-            }
         });
 
         $('#register-modal,#email-modal,#forgot-modal').on('hidden', function () {
@@ -29,7 +24,7 @@ mp.guest = new function(){
                 },
                 success:function(json){
                     if (json.auth) {
-                       $k.utils.redirect('/');
+                        $k.utils.redirect('/');
                     } else {
                         $('#signinerror').show();
                     }
@@ -53,7 +48,7 @@ mp.guest = new function(){
     }
 
     this.logout = function(){
-       return $k.api.POST({
+        return $k.api.POST({
             url:'/logout',
             json:{},
             success:function(json){
