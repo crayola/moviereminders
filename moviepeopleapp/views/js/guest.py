@@ -39,8 +39,6 @@ def loginAjax(request):
     return HttpResponse(simplejson.dumps(ret_json), mimetype="application/json")
 
 
-
-
 def autocomplete(request):
     #get term
     json_string = request.GET.get('JSON')
@@ -54,7 +52,7 @@ def autocomplete(request):
 
     #create response
     autocomplete = sorted(autocomplete, key=lambda k: -(k.object.importance or 0))
-    ret_json = {'peoples':[]}
+    ret_json = {'artists':[]}
     for result in autocomplete:
         people = result.object
         try:
@@ -66,9 +64,10 @@ def autocomplete(request):
             'id': people.id,
             'name': people.name,
             'profile': people.profile,
-            'follow': follow
+            'follow': follow,
+            'box':artist_box_front(people)
         }
-        ret_json['peoples'].append(people_map)
+        ret_json['artists'].append(people_map)
     return HttpResponse(simplejson.dumps(ret_json), mimetype="application/json")
 
 

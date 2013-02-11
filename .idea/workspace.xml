@@ -33,10 +33,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="frontpagev2.css" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="frontpagev2.css" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/css/mp/frontpagev2.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="74" column="12" selection-start="1133" selection-end="1133" vertical-scroll-proportion="-8.7">
+                <state line="85" column="27" selection-start="1360" selection-end="1360" vertical-scroll-proportion="0.63205415">
                   <folding />
                 </state>
               </provider>
@@ -45,7 +45,7 @@
           <file leaf-file-name="frontpagev2.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/pages/frontpagev2.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="37" column="28" selection-start="1282" selection-end="1282" vertical-scroll-proportion="0.0">
+                <state line="25" column="63" selection-start="998" selection-end="998" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -91,10 +91,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="movie.py" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="movie.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/moviepeopleapp/templatetags/movie.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="24" column="9" selection-start="795" selection-end="795" vertical-scroll-proportion="0.36882547">
+                <state line="24" column="9" selection-start="795" selection-end="795" vertical-scroll-proportion="-13.44">
                   <folding>
                     <element signature="e#0#27#0" expanded="true" />
                   </folding>
@@ -155,7 +155,7 @@
           <file leaf-file-name="guest.py" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/moviepeopleapp/views/js/guest.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="225" column="8" selection-start="8969" selection-end="9007" vertical-scroll-proportion="0.22463769">
+                <state line="56" column="30" selection-start="2147" selection-end="2147" vertical-scroll-proportion="0.62077296">
                   <folding>
                     <element signature="e#0#14#0" expanded="true" />
                   </folding>
@@ -186,7 +186,7 @@
           <file leaf-file-name="artistsSearch.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/mp/artistsSearch.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="199" column="20" selection-start="7227" selection-end="7227" vertical-scroll-proportion="-5.6">
+                <state line="13" column="53" selection-start="490" selection-end="490" vertical-scroll-proportion="-7.28">
                   <folding />
                 </state>
               </provider>
@@ -233,11 +233,7 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/templates/layouts/guest/empty.html" />
         <option value="$PROJECT_DIR$/templates/guest/frontpagev2.html" />
-        <option value="$PROJECT_DIR$/moviepeopleapp/static/css/mp/frontpagev2.css" />
-        <option value="$PROJECT_DIR$/moviepeopleapp/static/js/pages/frontpagev2.js" />
-        <option value="$PROJECT_DIR$/moviepeopleapp/views/js/guest.py" />
         <option value="$PROJECT_DIR$/moviepeopleapp/templatetags/artist.py" />
         <option value="$PROJECT_DIR$/moviepeopleapp/static/css/mp/user.css" />
         <option value="$PROJECT_DIR$/templates/user/follows.html" />
@@ -249,6 +245,10 @@
         <option value="$PROJECT_DIR$/templates/user/homepage.html" />
         <option value="$PROJECT_DIR$/moviepeopleapp/views/web/user.py" />
         <option value="$PROJECT_DIR$/moviepeopleapp/templatetags/movie.py" />
+        <option value="$PROJECT_DIR$/moviepeopleapp/static/js/mp/artistsSearch.js" />
+        <option value="$PROJECT_DIR$/moviepeopleapp/views/js/guest.py" />
+        <option value="$PROJECT_DIR$/moviepeopleapp/static/js/pages/frontpagev2.js" />
+        <option value="$PROJECT_DIR$/moviepeopleapp/static/css/mp/frontpagev2.css" />
       </list>
     </option>
   </component>
@@ -803,7 +803,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1592" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -814,7 +814,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39854318" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3278237" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.27884614" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="2" y="440" width="1168" height="430" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.27884614" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="2" y="440" width="1168" height="430" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -879,22 +879,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/pages/frontpagev2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="28" selection-start="1282" selection-end="1282" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/moviepeople/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="75" selection-start="1858" selection-end="1858" vertical-scroll-proportion="-18.48">
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/moviepeopleapp/views/web/guest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="5" selection-start="1107" selection-end="1150" vertical-scroll-proportion="0.15367728">
@@ -962,13 +946,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/mp/artistsSearch.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="199" column="20" selection-start="7227" selection-end="7227" vertical-scroll-proportion="-5.6">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/moviepeopleapp/views/js/user.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="35" column="39" selection-start="1226" selection-end="1226" vertical-scroll-proportion="-13.28">
@@ -985,15 +962,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/moviepeopleapp/views/js/guest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="225" column="8" selection-start="8969" selection-end="9007" vertical-scroll-proportion="0.22463769">
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/moviepeopleapp/views/web/user.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="36" column="50" selection-start="1627" selection-end="1627" vertical-scroll-proportion="-20.16">
@@ -1005,10 +973,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/moviepeopleapp/templatetags/movie.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="9" selection-start="795" selection-end="795" vertical-scroll-proportion="0.36882547">
+        <state line="24" column="9" selection-start="795" selection-end="795" vertical-scroll-proportion="-13.44">
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/mp/artistsSearch.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="53" selection-start="490" selection-end="490" vertical-scroll-proportion="-7.28">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/moviepeopleapp/views/js/guest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="30" selection-start="2147" selection-end="2147" vertical-scroll-proportion="0.62077296">
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/pages/frontpagev2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="63" selection-start="998" selection-end="998" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/css/mp/frontpagev2.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="85" column="27" selection-start="1360" selection-end="1360" vertical-scroll-proportion="0.63205415">
+          <folding />
         </state>
       </provider>
     </entry>

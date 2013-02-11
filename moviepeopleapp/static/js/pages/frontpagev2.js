@@ -3,6 +3,8 @@ $k.pages.frontpagev2 = new function(){
     var artistFrontFolloweds = [];
 
     this.init = function(){
+
+        var $artists = $('#artist-boxes');
         var $input = $('#artist-name');
         //init autocomplete input for people name
         $input.autocomplete({
@@ -14,13 +16,16 @@ $k.pages.frontpagev2 = new function(){
                     url:'/api/people/autocomplete',
                     json:{term:name},
                     success:function(json){
-                        response( $.map( json.peoples, function( people ) {
-                            return {
-                                label: people.name,
-                                value: people.name,
-                                people: people
-                            }
-                        }));
+                        $artists.html('');
+                        $.each(json.artists,function(i,artist){
+                            var $box = $(artist.box);
+                            activateArtistBox($box);
+                            $artists.append($box);
+                        });
+                        if(json.artists.length<=0){
+                            $artists.html('<div>No result</div>');
+                        }
+                        response([]);
                     },
                     error:function(){
                         $input.addClass('error');
@@ -106,6 +111,7 @@ $k.pages.frontpagev2 = new function(){
         var $artists = $('#follow-artists');
         artistFrontFolloweds.push(artist);
         var $pic =$('<img src="'+artist.pic_url+'" class="artist-small-pic"/>');
+        $pic.tooltip({title:artist.name});
         $artists.prepend($pic);
     }
 

@@ -11,7 +11,7 @@ mp.artistSearch = new function(){
                     url:'/api/people/autocomplete',
                     json:{term:name},
                     success:function(json){
-                        response( $.map( json.peoples, function( people ) {
+                        response( $.map( json.artists, function( people ) {
                             return {
                                 label: people.name,
                                 value: people.name,

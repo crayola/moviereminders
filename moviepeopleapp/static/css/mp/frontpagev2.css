@@ -1,3 +1,6 @@
+html{
+    background:  #e0e0e0;
+}
 .front body{
     background: #e0e0e0;
 }
@@ -73,12 +76,14 @@
 }
 
 #artist-boxes{
-    position: fixed;
     top:0;bottom: 0;left: 0;right: 0;
     padding: 48px 48px 48px 540px;
     z-index: 0;
     letter-spacing: -.31em;
     background: #e0e0e0;
+}
+#artist-boxes>div{
+    letter-spacing: normal;
 }
 .artist-box-front{
     display: inline-block;
@@ -86,7 +91,6 @@
     height: 330px;
     margin-right: 24px;
     margin-bottom: 24px;
-    letter-spacing: normal;
     vertical-align: top;
     text-align: center;
     background: #e0e0e0;
