@@ -61,10 +61,11 @@ html{
     position: fixed;
     bottom: 0;
     right: 0;
-    padding: 6px;
+    padding: 20px;
     height: 44px;
     line-height: 44px;
-    background: #e0e0e0;
+    background: white;
+    box-shadow: 0 0 2px rgba(0,0,0,0.2);
 }
 #follow-artists{
     margin-right: 12px;
