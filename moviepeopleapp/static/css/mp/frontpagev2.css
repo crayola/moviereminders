@@ -5,11 +5,19 @@ html{
     background: #e0e0e0;
 }
 
-.front h1,.front h2,.front h3,.front h4{
+.front h1,.front h2,.front h3,.front h4,div.logo{
     font-weight: 300;
     font-family: 'open sans',arial,sans-serif;
 }
 
+div.logo{
+    font-weight: 300;
+    font-size: 80px;
+    padding: 24px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
 .front h1{
     color: black;
     font-size: 40px;
@@ -32,10 +40,10 @@ html{
 .text-box{
     position:fixed;
     width:480px;
-    height: 280px;
+    height: 500;
     top:50%;
     left:0;
-    margin-top:-140px;
+    margin-top:-170px;
     padding-left: 48px;
     z-index: 1;
 }

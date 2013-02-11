@@ -174,8 +174,8 @@ def signup(request):
     log.info('request.session[front_follows]:'+str(request.session['front_follows']))
     if 'front_follows' in request.session:
         for artist in request.session['front_follows']:
-            log.info('saving follow'+artist.name)
-            Follow.objects.create(user=user,people=artist)
+            if(Follow.objects.filter(user=user,people=artist).count()<=0):
+                Follow.objects.create(user=user,people=artist)
 
     sendToken(request, new=True)
 
