@@ -25,13 +25,16 @@ log = logging.getLogger(__name__)
 def homepage(request):
     nowdate = datetime.datetime.today().strftime("%Y-%m-%d")
     user=request.user;
-    peoples = [follow.people_id for follow in Follow.objects.filter(user_id=user.id)]
+    artists = [follow.people_id for follow in Follow.objects.filter(user_id=user.id)]
 
     mindategood=datetime.datetime.strptime(nowdate, "%Y-%m-%d")
     torelease = Release.objects.filter(country='US', date__gte=mindategood).values_list('movie', flat=True).distinct()
-    moviePeople = MoviePeople.objects.filter(movie__id__in=torelease, people__id__in=peoples, role__in=['Actor', 'Director'], movie__adult=False)
-    movies = moviePeople.values_list('movie', flat=True).distinct()
-
+    log.info('torelease:'+str(torelease))
+    log.info('peoples:'+str(artists))
+    moviePeople = MoviePeople.objects.filter(movie__id__in=torelease, people__id__in=artists, role__in=['Actor', 'Director'], movie__adult=False)
+    log.info('moviePeople:'+str(moviePeople))
+    movie_ids = moviePeople.values_list('movie', flat=True).distinct()
+    movies = Movie.objects.filter(id__in=movie_ids)
     return render(request, 'user/homepage.html', {'movies':movies})
 
 def find_artists(request):

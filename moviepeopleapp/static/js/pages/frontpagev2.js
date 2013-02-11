@@ -35,7 +35,7 @@ $k.pages.frontpagev2 = new function(){
             }
         });
 
-        $('.artist-box').each(function(){
+        $('.artist-box-front').each(function(){
             activateArtistBox($(this));
         });
 

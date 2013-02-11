@@ -1,5 +1,7 @@
 {% extends "layouts/user/base.html" %}
 
+{% load movie    %}
+
 {% block title %}Whispers{% endblock %}
 {% block jspage %}home{% endblock %}
 
@@ -10,6 +12,10 @@
             <div class="span12">
 
                 <h1>{{ movies|length }} upcoming</h1>
+
+                {%  for movie in movies %}
+                    {{ movie|movie_box_home }}
+                {% endfor %}
 
             </div>
         </div>

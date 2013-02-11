@@ -40,11 +40,11 @@ def yourwhispers(request):
 def unfollow(request):
     user=request.user;
 
-    json_string = request.GET.get('JSON')
+    json_string = request.GET.get('json')
     json = simplejson.loads(json_string)
-    followee = json['followee']
+    artist_id = json['artist_id']
 
-    people = Follow.objects.get(user_id=user.id, people_id=followee)
+    people = Follow.objects.get(user_id=user.id, people_id=artist_id)
     people.delete()
     return HttpResponse(simplejson.dumps({}), mimetype="application/json")
 

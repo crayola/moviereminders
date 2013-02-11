@@ -1,0 +1,48 @@
+
+.movie-box{
+    padding-left:185px;
+    margin-bottom:12px;
+    /*width: 100%; */ /* buggy in firefox if not commented out*/
+    border-box: b;
+    box-sizing: border-box;
+    position: relative;
+    border: 1px solid #CCC;
+    min-height: 278px;
+    font-family: 'open sans',arial,sans-serif;
+}
+.movie-box > img{
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 185px;
+    height: 278px;
+}
+.movie-box h1.title{
+    line-height:1;
+    font-size: 28px;
+    font-weight: 400;
+    padding-left:10px;
+}
+.movie-box-title{
+    position:relative;
+}
+.movie-box-title hr{
+    border-top: 1px solid #DDD;
+}
+.movie-box-title .date{
+    font-size: 14px;
+    border: 1px solid #DDD;
+    border-right: 0px;
+    position: absolute;
+    padding: 5px;
+    background:#F4F4FF;
+    bottom: -20px;
+    right: 0px;
+    color: #555;
+}
+.movie-box .is{
+    position: absolute;
+    font-size: 14px;
+    margin-left: 10px;
+    margin-top: 25px;
+}

@@ -46,3 +46,18 @@ input#artist-name .loader{
 input#artist-name.loading .loader{
     display:block!important;
 }
+
+.artist-box{
+    display: inline-block;
+    margin-right:12px;
+    margin-bottom:12px;
+
+}
+.artist-box img{
+    width: 170px;
+    height: 220px;
+    float: left;
+}
+.artist-box .follow-btn-box{
+    text-align: right;
+}

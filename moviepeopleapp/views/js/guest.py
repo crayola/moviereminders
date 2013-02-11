@@ -19,7 +19,7 @@ import moviepeople.settings
 from moviepeopleapp.models import People, MoviePeople, Trailer, Release, Movie, Follow, CreateAccountToken
 from urllib2 import urlopen
 from django.views.decorators.csrf import ensure_csrf_cookie
-from moviepeopleapp.templatetags.artist import artist_box, artist_pic_url
+from moviepeopleapp.templatetags.artist import artist_box_front, artist_pic_url
 
 
 log = logging.getLogger(__name__)
@@ -109,15 +109,16 @@ def frontpageFollow(request):
     artistId = json['artist_id']
     artist = People.objects.get(pk=artistId)
     #save in session
-    if('artists_front_follow' not in request.session):
-        request.session['artists_front_follow'] = []
-    request.session['artists_front_follow'].append(artist)
+    if('front_follows' not in request.session):
+        request.session['front_follows'] = []
+    request.session['front_follows'].append(artist)
+    request.session.save()
     log.info('front-following artist:'+artist.name+' id:'+str(artist.id))
-    log.info('request.session[artists_front_follow]:'+str(request.session['artists_front_follow']))
+    log.info('request.session[front_follows]:'+str(request.session['front_follows']))
     #find a new artist
     artist_random = artists = People.objects.order_by('?')[0]
     t = Template('artist_box')
-    box = artist_box(artist_random)
+    box = artist_box_front(artist_random)
     #create map of artist
     artistMap = {'id':artist.id,'name':artist.name,'pic_url':artist_pic_url(artist)}
     return HttpResponse(simplejson.dumps({
@@ -171,9 +172,9 @@ def signup(request):
     log.info("user:"+user.email+" logged in")
 
     #create the follows
-    log.info('request.session[artists_front_follow]:'+str(request.session['artists_front_follow']))
-    if 'artists_front_follow' in request.session:
-        for artist in request.session['artists_front_follow']:
+    log.info('request.session[front_follows]:'+str(request.session['front_follows']))
+    if 'front_follows' in request.session:
+        for artist in request.session['front_follows']:
             log.info('saving follow'+artist.name)
             Follow.objects.create(user=user,people=artist)
 

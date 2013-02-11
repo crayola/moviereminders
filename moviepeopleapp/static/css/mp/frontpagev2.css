@@ -80,7 +80,7 @@
     letter-spacing: -.31em;
     background: #e0e0e0;
 }
-.artist-box{
+.artist-box-front{
     display: inline-block;
     width: 180px;
     height: 330px;
@@ -91,17 +91,17 @@
     text-align: center;
     background: #e0e0e0;
 }
-.artist-box img{
+.artist-box-front img{
     width:180px;
     height: 258px;
 
 }
-.artist-box .follow-btn-box{
+.artist-box-front .follow-btn-box{
     text-align: center;
     margin-top:12px;
 }
 
-.artist-box .follow-btn-box .btn-follow {
+.artist-box-front .follow-btn-box .btn-follow {
     background-color: hsl(169, 3%, 87%) !important;
     background-repeat: repeat-x;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e7e8e8", endColorstr="#dcdede");
@@ -127,7 +127,7 @@
     display: block;
 }
 
-.artist-box .follow-btn-box .btn-follow:hover {
+.artist-box-front .follow-btn-box .btn-follow:hover {
     background-color: hsl(214, 91%, 80%) !important;
     background-repeat: repeat-x;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#c4dcfc", endColorstr="#9dc5fa");
