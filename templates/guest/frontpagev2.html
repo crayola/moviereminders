@@ -15,31 +15,32 @@
 
 
             <h1>Keep up with cinema</h1>
-            <h2>Follow your favorite artists and get fresh news about their upcoming movies</h2>
+            <h2>Follow your favorite artists and receive emails about their upcoming movies</h2>
 
             <h4>Search for an artist name or a movie</h4>
             <input id="artist-name" class="front-input" type="text" placeholder="ex: Johnny Depp, Quentin Tarantino" class="ui-autocomplete-input" autocomplete="off">
 
         </div>
 
-        <div id="artist-boxes">
-
-            {% for artist in artists %}
-                {{ artist|artist_box_front }}
-            {% endfor %}
-
+        <div class="artist-boxes-outer-wrapper">
+            <div class="artist-boxes-inner-wrapper">
+                <div id="menu-box">
+                </div>
+                <div id="artist-boxes">
+                    {% for artist in artists %}
+                        {{ artist|artist_box_front }}
+                    {% endfor %}
+                </div>
+            </div>
         </div>
 
         <div class="menu-top">
             <a href="javascript:void(0)" class="link" id="login-btn">Log in</a>
         </div>
 
-        <div id="menu-box">
-        </div>
-
         <div id="create-account-box">
             <h1>Create an account</h1>
-            <h3>keep track of <span id="create-account-actor-names"></span></h3>
+            <h3>follow <span id="create-account-actor-names"></span></h3>
             <hr/>
             <div class="connect-block" id="facebook-connect-block" style="display:none;">
                 <a class="btn btn-large" id="facebook-connect" href="javascript:void(0)">

@@ -63,7 +63,7 @@ jQuery.fn.async = function(async, options) {
                     deferred.reject();
                     return false;
                 }
-                ajaxOptions.data = {json:json};
+                ajaxOptions.data = $.extend(ajaxOptions.data,{json:json});
             }
             if($.isFunction(options.data)){
                 ajaxOptions.data = options.data(deferred);
@@ -206,7 +206,6 @@ jQuery.fn.async = function(async, options) {
                             $this.loader('error');
                         });
                 }
-                1
             }
         }
     }

@@ -66,14 +66,10 @@ div.logo{
     color:#000000;
 }
 #menu-box{
-    position: fixed;
-    bottom: 0;
-    right: 0;
     padding: 20px;
     height: 44px;
     line-height: 44px;
-    background: white;
-    box-shadow: 0 0 2px rgba(0,0,0,0.2);
+    text-align: right;
 }
 #follow-artists{
     margin-right: 12px;
@@ -84,12 +80,23 @@ div.logo{
     margin-right: 6px;
 }
 
-#artist-boxes{
-    top:0;bottom: 0;left: 0;right: 0;
-    padding: 48px 48px 48px 540px;
-    z-index: 0;
-    letter-spacing: -.31em;
+.artist-boxes-outer-wrapper{
+    padding: 0 48px 48px 588px;
     background: #e0e0e0;
+    text-align: center;
+}
+.artist-boxes-inner-wrapper{
+    width:816px;
+    display: inline-block;
+}
+@media (max-width: 1450px){
+    .artist-boxes-inner-wrapper{
+        width:612px;
+    }
+}
+#artist-boxes{
+    letter-spacing: -.31em;
+    text-align: left;
 }
 #artist-boxes>div{
     letter-spacing: normal;

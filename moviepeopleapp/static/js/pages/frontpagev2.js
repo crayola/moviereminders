@@ -103,7 +103,7 @@ $k.pages.frontpagev2 = new function(){
     function addArtistInMenuBox(artist){
         var $menu = $('#menu-box');
         if(artistFrontFolloweds.length<=0){
-            var $next = $('<a class="btn btn-primary btn-large">Keep track of their work &raquo;</a>');
+            var $next = $('<a class="btn btn-primary btn-large">Save your choices &raquo;</a>');
             $next.click(openCreateAccount);
             $menu.html('You follow: <span id="follow-artists"></span>');
             $menu.append($next);
