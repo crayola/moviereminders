@@ -28,14 +28,38 @@ def homepage(request):
     artists = [follow.people_id for follow in Follow.objects.filter(user_id=user.id)]
 
     mindategood=datetime.datetime.strptime(nowdate, "%Y-%m-%d")
-    torelease = Release.objects.filter(country='US', date__gte=mindategood).values_list('movie', flat=True).distinct()
+    releases = Release.objects.filter(country='US', date__gte=mindategood)
+    torelease = releases.values_list('movie', flat=True).distinct()
     log.info('torelease:'+str(torelease))
     log.info('peoples:'+str(artists))
-    moviePeople = MoviePeople.objects.filter(movie__id__in=torelease, people__id__in=artists, role__in=['Actor', 'Director'], movie__adult=False)
-    log.info('moviePeople:'+str(moviePeople))
-    movie_ids = moviePeople.values_list('movie', flat=True).distinct()
+    movie_artists = MoviePeople.objects.filter(movie__id__in=torelease, people__id__in=artists, role__in=['Actor', 'Director'], movie__adult=False)
+    log.info('moviePeople:'+str(movie_artists))
+    movie_ids = movie_artists.values_list('movie', flat=True).distinct()
     movies = Movie.objects.filter(id__in=movie_ids)
-    return render(request, 'user/homepage.html', {'movies':movies})
+
+    movie_map_array = []
+    for movie in movies:
+
+        movie_map = {
+            'movie':movie,
+            'artists_follow':[],
+            'artists_nofollow':[],
+            'release_date':None
+        }
+
+        #find artists followed
+        for artist_follow in movie_artists:
+            if artist_follow.movie_id == movie.id:
+                movie_map['artists_follow'].append(artist_follow.people)
+
+        #find release
+        for release in releases:
+            if release.movie_id == movie.id:
+                movie_map['release_date']= release.date
+        movie_map_array.append(movie_map)
+
+    log.info('movie_map_array:'+str(movie_map_array))
+    return render(request, 'user/homepage.html', {'movies':movies,'movie_map_array':movie_map_array})
 
 def find_artists(request):
     user=request.user

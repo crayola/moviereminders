@@ -29,6 +29,11 @@
 .movie-box-title hr{
     border-top: 1px solid #DDD;
 }
+.movie-box-title .release{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 .movie-box-title .date{
     font-size: 14px;
     border: 1px solid #DDD;
@@ -45,4 +50,11 @@
     font-size: 14px;
     margin-left: 10px;
     margin-top: 25px;
+}
+.movie-box .artist-pic{
+    display: inline-block;
+}
+.movie-box .artist-pic>img{
+    width: 145px;
+    height: 180px;
 }

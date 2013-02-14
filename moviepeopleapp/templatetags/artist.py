@@ -28,9 +28,9 @@ def artist_box(artist,follow):
 
 def artist_pic_url(artist):
     if(artist.profile != ''):
-        return 'http://cf2.imgobject.com/t/p/w342'+artist.profile
+        return mark_safe('http://cf2.imgobject.com/t/p/w342'+artist.profile)
     else:
-        return STATIC_URL+'img/question_mark.png'
+        return mark_safe(STATIC_URL+'img/question_mark.png')
 
 register.filter('artist_box', artist_box)
 register.filter('artist_box_front', artist_box_front)
