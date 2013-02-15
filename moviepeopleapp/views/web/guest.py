@@ -18,9 +18,8 @@ import moviepeople.settings
 from moviepeopleapp.models import People, MoviePeople, Trailer, Release, Movie, Follow, CreateAccountToken
 from urllib2 import urlopen
 from django.views.decorators.csrf import ensure_csrf_cookie
-from jinja2 import Environment, PackageLoader
 
-env = Environment(loader=PackageLoader('moviepeopleapp', 'templates'))
+#env = Environment(loader=PackageLoader('moviepeopleapp', 'templates'))
 log = logging.getLogger(__name__)
 
 @ensure_csrf_cookie
