@@ -8,6 +8,7 @@ from django.core.mail import send_mail, EmailMultiAlternatives
 from django.db.models import Q
 import datetime
 from django.template import Template
+import collections
 
 from django.utils import simplejson
 from django.http import HttpResponse, HttpResponseRedirect
@@ -101,6 +102,19 @@ def manualsearch(request):
     }
     return HttpResponse(simplejson.dumps(ret_json), mimetype="application/json")
 
+def nextPeople(frontfollows, fpartists):
+  mindategood = datetime.datetime.strptime("2000-01-01", "%Y-%m-%d") # we want young stuff
+  recentmovies = Release.objects.filter(country='US', date__gte=mindategood).values_list('movie', flat=True).distinct() # TODO: this is inefficient, same query runs each time someone follows a person.
+  movies=MoviePeople.objects.filter(movie__id__in=recentmovies, people__in=frontfollows).values_list('movie', flat=True)
+  actors=MoviePeople.objects.filter((Q(order__lt=3) & Q(role='Actor')) | Q(role='Director'), movie__in=movies, people__importance__gte=20).exclude(people__in= fpartists + frontfollows).values_list('people', 'people__name', 'movie__name')
+  actdict = collections.defaultdict(int)
+  for p, name, m in actors:
+    actdict[p] += 1
+  ret = People.objects.get(id=sorted(actdict, key=actdict.get, reverse=True)[0])
+  print(ret)
+  print(fpartists)
+  return ret
+
 #follow an artist on the frontpage
 #store in session, will be lost if person does not create an account
 def frontpageFollow(request):
@@ -110,12 +124,18 @@ def frontpageFollow(request):
     #save in session
     if('front_follows' not in request.session):
         request.session['front_follows'] = []
-    request.session['front_follows'].append(artist)
+    frontfollows = request.session['front_follows']
+    frontfollows.append(artist)
     request.session.save()
     log.info('front-following artist:'+artist.name+' id:'+str(artist.id))
-    log.info('request.session[front_follows]:'+str(request.session['front_follows']))
+    log.info('request.session[front_follows]:'+str(frontfollows))
     #find a new artist
-    artist_random = artists = People.objects.order_by('?')[0]
+    #artist_random = artists = People.objects.order_by('?')[0]
+    fpartists = request.session['fpartists']
+    artist_random = nextPeople(frontfollows, fpartists)
+    log.info('random is ' + artist_random.name)
+    fpartists.append(artist_random)
+    request.session.save()
     t = Template('artist_box')
     box = artist_box_front(artist_random)
     #create map of artist

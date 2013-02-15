@@ -463,13 +463,16 @@ def writeMovie(movie_main, movie_cast, movie_release, movie_trailer, date):
     return dbmovie
 
 
+
 def buildImportance(a, b):
+  mindategood = datetime.datetime.strptime("2000-01-01", "%Y-%m-%d") # we want young stuff
+  recentmovies = Release.objects.filter(country='US', date__gte=mindategood).values_list('movie', flat=True).distinct() # TODO: this is inefficient, same query runs each time someone follows a person.
   for i in People.objects.filter(id__gte=a, id__lte=b):
     if i.id % 100 == 0: 
       print(i.id)
     i.importance=sum(
-            [6-(min(6, x.order)) for x in MoviePeople.objects.filter(people=i, role='Actor', movie__adult=False, movie__popularity__gt=1, order__lte=5)] + 
-            [6 for x in MoviePeople.objects.filter(people=i, role='Director', movie__adult=False, movie__popularity__gt=1)]
+            [6-(min(6, x.order)) for x in MoviePeople.objects.filter(people=i, role='Actor', movie__id__in=recentmovies, movie__adult=False, movie__popularity__gt=1, order__lte=5)] + 
+            [6 for x in MoviePeople.objects.filter(people=i, movie__id__in=recentmovies, role='Director', movie__adult=False, movie__popularity__gt=1)]
     )
     i.save()
   return 1
@@ -517,3 +520,10 @@ def updateRTscores(popmin, popmax):
 
 
 #[parseMovie(x) for x in range(1000, 5000)]
+
+
+#def nextActor(actors):
+#  movies=MoviePeople.objects.filter(people__in=actors).(movies) #TODO
+#  actors=MoviePeople.objects.filter(movie__in=movies, order__lte=5).(top 5) #TODO
+#  count
+#  return max count

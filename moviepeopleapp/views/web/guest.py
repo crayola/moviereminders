@@ -29,7 +29,11 @@ def frontpage(request):
     log.info("frontpage hit")
     #take 8 artists randomly
     #artists = People.objects.order_by('?')[0:8]
-    artists = People.objects.exclude(importance__isnull=True).order_by('-importance')[0:8]
+    #artists = People.objects.exclude(importance__isnull=True).order_by('-importance')[0:8]
+    artists = People.objects.filter(name__in=['Quentin Tarantino', 'Johnny Depp', 'Emma Stone', 'Joss Whedon', 'Danny Boyle', 'Ryan Gosling', 'Ellen Page', 'Daniel Radcliffe'])
+    if('fpartists' not in request.session):
+        request.session['fpartists'] = []
+    request.session['fpartists'] += artists
     return render(request, 'guest/frontpagev2.html', {'artists':artists})
   else:
     log.info("frontpage, user:"+str(request.user.email))
