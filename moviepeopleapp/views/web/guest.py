@@ -30,7 +30,7 @@ def frontpage(request):
     #take 8 artists randomly
     #artists = People.objects.order_by('?')[0:8]
     #artists = People.objects.exclude(importance__isnull=True).order_by('-importance')[0:8]
-    artists = People.objects.filter(name__in=['Quentin Tarantino', 'Johnny Depp', 'Emma Stone', 'Joss Whedon', 'Danny Boyle', 'Ryan Gosling', 'Ellen Page', 'Daniel Radcliffe'])
+    artists = People.objects.filter(name__in=['Quentin Tarantino', 'Johnny Depp', 'Emma Stone', 'Scarlett Johanson', 'Danny Boyle', 'Ryan Gosling', 'Bruce Willis', 'Emma Watson'])
     if('fpartists' not in request.session):
         request.session['fpartists'] = []
     request.session['fpartists'] += artists
