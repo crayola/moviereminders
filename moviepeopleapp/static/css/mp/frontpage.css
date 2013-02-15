@@ -190,13 +190,7 @@ margin-top:-50px;
     line-height: 80px;
 }
 
-.ui-autocomplete-loading {
-    background-image:url('../../img/loading.gif');
-    background-repeat:no-repeat;
-    background-position:right center;
-    background-origin: content;
-    background-size: 24px;
-}
+
 
 
 

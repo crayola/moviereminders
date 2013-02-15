@@ -200,6 +200,14 @@ input.error.front-input{
 input.loading.front-input .loader{
     display:block!important;
 }
+.ui-autocomplete-loading {
+    background-image:url('../../img/loading.gif');
+    background-repeat:no-repeat;
+    background-position:right center;
+    background-origin: content;
+    background-size: 24px;
+    background-position-x: 99%;
+}
 
 #create-account-box{
     position: fixed;
