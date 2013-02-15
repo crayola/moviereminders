@@ -10,9 +10,11 @@
     <link href="{{ STATIC_URL }}css/lib/bootstrap/bootstrap-2.3.0.min.css" type="text/css" rel="stylesheet" media="screen, projection" />
     <link href="{{ STATIC_URL }}css/lib/jquery/jquery-ui-1.9.0.custom.min.css" type="text/css" rel="stylesheet" media="screen, projection" />
     <link href="{{ STATIC_URL }}css/lib/jquery/jquery.loader.css" type="text/css" rel="stylesheet" media="screen, projection" />
+    <link href="{{ STATIC_URL }}css/commons/commons.css" type="text/css" rel="stylesheet" media="screen, projection" />
     <link href="{{ STATIC_URL }}css/mp/mp.bootstrap.css" type="text/css" rel="stylesheet" media="screen, projection" />
     <link href="{{ STATIC_URL }}css/mp/frontpagev2.css" type="text/css" rel="stylesheet" media="screen, projection" />
     <link href="{{ STATIC_URL }}css/mp/header.css" type="text/css" rel="stylesheet" media="screen, projection" />
+    <link href="{{ STATIC_URL }}css/mp/modal.css" type="text/css" rel="stylesheet" media="screen, projection" />
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
 </head>
 
@@ -28,18 +30,34 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h3>Log in</h3>
     </div>
+    <div class="modal-alert error" id="signinerror" style="display:none">Sorry, wrong username or password.</div>
+    <div class="modal-alert success" id="signedin" style="display:none">You are now signed in as <span id='username'></span>.</div>
+    <div class="modal-alert info" id="logout" style="display:none">You are now logged out.</div>
+
     <form style="margin:0">
         <div class="modal-body">
 
-            <p id="signinerror" style="display:none">Sorry, wrong username or password.</p>
-            <p id="signedin" style="display:none">You are now signed in as <span id='username'></span>.</p>
-            <p id="logout" style="display:none">You are now logged out.</p>
-            <p><label for="id_username">Your email:</label> <input id="id_username" type="text" name="username" maxlength="30"></p>
-            <p><label for="id_password">Password:</label> <input type="password" name="password" id="id_password"></p>
-            <a id="forgot-password"> Forgot password? </a>
-            <br>
-            <br>
 
+
+            <br/>
+            <br/>
+
+            <div class="center">
+                <div class="input-out-wrapper">
+                    <div class="input-wrapper">
+                        <input id="id_username" type="email" name="username">
+                        <label for="id_username">Your email:</label>
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="password" name="password" id="id_password">
+                        <label for="id_password">Password:</label>
+
+                    </div>
+                    <br/>
+                    <br/>
+                    <p class="note"><a id="forgot-password"> Forgot password? </a></p>
+                </div>
+            </div>
 
         </div>
         <div class="modal-footer">
@@ -49,24 +67,6 @@
     </form>
 </div>
 
-{# REGISTER MODAL #}
-<div id="register-modal" class="modal hide fade">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>Register to Whispers today!</h3>
-    </div>
-    <div class="modal-body">
-        <p> Please give us your email adress.</p>
-        <p style="text-align: center;padding-top: 24px; padding-bottom: 12px;">
-            <label></label>
-            <input id="register-email" type="email" placeholder="Your email" style="width:325px">
-        </p>
-    </div>
-    <div class="modal-footer">
-        <a data-dismiss="modal" class="btn">Cancel</a>
-        <a id="register-email-ok" class="btn btn-primary">OK</a>
-    </div>
-</div>
 
 {# ERROR MODAL #}
 <div id="hidden-modal" class="modal hide fade">
@@ -120,5 +120,6 @@
 
 </body>
 </html>
+
 
 
