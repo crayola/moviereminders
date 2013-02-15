@@ -50,6 +50,8 @@ $k.pages.frontpagev2 = new function(){
             activateArtistBox($(this));
         });
 
+        $('#create-account-box .close').click(closeCreateAccount);
+
         $('#create-account-email-ok').async('ajax',{
             url:'/api/signup',
             json:function(){
@@ -123,6 +125,7 @@ $k.pages.frontpagev2 = new function(){
             $next.click(openCreateAccount);
             $menu.html('You follow: <span id="follow-artists"></span>');
             $menu.append($next);
+            $menu.animate({opacity:1});
         }
         var $artists = $('#follow-artists');
         artistFrontFolloweds.push(artist);
@@ -139,6 +142,11 @@ $k.pages.frontpagev2 = new function(){
         $('#create-account-actor-names').html(artistNames.join(', '));
         var $create = $('#create-account-box');
         $create.animate({right:0},200);
+    }
+
+    function closeCreateAccount(){
+        var $create = $('#create-account-box');
+        $create.animate({right:-$create.outerWidth()-20},200);
     }
 
 }

@@ -70,6 +70,7 @@ div.logo{
     height: 44px;
     line-height: 44px;
     text-align: right;
+    opacity: 0;
 }
 #follow-artists{
     margin-right: 12px;
@@ -219,6 +220,11 @@ input.loading.front-input .loader{
     box-shadow: 0 0 16px rgba(0,0,0,0.6);
     width: 520px;
     text-align: center;
+}
+#create-account-box .close{
+    position: absolute;
+    left: 12px;
+    top: 12px;
 }
 
 .connect-block{
