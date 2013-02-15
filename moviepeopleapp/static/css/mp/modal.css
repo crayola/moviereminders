@@ -79,7 +79,7 @@
     transition: color .2s linear;
 }
 .input-wrapper input:focus + label{
-    color:#ccc;
+    color:#bbb;
 
     -webkit-transition: color .05s linear;
     -moz-transition: color .05s linear;
