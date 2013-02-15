@@ -8,20 +8,25 @@ $k.pages.frontpagev2 = new function(){
         var $input = $('#artist-name');
         //init autocomplete input for people name
         $input.autocomplete({
-            minLength:3,
+            minLength:0,
             source:function(request, response){
                 $input.removeClass('error');
                 var name = request.term;
+                if(name.length==0){
+                    //display default set
+                    displayArtists(mp_artists);
+                    response([]);
+                }
+                else if(name.length<3){
+                    //do nothing
+                    response([]);
+                }
+                else{
                 $k.api.GET({
                     url:'/api/people/autocomplete',
                     json:{term:name},
                     success:function(json){
-                        $artists.html('');
-                        $.each(json.artists,function(i,artist){
-                            var $box = $(artist.box);
-                            activateArtistBox($box);
-                            $artists.append($box);
-                        });
+                        displayArtists(json.artists);
                         if(json.artists.length<=0){
                             $artists.html('<div>No result</div>');
                         }
@@ -32,6 +37,7 @@ $k.pages.frontpagev2 = new function(){
                         response([]);
                     }
                 });
+                }
             },
             select: function( event, ui ) {
                 if(ui.item) {
@@ -73,6 +79,16 @@ $k.pages.frontpagev2 = new function(){
                     $k.utils.redirect('/home');
                 }
             }
+        });
+    };
+
+    function displayArtists(artists){
+        var $artists = $('#artist-boxes');
+        $artists.html('');
+        $.each(artists,function(i,artist){
+            var $box = $(artist.box);
+            activateArtistBox($box);
+            $artists.append($box);
         });
     }
 

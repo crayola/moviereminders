@@ -61,5 +61,16 @@
         </div>
     </div>
 
+    <script>
+    var mp_artists=[
+        {% for artist in artists %}
+            {
+            box:'{{ artist|artist_box_front }}',
+            name:'{{ artist.name }}'
+            }{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    ];
+    </script>
+
 {% endblock %}
 
