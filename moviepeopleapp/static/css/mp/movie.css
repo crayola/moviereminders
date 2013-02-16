@@ -37,8 +37,9 @@
 }
 .movie-box-title .release{
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 16px;
+    right: 12px;
+    color: #999;
 }
 .movie-box-title .date{
     font-size: 14px;

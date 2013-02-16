@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="713d0307-a5e1-48cd-941e-0074c3bd0a15" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/moviepeopleapp/static/css/commons/commons.form.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moviepeopleapp/static/css/mp/frontpagev2.css" afterPath="$PROJECT_DIR$/moviepeopleapp/static/css/mp/frontpagev2.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moviepeopleapp/static/css/mp/modal.css" afterPath="$PROJECT_DIR$/moviepeopleapp/static/css/mp/modal.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moviepeopleapp/static/css/mp/movie.css" afterPath="$PROJECT_DIR$/moviepeopleapp/static/css/mp/movie.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moviepeopleapp/templatetags/movie.py" afterPath="$PROJECT_DIR$/moviepeopleapp/templatetags/movie.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moviepeopleapp/views/web/user.py" afterPath="$PROJECT_DIR$/moviepeopleapp/views/web/user.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/layouts/guest/empty.html" afterPath="$PROJECT_DIR$/templates/layouts/guest/empty.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user/homepage.html" afterPath="$PROJECT_DIR$/templates/user/homepage.html" />
     </list>
     <ignored path="moviepeople.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -112,7 +103,7 @@
           <file leaf-file-name="movie.css" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/css/mp/movie.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="9" column="4" selection-start="229" selection-end="229" vertical-scroll-proportion="0.13461539">
+                <state line="41" column="16" selection-start="781" selection-end="781" vertical-scroll-proportion="0.6132479">
                   <folding />
                 </state>
               </provider>
@@ -940,7 +931,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/css/mp/movie.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="4" selection-start="229" selection-end="229" vertical-scroll-proportion="0.13461539">
+        <state line="41" column="16" selection-start="781" selection-end="781" vertical-scroll-proportion="0.6132479">
           <folding />
         </state>
       </provider>
