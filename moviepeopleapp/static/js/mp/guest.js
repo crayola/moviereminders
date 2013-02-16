@@ -14,13 +14,14 @@ mp.guest = new function(){
 
 
 
-        $('#signin-submit').click(function() {
-            var username = $('#id_username').val();
-            var password = $('#id_password').val();
-            $k.api.POST({
+        $('#signin-submit').async(function() {
+            var username = $('#login-username').val();
+            var password = $('#login-password').val();
+            return $k.api.POST({
                 url:'/signin',
-                json:{username: username,
-                    password: password,
+                json:{
+                    username: username,
+                    password: password
                 },
                 success:function(json){
                     if (json.auth) {
@@ -28,9 +29,7 @@ mp.guest = new function(){
                     } else {
                         $('#signinerror').show();
                     }
-                },
-                error:function(json){
-                },
+                }
             });
         });
 
