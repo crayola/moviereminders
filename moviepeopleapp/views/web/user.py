@@ -26,7 +26,6 @@ def homepage(request):
     nowdate = datetime.datetime.today().strftime("%Y-%m-%d")
     user=request.user;
     artists = [follow.people_id for follow in Follow.objects.filter(user_id=user.id)]
-
     mindategood=datetime.datetime.strptime(nowdate, "%Y-%m-%d")
     releases = Release.objects.filter(country='US', date__gte=mindategood)
     torelease = releases.values_list('movie', flat=True).distinct()
@@ -56,6 +55,12 @@ def homepage(request):
         for release in releases:
             if release.movie_id == movie.id:
                 movie_map['release_date']= release.date
+
+        #find artists not followed
+        all_movie_artists = MoviePeople.objects.filter(movie__id=movie.id).exclude(people__id__in=artists)
+        for movie_artist in all_movie_artists:
+            movie_map['artists_nofollow'].append(movie_artist.people)
+
         movie_map_array.append(movie_map)
 
     log.info('movie_map_array:'+str(movie_map_array))

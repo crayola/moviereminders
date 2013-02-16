@@ -56,7 +56,6 @@ div.logo{
     padding-right: 18px;
     height: 24px;
     line-height: 24px;
-    background: #e0e0e0;
 }
 .menu-top a.link{
     color:#999;
@@ -66,7 +65,7 @@ div.logo{
     color:#000000;
 }
 #menu-box{
-    padding: 20px;
+    padding: 18px;
     height: 44px;
     line-height: 44px;
     text-align: right;
@@ -85,6 +84,7 @@ div.logo{
     padding: 0 48px 48px 588px;
     background: #e0e0e0;
     text-align: center;
+    position: relative;
 }
 .artist-boxes-inner-wrapper{
     width:816px;

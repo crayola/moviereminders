@@ -11,8 +11,6 @@
         <div class="row">
             <div class="span12">
 
-                <h1>{{ movies_map|length }} upcoming</h1>
-
                 {%  for movie_map in movie_map_array %}
 
                     {{ movie_map|movie_box_home }}
