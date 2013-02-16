@@ -34,17 +34,21 @@ mp.guest = new function(){
             });
         });
 
-        $('#forgot-password').click(function() {
-            $('#forgot-modal').modal('show');
+        $('#forgot-password-link').click(function(){
+            $('#login-modal').modal('hide');
+            $('#forgot-password-modal').modal('show');
         });
 
-        function logoutevents() {
-            $('#username').text('');
-            $('#signin-btn > a').text('Sign in');
-            $('#register-btn').show();
-            $('#yourwhispers-btn').hide();
-            $('#yourfollowees-btn').hide();
-        }
+        $('#forgot-password-submit').async(function(){
+            var email = $('#forgot-password-email').val();
+            return $k.api.GET({
+                url:'api/forgot',
+                json:{email:email},
+                success:function(){
+                    $('#forgot-password-success').fadeIn();
+                }
+            });
+        });
     }
 
     this.logout = function(){

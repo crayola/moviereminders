@@ -4,7 +4,7 @@ $k.api = new (function(){
 
     var call = function(url,method,json,callback,callbackError){
         json = $.extend({},json);
-        var data ='JSON='+encodeURIComponent(JSON.stringify(json))+'&api=true';
+        var data ='json='+encodeURIComponent(JSON.stringify(json))+'&api=true';
         return $.ajax({
             type: method,
             dataType:'json',

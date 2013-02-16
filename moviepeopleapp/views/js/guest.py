@@ -28,7 +28,7 @@ log = logging.getLogger(__name__)
 def loginAjax(request):
     #redirect_to = request.REQUEST.get(REDIRECT_FIELD_NAME, '')
     if request.POST:
-        json=simplejson.loads(request.POST.get('JSON'))
+        json=simplejson.loads(request.POST.get('json'))
         #errors = manipulator.get_validation_errors(request.POST)
         user = authenticate(username = json['username'], password = json['password'])
         if user is not None and user.is_active:
@@ -42,7 +42,7 @@ def loginAjax(request):
 
 def autocomplete(request):
     #get term
-    json_string = request.GET.get('JSON')
+    json_string = request.GET.get('json')
     json = simplejson.loads(json_string)
     term = json['term']
 
@@ -74,7 +74,7 @@ def autocomplete(request):
 
 def manualsearch(request):
     #get term
-    json_string = request.GET.get('JSON')
+    json_string = request.GET.get('json')
     json = simplejson.loads(json_string)
     term = json['term']
     if len(term) < 3: return None
@@ -118,7 +118,7 @@ def nextPeople(frontfollows, fpartists):
 #follow an artist on the frontpage
 #store in session, will be lost if person does not create an account
 def frontpageFollow(request):
-    json = simplejson.loads(request.GET.get('JSON'))
+    json = simplejson.loads(request.GET.get('json'))
     artistId = json['artist_id']
     artist = People.objects.get(pk=artistId)
     #save in session

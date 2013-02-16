@@ -57,7 +57,7 @@
                     </div>
                     <br/>
                     <br/>
-                    <p class="note"><a id="forgot-password"> Forgot password? </a></p>
+                    <p class="note"><a id="forgot-password-link" href="javascript:void(0)"> Forgot password? </a></p>
                 </div>
             </div>
 
@@ -69,6 +69,36 @@
     </form>
 </div>
 
+{# FORGOT PASSWORD #}
+<div id="forgot-password-modal" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Forgot password</h3>
+    </div>
+    <div class="modal-alert success" id="forgot-password-success" style="display:none">Got it! Check your emails.</div>
+
+    <div class="modal-body">
+
+        <br/>
+        <br/>
+
+        <div class="center">
+            <div class="input-out-wrapper">
+                <div class="input-wrapper">
+                    <input id="forgot-password-email" type="email" name="username">
+                    <label for="id_username">Your email:</label>
+                </div>
+                <br/>
+                <br/>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <a data-dismiss="modal" class="btn">Cancel</a>
+        <input type="button" id="forgot-password-submit" class="btn btn-primary" value="OK">
+    </div>
+</div>
 
 {# ERROR MODAL #}
 <div id="hidden-modal" class="modal hide fade">
