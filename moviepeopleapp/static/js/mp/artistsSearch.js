@@ -63,7 +63,7 @@ mp.artistSearch = new function(){
         $btn.async('ajax',{
             url:'/api/people/frontFollow',
             data:function(){
-                return {JSON:{artist_id:$btn.attr('artist-id')}};
+                return {json:{artist_id:$btn.attr('artist-id')}};
             },
             success:function(json){
                 log.info('followed artist');
