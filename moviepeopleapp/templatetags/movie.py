@@ -33,9 +33,10 @@ def movie_box_home(movie_map):
     html+= '</div>'
 
     for artist in artists_nofollow:
-        html+='<div class="artist-nofollow">'
+        html+='<a class="artist-nofollow" href="javascript:void(0)" artist-id="'+str(artist.id)+'">'
         html+= '<img src="'+artist_pic_url(artist)+'"/>'
-        html+='</div>'
+        html+= '<div class="name">Follow '+artist.name+'</div>'
+        html+='</a>'
 
     html+= '</div>'
 

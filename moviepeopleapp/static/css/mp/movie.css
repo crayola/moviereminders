@@ -87,17 +87,50 @@
     background: white;
     text-align: center;
     border-bottom: 1px solid #999;
+    line-height: 16px;
+    text-transform: uppercase;
+    color: #666;
 }
 .movie-box .artists-nofollow{
     display: inline-block;
 }
 .movie-box .artist-nofollow{
     display: inline-block;
+    position: relative;
 }
 .movie-box .artist-nofollow>img{
     width: 90px;
     height: 112px;
 }
 .movie-box .artist-nofollow>.name{
+    position: absolute;
+    display: block;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 3px;
+    padding: 3px;
+    background: white;
+    text-align: center;
+    border-bottom: 1px solid #999;
+    font-size: 11px;
+    line-height: 12px;
+    color: #666;
+    text-transform: uppercase;
+    opacity: 0;
 
+    -webkit-transition: opacity 0.1s linear;
+    -moz-transition: opacity 0.1s linear  ;
+    -o-transition: opacity 0.1s linear ;
+    -ms-transition: opacity 0.1s linear  ;
+    transition: opacity 0.1s linear ;
+}
+.movie-box .artist-nofollow:hover>.name{
+    opacity: 1;
+
+    -webkit-transition: opacity 0.1s linear;
+    -moz-transition: opacity 0.1s linear  ;
+    -o-transition: opacity 0.1s linear ;
+    -ms-transition: opacity 0.1s linear  ;
+    transition: opacity 0.1s linear ;
 }
