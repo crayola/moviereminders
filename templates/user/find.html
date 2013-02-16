@@ -1,5 +1,7 @@
 {% extends "layouts/user/base.html" %}
 
+{%  load artist %}
+
 {% block title %}Find artists to follow{% endblock %}
 {% block jspage %}find{% endblock %}
 
@@ -9,41 +11,33 @@
         <div class="row">
             <div class="span12">
 
-                <h1>Find artists to follow</h1>
-                <h2>Type the name of an artist you love and be the first to know about their upcoming movies</h2>
-
                 <input id="artist-name" type="text" placeholder="ex: Johnny Depp, Quentin Tarantino" class="ui-autocomplete-input" autocomplete="off">
-
 
             </div>
         </div>
     </div>
 
-    <div class="container" id="people" style="display:none">
-
-        <div class="row" id="right-pane" style="display:none;">
-            <div class="span7">
-                <h1 class="people-name"></h1>
-            </div>
-            <div class="span5" id="right-paneWrapper">
-                <div style="text-align: center;">
-                    <!-- <a class="btn btn-large btn-primary" type="button" id="subscribe">Be the first to hear about their next <span class="people-name"></span> movie!</a> -->
-                    <a class="btn btn-large btn-primary" style="width:280px" type="button" id="subscribe"><span class="subscribe-text"></span></a>
+    <div class="container">
+    <div class="row" >
+            <div class="span12">
+                <div id="artist-boxes">
+                    {% for artist in artists %}
+                        {{ artist|artist_box_front }}
+                    {% endfor %}
                 </div>
             </div>
         </div>
-
-
-        <div class="row">
-            <div class="span7" id="timeline" style="margin-top:16px;">
-                &nbsp;
-            </div>
-            <div class="span5">
-                &nbsp;
-                <div id="people-pic" class="people-pic"> </div>
-            </div>
-        </div>
-
-        <div id="inliner">&nbsp;</div>
     </div>
+
+    <script>
+        var mp_artists=[
+            {% for artist in artists %}
+                {
+                    box:'{{ artist|artist_box_front }}',
+                    name:'{{ artist.name }}'
+                }{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ];
+    </script>
+
 {% endblock %}

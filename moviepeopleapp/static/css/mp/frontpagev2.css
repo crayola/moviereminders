@@ -95,76 +95,6 @@ div.logo{
         width:612px;
     }
 }
-#artist-boxes{
-    letter-spacing: -.31em;
-    text-align: left;
-}
-#artist-boxes>div{
-    letter-spacing: normal;
-}
-.artist-box-front{
-    display: inline-block;
-    width: 180px;
-    height: 330px;
-    margin-right: 24px;
-    margin-bottom: 24px;
-    vertical-align: top;
-    text-align: center;
-    background: #e0e0e0;
-}
-.artist-box-front img{
-    width:180px;
-    height: 258px;
-
-}
-.artist-box-front .follow-btn-box{
-    text-align: center;
-    margin-top:12px;
-}
-
-.artist-box-front .follow-btn-box .btn-follow {
-    background-color: hsl(169, 3%, 87%) !important;
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e7e8e8", endColorstr="#dcdede");
-    background-image: -khtml-gradient(linear, left top, left bottom, from(#e7e8e8), to(#dcdede));
-    background-image: -moz-linear-gradient(top, #e7e8e8, #dcdede);
-    background-image: -ms-linear-gradient(top, #e7e8e8, #dcdede);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e7e8e8), color-stop(100%, #dcdede));
-    background-image: -webkit-linear-gradient(top, #e7e8e8, #dcdede);
-    background-image: -o-linear-gradient(top, #e7e8e8, #dcdede);
-    background-image: linear-gradient(#e7e8e8, #dcdede);
-    border-color: #dcdede #dcdede hsl(169, 3%, 86%);
-    color: #333 !important;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.06);
-    -webkit-font-smoothing: antialiased;
-
-    font-weight: 300;
-    font-family: 'open sans',arial,sans-serif;
-
-    -webkit-border-radius: 2px!important;
-    -moz-border-radius: 2px!important;
-    border-radius: 2px!important;
-
-    display: block;
-}
-
-.artist-box-front .follow-btn-box .btn-follow:hover {
-    background-color: hsl(214, 91%, 80%) !important;
-    background-repeat: repeat-x;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#c4dcfc", endColorstr="#9dc5fa");
-    background-image: -khtml-gradient(linear, left top, left bottom, from(#c4dcfc), to(#9dc5fa));
-    background-image: -moz-linear-gradient(top, #c4dcfc, #9dc5fa);
-    background-image: -ms-linear-gradient(top, #c4dcfc, #9dc5fa);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #c4dcfc), color-stop(100%, #9dc5fa));
-    background-image: -webkit-linear-gradient(top, #c4dcfc, #9dc5fa);
-    background-image: -o-linear-gradient(top, #c4dcfc, #9dc5fa);
-    background-image: linear-gradient(#c4dcfc, #9dc5fa);
-    border-color: #9dc5fa #9dc5fa hsl(214, 91%, 78%);
-    color: #333 !important;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.13);
-    -webkit-font-smoothing: antialiased;
-}
-
 
 input.front-input{
     width: 434px;
@@ -201,14 +131,7 @@ input.error.front-input{
 input.loading.front-input .loader{
     display:block!important;
 }
-.ui-autocomplete-loading {
-    background-image:url('../../img/loading.gif');
-    background-repeat:no-repeat;
-    background-position:right center;
-    background-origin: content;
-    background-size: 24px;
-    background-position-x: 99%;
-}
+
 
 #create-account-box{
     position: fixed;

@@ -9,3 +9,12 @@ select, .modal, textarea, input[type="text"], input[type="password"], input[type
     -moz-border-radius: 2px!important;
     border-radius: 2px!important;
 }
+
+.ui-autocomplete-loading {
+    background-image:url('../../img/loading.gif');
+    background-repeat:no-repeat;
+    background-position:right center;
+    background-origin: content;
+    background-size: 24px;
+    background-position-x: 99%;
+}

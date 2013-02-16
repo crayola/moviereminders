@@ -1,5 +1,8 @@
 $k.pages.find = new function(){
     this.init = function(){
-        mp.artistSearch.initAutocomplete($('#artist-name'));
+
+        var $input = $('#artist-name');
+        //init autocomplete input for people name
+        mp.artistSearch.initAutocomplete($input);
     }
 }

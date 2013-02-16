@@ -68,7 +68,8 @@ def homepage(request):
 
 def find_artists(request):
     user=request.user
-    return render(request, 'user/find.html', {})
+    artists = People.objects.filter(name__in=['Quentin Tarantino', 'Johnny Depp', 'Emma Stone', 'Scarlett Johansson', 'Danny Boyle', 'Ryan Gosling', 'Bruce Willis', 'Emma Watson'])
+    return render(request, 'user/find.html', {'artists':artists})
 
 def follows(request):
     user=request.user
