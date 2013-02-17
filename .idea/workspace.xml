@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="713d0307-a5e1-48cd-941e-0074c3bd0a15" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moviepeopleapp/static/js/lib/jquery/jquery.async.js" afterPath="$PROJECT_DIR$/moviepeopleapp/static/js/lib/jquery/jquery.async.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moviepeopleapp/static/js/lib/jquery/jquery.loader.js" afterPath="$PROJECT_DIR$/moviepeopleapp/static/js/lib/jquery/jquery.loader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moviepeopleapp/static/js/mp/guest.js" afterPath="$PROJECT_DIR$/moviepeopleapp/static/js/mp/guest.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/moviepeopleapp/static/img/favicon.ico" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/moviepeopleapp/static/img/favicon_16.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/moviepeopleapp/static/img/favicon_32.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/moviepeopleapp/static/img/keepup_logo_600x144.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/guest/frontpagev2.html" afterPath="$PROJECT_DIR$/templates/guest/frontpagev2.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/layouts/guest/empty.html" afterPath="$PROJECT_DIR$/templates/layouts/guest/empty.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/layouts/user/base.html" afterPath="$PROJECT_DIR$/templates/layouts/user/base.html" />
     </list>
     <ignored path="moviepeople.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,10 +40,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="empty.html" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="empty.html" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/templates/layouts/guest/empty.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="10" column="141" selection-start="690" selection-end="690" vertical-scroll-proportion="-6.0869565">
+                <state line="9" column="0" selection-start="411" selection-end="570" vertical-scroll-proportion="0.14318182">
                   <folding />
                 </state>
               </provider>
@@ -72,10 +76,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="jquery.loader.js" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="jquery.loader.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/lib/jquery/jquery.loader.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="94" column="50" selection-start="3059" selection-end="3059" vertical-scroll-proportion="0.8047138">
+                <state line="53" column="26" selection-start="1658" selection-end="1658" vertical-scroll-proportion="-18.48">
                   <folding />
                 </state>
               </provider>
@@ -133,8 +137,10 @@
           <file leaf-file-name="frontpagev2.html" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/templates/guest/frontpagev2.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="2" column="0" selection-start="42" selection-end="60" vertical-scroll-proportion="0.0">
-                  <folding />
+                <state line="10" column="0" selection-start="202" selection-end="202" vertical-scroll-proportion="-5.478261">
+                  <folding>
+                    <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -157,10 +163,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="artistsSearch.js" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="artistsSearch.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/mp/artistsSearch.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="65" column="28" selection-start="2095" selection-end="2095" vertical-scroll-proportion="0.709607">
+                <state line="65" column="28" selection-start="2095" selection-end="2095" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -193,10 +199,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="base.html" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/templates/layouts/user/base.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="15" column="119" selection-start="1201" selection-end="1201" vertical-scroll-proportion="0.0">
+                <state line="12" column="74" selection-start="597" selection-end="597" vertical-scroll-proportion="0.19090909">
                   <folding />
                 </state>
               </provider>
@@ -218,12 +224,10 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/templates/user/homepage.html" />
         <option value="$PROJECT_DIR$/moviepeopleapp/static/js/pages/homepage.js" />
         <option value="$PROJECT_DIR$/moviepeopleapp/static/js/pages/frontpagev2.js" />
         <option value="$PROJECT_DIR$/moviepeopleapp/static/js/pages/find.js" />
         <option value="$PROJECT_DIR$/moviepeopleapp/static/css/mp/artistSearch.css" />
-        <option value="$PROJECT_DIR$/templates/layouts/user/base.html" />
         <option value="$PROJECT_DIR$/moviepeopleapp/views/web/user.py" />
         <option value="$PROJECT_DIR$/templates/user/find.html" />
         <option value="$PROJECT_DIR$/moviepeopleapp/static/css/mp/frontpagev2.css" />
@@ -232,8 +236,10 @@
         <option value="$PROJECT_DIR$/moviepeopleapp/views/js/guest.py" />
         <option value="$PROJECT_DIR$/moviepeopleapp/static/js/mp/artistsSearch.js" />
         <option value="$PROJECT_DIR$/moviepeopleapp/static/js/mp/guest.js" />
-        <option value="$PROJECT_DIR$/templates/layouts/guest/empty.html" />
         <option value="$PROJECT_DIR$/moviepeopleapp/static/js/lib/jquery/jquery.loader.js" />
+        <option value="$PROJECT_DIR$/templates/layouts/guest/empty.html" />
+        <option value="$PROJECT_DIR$/templates/guest/frontpagev2.html" />
+        <option value="$PROJECT_DIR$/templates/layouts/user/base.html" />
       </list>
     </option>
   </component>
@@ -431,14 +437,6 @@
               <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -458,215 +456,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeople" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviereminders" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeopleapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeople" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviereminders" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeopleapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jquery" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeople" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviereminders" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeopleapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeople" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviereminders" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeopleapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeople" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviereminders" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeopleapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeople" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviereminders" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeopleapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jquery" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeople" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviereminders" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeopleapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeople" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviereminders" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="moviepeopleapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="commons" />
+              <option name="myItemId" value="img" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -711,11 +501,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\python\moviereminders\moviepeopleapp\static\img" />
       <recent name="C:\python\moviereminders\moviepeopleapp\static\js\lib\jquery" />
       <recent name="C:\python\moviereminders\moviepeopleapp\static\css\commons" />
       <recent name="C:\python\moviereminders\moviepeopleapp\static\css\lib\jquery" />
       <recent name="C:\python\moviereminders\moviepeopleapp\static\css\mp" />
-      <recent name="C:\python\moviereminders\moviepeopleapp\static\js\k" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\python\moviereminders\moviepeopleapp\static\css\lib\jquery" />
@@ -870,7 +660,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1592" y="-8" width="1936" height="1096" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -880,7 +670,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39854318" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3278237" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.27884614" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="3" y="440" width="1168" height="430" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.27884614" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="3" y="440" width="1168" height="430" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -946,11 +736,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/pages/homepage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="18" selection-start="342" selection-end="342" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/moviepeopleapp/views/web/user.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="66" column="70" selection-start="2654" selection-end="2654" vertical-scroll-proportion="0.0">
@@ -986,16 +771,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/layouts/user/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="119" selection-start="1201" selection-end="1201" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/mp/artistsSearch.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="28" selection-start="2095" selection-end="2095" vertical-scroll-proportion="0.709607">
+        <state line="65" column="28" selection-start="2095" selection-end="2095" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1028,13 +806,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/layouts/guest/empty.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="141" selection-start="690" selection-end="690" vertical-scroll-proportion="-6.0869565">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/moviepeopleapp/views/js/guest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="41" selection-start="600" selection-end="600" vertical-scroll-proportion="-2.72">
@@ -1051,7 +822,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/moviepeopleapp/static/js/lib/jquery/jquery.loader.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="50" selection-start="3059" selection-end="3059" vertical-scroll-proportion="0.8047138">
+        <state line="53" column="26" selection-start="1658" selection-end="1658" vertical-scroll-proportion="-18.48">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/guest/frontpagev2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="202" selection-end="202" vertical-scroll-proportion="-5.478261">
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layouts/guest/empty.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="411" selection-end="570" vertical-scroll-proportion="0.14318182">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layouts/user/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="74" selection-start="597" selection-end="597" vertical-scroll-proportion="0.19090909">
           <folding />
         </state>
       </provider>
