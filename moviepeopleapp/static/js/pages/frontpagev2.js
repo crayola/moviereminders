@@ -7,7 +7,7 @@ $k.pages.frontpagev2 = new function(){
 
         var $input = $('#artist-name');
         //init autocomplete input for people name
-        mp.artistSearch.initAutocomplete($input);
+        mp.artistSearch.initAutocomplete($input,addArtistInMenuBox);
 
 
         $('#create-account-box .close').click(closeCreateAccount);
@@ -47,7 +47,7 @@ $k.pages.frontpagev2 = new function(){
 
     function openCreateAccount(){
         var artistNames = [];
-        $.each(artistFrontFolloweds,function(i,artist){
+        $.each(mp.artistSearch.getArtistFolloweds(),function(i,artist){
            artistNames.push(artist.name);
         });
         $('#create-account-actor-names').html(artistNames.join(', '));
@@ -58,6 +58,22 @@ $k.pages.frontpagev2 = new function(){
     function closeCreateAccount(){
         var $create = $('#create-account-box');
         $create.animate({right:-$create.outerWidth()-20},200);
+    }
+
+    function addArtistInMenuBox(artist){
+        var $menu = $('#menu-box');
+        if(artistFrontFolloweds.length<=0){
+            var $next = $('<a class="btn btn-primary btn-large">Save your choices &raquo;</a>');
+            $next.click(openCreateAccount);
+            $menu.html('You follow: <span id="follow-artists"></span>');
+            $menu.append($next);
+            $menu.animate({opacity:1});
+        }
+        var $artists = $('#follow-artists');
+        artistFrontFolloweds.push(artist);
+        var $pic =$('<img src="'+artist.pic_url+'" class="artist-small-pic"/>');
+        $pic.tooltip({title:artist.name});
+        $artists.prepend($pic);
     }
 
 }
