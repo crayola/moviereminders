@@ -69,7 +69,7 @@ class ReminderAdmin(admin.ModelAdmin):
 
 
 admin.site.register([MoviePeople, Follow, Movie])
-MyAdmin.register(Reminder)
+MyAdmin.register(Reminder, ReminderAdmin)
 #admin.site.register(Follow, admin_class=MyEntryAdmin)
 
 
