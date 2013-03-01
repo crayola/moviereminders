@@ -58,6 +58,16 @@ print(patterns('', url(r'^myadmin/', include(MyAdmin.urls))))
 #
 
 
+def sendEmail(modeladmin, request, queryset):
+  pass
+sendEmail.short_description = "Mark selected stories as published"
+
+class ReminderAdmin(admin.ModelAdmin):
+    list_display = ['user', 'moviepeople']
+    ordering = ['user']
+    actions = [sendEmail]
+
+
 admin.site.register([MoviePeople, Follow, Movie])
 MyAdmin.register(Reminder)
 #admin.site.register(Follow, admin_class=MyEntryAdmin)
