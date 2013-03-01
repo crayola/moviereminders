@@ -39,7 +39,7 @@ def checkNewStuff(day):
   newReleases = [x for x in Release.objects.filter(date=date + datetime.timedelta(7), country='US') if (lambda x: min([y.date for y in x])  > date if x else True)(Release.objects.filter(movie=x.movie))] 
   #newReleases_movies = [(x.movie, date + datetime.timedelta(7)) for x in Release.objects.filter(date=date + datetime.timedelta(7), country='US') if (lambda x: min([y.date for y in x])  > date if x else True)(Release.objects.filter(movie=x.movie))] 
   #newReleases_MPs = [(MoviePeople.objects.filter(movie=x[0]), x[0], x[1]) for x in newReleases_movies]
-  return (newMPs, newTrailers_MPs, newReleases_MPs)
+  return (newMPs, newTrailers, newReleases)
 
 def makeNewMPs(newMPs):
   date= (datetime.datetime.strptime(day, "%Y-%m-%d")).date()
