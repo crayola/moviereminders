@@ -4,7 +4,9 @@ from django.conf import settings
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from moviepeopleapp.admin import MyAdmin
 admin.autodiscover()
+
 
 urlpatterns = patterns('',
 
@@ -34,9 +36,9 @@ urlpatterns = patterns('',
     url(r'^api/unfollow$',                  'moviepeopleapp.views.js.user.unfollow'),
     url(r'^api/people/(\d+)/subscribe$',    'moviepeopleapp.views.js.user.people_subscribe'),
 
-
     #python admin
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^myadmin/', include(MyAdmin.urls)),
 
 )
 
@@ -45,3 +47,4 @@ if settings.LOCAL == True:
        #DEV
        url(r'^loadsampledb/',               'moviepeopleapp.views.dev.load_sample_db')
     )
+

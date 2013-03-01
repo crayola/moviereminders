@@ -11,7 +11,7 @@ from django.utils.datetime_safe import date
 from moviepeopleapp.models import (People, MoviePeople, Trailer, 
                                    Release, Movie, MovieGenre, 
                                    MovieOverview, MovieLanguage, 
-                                   MovieCountry, MovieCompany, Follow)
+                                   MovieCountry, MovieCompany, Follow, Reminder)
 from urllib2 import urlopen, Request, URLError, HTTPError
 import requests
 import datetime
@@ -22,24 +22,59 @@ log = logging.getLogger(__name__)
 
 def sendUpdates(day):
   (newMPs, newTrailers, newReleases) = checkNewStuff(day)
-  sendNewMPs(newMPs)
-  sendNewTrailers(newTrailers)
-  sendNewReleases(newReleases)
+  makeNewMPs(newMPs)
+  makeNewTrailers(newTrailers)
+  makeNewReleases(newReleases)
+  #sendNewMPs(newMPs)
+  #sendNewTrailers(newTrailers)
+  #sendNewReleases(newReleases)
   return 1
 
 def checkNewStuff(day):
   date= (datetime.datetime.strptime(day, "%Y-%m-%d")).date()
   newMPs = [x for x in MoviePeople.objects.filter(date_info=day) if (lambda x: min([y.date for y in x])  > date if x else True)(Release.objects.filter(movie=x.movie))]
-  newTrailers_movies = [(x.movie, x.url) for x in Trailer.objects.filter(date_info=day) if (lambda x: min([y.date for y in x])  > date if x else True)(Release.objects.filter(movie=x.movie))] 
-  newTrailers_MPs = [(MoviePeople.objects.filter(movie=x[0]), x[0], x[1]) for x in newTrailers_movies]
-  newReleases_movies = [(x.movie, date + datetime.timedelta(7)) for x in Release.objects.filter(date=date + datetime.timedelta(7), country='US') if (lambda x: min([y.date for y in x])  > date if x else True)(Release.objects.filter(movie=x.movie))] 
-  newReleases_MPs = [(MoviePeople.objects.filter(movie=x[0]), x[0], x[1]) for x in newReleases_movies]
+  #newTrailers_movies = [(x.movie, x.url) for x in Trailer.objects.filter(date_info=day) if (lambda x: min([y.date for y in x])  > date if x else True)(Release.objects.filter(movie=x.movie))] 
+  #newTrailers_MPs = [(MoviePeople.objects.filter(movie=x[0]), x[0], x[1]) for x in newTrailers_movies]
+  newTrailers = [x for x in Trailer.objects.filter(date_info=day) if (lambda x: min([y.date for y in x])  > date if x else True)(Release.objects.filter(movie=x.movie))] 
+  newReleases = [x for x in Release.objects.filter(date=date + datetime.timedelta(7), country='US') if (lambda x: min([y.date for y in x])  > date if x else True)(Release.objects.filter(movie=x.movie))] 
+  #newReleases_movies = [(x.movie, date + datetime.timedelta(7)) for x in Release.objects.filter(date=date + datetime.timedelta(7), country='US') if (lambda x: min([y.date for y in x])  > date if x else True)(Release.objects.filter(movie=x.movie))] 
+  #newReleases_MPs = [(MoviePeople.objects.filter(movie=x[0]), x[0], x[1]) for x in newReleases_movies]
   return (newMPs, newTrailers_MPs, newReleases_MPs)
 
-def sendNewMPs(newMPs):
+def makeNewMPs(newMPs):
+  date= (datetime.datetime.strptime(day, "%Y-%m-%d")).date()
   for newMP in newMPs:
-    [sendMPmail(newMP, x.user) for x in Follow.objects.filter(people = newMP.people)]
-  log.info("Done sending emails about new announcements.")
+    for follow in Follow.objects.filter(people = newMP.people)]:
+      email, created=Reminder.objects.get_or_create(moviepeople=newMP, user=follow.user, date_info=date, email_type='cast', defaults={'email_status':'Not sent'})
+      email.save()
+  return None
+
+def makeNewTrailers(newTrailers):
+  date= (datetime.datetime.strptime(day, "%Y-%m-%d")).date()
+  for trailer in newTrailers:
+    newMPs = MoviePeople.objects.filter(movie=trailer.movie)
+    for newMP in newMPs:
+      for follow in Follow.objects.filter(people = newMP.people)]:
+        email, created=Reminder.objects.get_or_create(moviepeople=newMP, user=follow.user, date_info=date, trailer=trailer, email_type='trailer', defaults={'email_status':'Not sent'})
+        email.save()
+  return None
+
+def makeNewReleases(newReleases):
+  date= (datetime.datetime.strptime(day, "%Y-%m-%d")).date()
+  for release in newReleases:
+    newMPs = MoviePeople.objects.filter(movie=release.movie)
+    for newMP in newMPs:
+      for follow in Follow.objects.filter(people = newMP.people)]:
+        email, created=Reminder.objects.get_or_create(moviepeople=newMP, user=follow.user, date_info=date, release=date + datetime.timedelta(7), email_type='release', defaults={'email_status':'Not sent'})
+        email.save()
+  return None
+
+        
+#movie_main.get('id'))
+#     
+#
+#    [sendMPmail(newMP, x.user) for x in Follow.objects.filter(people = newMP.people)]
+#  log.info("Done sending emails about new announcements.")
 
 def sendNewTrailers(movies):
   for newMPs in movies:

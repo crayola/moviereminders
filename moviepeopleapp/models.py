@@ -178,3 +178,16 @@ class MovieCompany(models.Model):
   class Meta:
     unique_together = ('movie', 'company')
 
+
+class Reminder(models.Model): 
+  user = models.ForeignKey(django.contrib.auth.models.User)
+  email_type = models.CharField(max_length=50)
+  moviepeople = models.ForeignKey(MoviePeople)
+  email_status = models.CharField(max_length=20)
+  date_info = models.DateField(null=True)
+  trailer = models.ForeignKey(Trailer)
+  release = models.ForeignKey(Release)
+
+#  class Meta:
+#    unique_together = ('movie', 'company')
+
