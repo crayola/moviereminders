@@ -1,4 +1,4 @@
-from moviepeopleapp.models import MoviePeople, Follow
+from moviepeopleapp.models import MoviePeople, Follow, Movie, Reminder
 from django.contrib import admin
 import django.contrib.auth
 
@@ -57,8 +57,8 @@ print(patterns('', url(r'^myadmin/', include(MyAdmin.urls))))
 #				}, context_instance=RequestContext(request))
 #
 
-admin.site.register(MoviePeople)
-admin.site.register(Follow)
+
+admin.site.register([MoviePeople, Follow, Movie])
 MyAdmin.register(Reminder)
 #admin.site.register(Follow, admin_class=MyEntryAdmin)
 
