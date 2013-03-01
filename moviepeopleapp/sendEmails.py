@@ -44,7 +44,7 @@ def checkNewStuff(day):
 def makeNewMPs(newMPs):
   date= (datetime.datetime.strptime(day, "%Y-%m-%d")).date()
   for newMP in newMPs:
-    for follow in Follow.objects.filter(people = newMP.people)]:
+    for follow in Follow.objects.filter(people = newMP.people):
       email, created=Reminder.objects.get_or_create(moviepeople=newMP, user=follow.user, date_info=date, email_type='cast', defaults={'email_status':'Not sent'})
       email.save()
   return None
@@ -54,7 +54,7 @@ def makeNewTrailers(newTrailers):
   for trailer in newTrailers:
     newMPs = MoviePeople.objects.filter(movie=trailer.movie)
     for newMP in newMPs:
-      for follow in Follow.objects.filter(people = newMP.people)]:
+      for follow in Follow.objects.filter(people = newMP.people):
         email, created=Reminder.objects.get_or_create(moviepeople=newMP, user=follow.user, date_info=date, trailer=trailer, email_type='trailer', defaults={'email_status':'Not sent'})
         email.save()
   return None
@@ -64,7 +64,7 @@ def makeNewReleases(newReleases):
   for release in newReleases:
     newMPs = MoviePeople.objects.filter(movie=release.movie)
     for newMP in newMPs:
-      for follow in Follow.objects.filter(people = newMP.people)]:
+      for follow in Follow.objects.filter(people = newMP.people):
         email, created=Reminder.objects.get_or_create(moviepeople=newMP, user=follow.user, date_info=date, release=date + datetime.timedelta(7), email_type='release', defaults={'email_status':'Not sent'})
         email.save()
   return None
