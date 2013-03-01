@@ -22,9 +22,9 @@ log = logging.getLogger(__name__)
 
 def sendUpdates(day):
   (newMPs, newTrailers, newReleases) = checkNewStuff(day)
-  makeNewMPs(newMPs)
-  makeNewTrailers(newTrailers)
-  makeNewReleases(newReleases)
+  makeNewMPs(newMPs, day)
+  makeNewTrailers(newTrailers, day)
+  makeNewReleases(newReleases, day)
   #sendNewMPs(newMPs)
   #sendNewTrailers(newTrailers)
   #sendNewReleases(newReleases)
@@ -41,7 +41,7 @@ def checkNewStuff(day):
   #newReleases_MPs = [(MoviePeople.objects.filter(movie=x[0]), x[0], x[1]) for x in newReleases_movies]
   return (newMPs, newTrailers, newReleases)
 
-def makeNewMPs(newMPs):
+def makeNewMPs(newMPs, day):
   date= (datetime.datetime.strptime(day, "%Y-%m-%d")).date()
   for newMP in newMPs:
     for follow in Follow.objects.filter(people = newMP.people):
@@ -49,7 +49,7 @@ def makeNewMPs(newMPs):
       email.save()
   return None
 
-def makeNewTrailers(newTrailers):
+def makeNewTrailers(newTrailers, day):
   date= (datetime.datetime.strptime(day, "%Y-%m-%d")).date()
   for trailer in newTrailers:
     newMPs = MoviePeople.objects.filter(movie=trailer.movie)
@@ -59,7 +59,7 @@ def makeNewTrailers(newTrailers):
         email.save()
   return None
 
-def makeNewReleases(newReleases):
+def makeNewReleases(newReleases, day):
   date= (datetime.datetime.strptime(day, "%Y-%m-%d")).date()
   for release in newReleases:
     newMPs = MoviePeople.objects.filter(movie=release.movie)
