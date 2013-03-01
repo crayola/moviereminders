@@ -26,11 +26,11 @@ class Movie(models.Model):
   homepage = models.CharField(max_length=200)
   popularity = models.FloatField(null=True)
   RT_id = models.PositiveIntegerField(null=True)
-  RT_link = models.CharField(max_length=200)
+  RT_link = models.CharField(max_length=200) #, default='')
   RT_critics_score = models.FloatField(null=True)
   RT_audience_score = models.FloatField(null=True)
-  RT_critics_rating = models.CharField(max_length=50)
-  RT_audience_rating = models.CharField(max_length=50)
+  RT_critics_rating = models.CharField(max_length=50) #, default='')
+  RT_audience_rating = models.CharField(max_length=50) #, default='')
   votes = models.PositiveIntegerField(null=True)
   vote_average = models.FloatField(null=True)
   runtime = models.PositiveIntegerField(null=True)
@@ -89,8 +89,8 @@ class Release(models.Model):
   last_updated = models.DateTimeField(auto_now=True,
                                       default=datetime.datetime.now())
 
-  class Meta:
-    unique_together = ('movie', 'country')
+  #class Meta:
+    #unique_together = ('movie', 'country')
 
 
 class Trailer(models.Model):
@@ -185,8 +185,12 @@ class Reminder(models.Model):
   moviepeople = models.ForeignKey(MoviePeople)
   email_status = models.CharField(max_length=20)
   date_info = models.DateField(null=True)
-  trailer = models.ForeignKey(Trailer)
-  release = models.ForeignKey(Release)
+  trailer = models.ForeignKey(Trailer, null=True, blank=True, default=None)
+  release = models.ForeignKey(Release, null=True, blank=True, default=None)
+  
+  def __unicode__(self):
+    return self.user.email + str(self.moviepeople) + self.email_type
+
 
 #  class Meta:
 #    unique_together = ('movie', 'company')
